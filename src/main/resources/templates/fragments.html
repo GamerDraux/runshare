@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/runshare.css}" rel="stylesheet"/>
+    <script type="text/javascript"
+            th:src="@{/js/scripts.js}"></script>
+    <title
+            th:text="'Runshare' + ${title == null ? +title}">Runshare</title>
+</head>
