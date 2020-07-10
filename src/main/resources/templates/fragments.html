@@ -7,5 +7,12 @@
     <script type="text/javascript"
             th:src="@{/js/scripts.js}"></script>
     <title
-            th:text="'Runshare' + ${title == null ? +title}">Runshare</title>
+            th:text="'Runshare' + ${title}">Runshare</title>
 </head>
+
+<p th:fragment="logo">
+    <a th:href="@{/}" >
+        <img
+                th:src="@{images/RunshareLogo.jpg}"/>
+    </a>
+</p>
