@@ -6,7 +6,6 @@ import javax.validation.constraints.Size;
 
 public class RunnerLoginDTO {
 
-    //TODO-add fields for login
     @NotNull
     @NotBlank(message="A Callsign is required.")
     @Size(min=2, max=30, message="All Runner callsigns are between 2 and 30 characters")

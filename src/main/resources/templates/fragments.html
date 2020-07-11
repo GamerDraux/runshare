@@ -13,9 +13,29 @@
     </title>
 </head>
 
-<p th:fragment="logo">
-    <a th:href="@{/}" >
-        <img
-                th:src="@{../images/RunshareLogo.jpg}"/>
-    </a>
-</p>
+
+<nav class="navbar navbar-expand-lg" th:fragment="navbar">
+    <a class="navbar-brand" th:href="@{/}" >
+        <img th:src="@{../images/RunshareLogo.jpg}"
+             width="150" height="150"
+             style="background-color:red"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse"
+         id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a th:href="@{/runners}">Runners</a>
+            </li>
+            <li class="nav-item active">
+                <a th:href="@{/runners/addRunner}">Register a new Runner</a>
+            </li>
+        </ul>
+    </div>
+</nav>

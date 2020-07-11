@@ -90,5 +90,5 @@ public class RunnerController {
 
         return "redirect:";
     }
-//TODO-Get addRunnerPage working
+//TODO-Add a runner index page with stats on the current runner
 }

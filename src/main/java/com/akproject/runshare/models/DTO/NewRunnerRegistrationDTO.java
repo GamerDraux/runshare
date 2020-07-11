@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
-//TODO-add fields for new runner registration
     @NotNull
     @NotBlank(message="First name is required.  If you do not wish your name to be displayed, please check the 'Callsign only' box below")
     @Size(min=2, max=30, message="First name must be 2-30 characters")
