@@ -27,7 +27,7 @@ public class Runner extends AbstractEntity{
     @NotNull
     private String pwHash;
 
-    private Integer age;
+    private int age;
     //TODO -Add additional fields for weight, gender, running level, zip
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -36,7 +36,7 @@ public class Runner extends AbstractEntity{
     public Runner() {
     }
 
-    public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, Integer age){
+    public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, int age){
         this.callsign=callsign;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -92,7 +92,7 @@ public class Runner extends AbstractEntity{
         this.pwHash = encoder.encode(password);
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
