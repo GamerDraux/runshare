@@ -10,6 +10,6 @@ public class HomeController {
     @RequestMapping("")
     private String displayIndexPage(Model model){
         model.addAttribute("title", "Home");
-        return "index";
+        return "index.html";
     }
 }

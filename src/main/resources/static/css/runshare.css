@@ -1,4 +1,10 @@
 body {
     background-color:#0A0A0A;
     color: white;
+    padding: 10px;
+}
+
+.errors {
+    color: red;
+    font-style:italic;
 }
