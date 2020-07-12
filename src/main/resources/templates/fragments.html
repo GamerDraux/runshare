@@ -46,3 +46,10 @@
         </ul>
     </div>
 </nav>
+
+<p th:fragment="runnerbar">
+    <span
+            th:text="'Current Runner: '+${currentRunner.callsign}"></span>
+    <span
+            th:text="'Runner name: '+${currentRunner.firstName}+' '+${currentRunner.lastName}"></span>
+</p>

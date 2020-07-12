@@ -47,21 +47,26 @@ public class RunnerController {
         session.setAttribute(runnerSessionKey, runner.getId());
     }
 
-    @GetMapping
-    public String displayRunnersIndex(HttpServletRequest request, Model model){
+    private void setRunnerInModel(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("title", "Runners");
         if (getRunnerFromSession(session)!=null){
             model.addAttribute("currentRunner", getRunnerFromSession(session));
         } else {
-            model.addAttribute("currentRunner", new Runner("No Name", "none","none",true,"123456789",16));
+            model.addAttribute("currentRunner", new Runner("No Callsign", "none","none",true,"123456789",16));
         }
+    }
+
+    @GetMapping
+    public String displayRunnersIndex(HttpServletRequest request, Model model){
+        model.addAttribute("title", "Runners");
+        setRunnerInModel(request, model);
         return "runners/index";
         //TODO-Create runner index page
     }
 
     @GetMapping("/addRunner")
-    public String displayAddRunnerForm(Model model){
+    public String displayAddRunnerForm(HttpServletRequest request, Model model){
+        setRunnerInModel(request, model);
         model.addAttribute(new NewRunnerRegistrationDTO());
         model.addAttribute("title", "Add Runner");
         return "runners/addrunner";
@@ -69,6 +74,7 @@ public class RunnerController {
 
     @PostMapping("/addRunner")
     public String processAddRunnerForm(@ModelAttribute @Valid NewRunnerRegistrationDTO newRunnerRegistrationDTO, Errors errors, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Runner");
             model.addAttribute("newRunnerRegistrationDTO", newRunnerRegistrationDTO);
@@ -100,7 +106,8 @@ public class RunnerController {
     }
 
     @GetMapping("/login")
-    private String displayLoginForm(Model model){
+    private String displayLoginForm(Model model, HttpServletRequest request){
+            setRunnerInModel(request, model);
             model.addAttribute(new RunnerLoginDTO());
             model.addAttribute("title", "Login");
             return "/runners/login";
@@ -108,6 +115,7 @@ public class RunnerController {
 
     @PostMapping("/login")
     private String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
         if (errors.hasErrors()){
             return "runners/login";
@@ -131,13 +139,11 @@ public class RunnerController {
 
     @GetMapping("/logout")
     private String logoutRunner (Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
         request.getSession().invalidate();
         return "redirect:";
     }
 
 
 //TODO-Add a runner index page with stats on the current runner
-
-    //TODO-create a logout page
-    //TODO-create a login page
 }
