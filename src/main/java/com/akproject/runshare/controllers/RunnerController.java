@@ -27,7 +27,7 @@ public class RunnerController {
 
     private static final String runnerSessionKey = "user";
 
-    public Runner getUserFromSession(HttpSession session) {
+    public Runner getRunnerFromSession(HttpSession session) {
         Integer runnerId = (Integer) session.getAttribute(runnerSessionKey);
         if (runnerId == null) {
             return null;
@@ -47,9 +47,16 @@ public class RunnerController {
     }
 
     @GetMapping
-    public String displayRunnersIndex(Model model){
+    public String displayRunnersIndex(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
         model.addAttribute("title", "Runners");
+        if (getRunnerFromSession(session)!=null){
+            model.addAttribute("currentRunner", getRunnerFromSession(session));
+        } else {
+            model.addAttribute("currentRunner", new Runner("No Name", "none","none",true,"123456789",16));
+        }
         return "runners/index";
+        //TODO-Create runner index page
     }
 
     @GetMapping("/addRunner")
