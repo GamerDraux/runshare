@@ -98,4 +98,7 @@ public class RunnerController {
         return "redirect:";
     }
 //TODO-Add a runner index page with stats on the current runner
+
+    //TODO-create a logout page
+    //TODO-create a login page
 }
