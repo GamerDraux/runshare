@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<p th:replace="fragments :: navbar"></p>
+<h1>Log in to the starting line, Runner!</h1>
+<form method="post">
+    <div class="form-group">
+        <label for="callsign">Callsign</label>
+        <input th:field="${runnerLoginDTO.callsign}"
+               id="callsign">
+        <p th:errors="${runnerLoginDTO.callsign}"
+           class="errors"></p>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input th:field="${runnerLoginDTO.password}"
+               id="password">
+        <p th:errors="${runnerLoginDTO.password}"
+           class="errors"></p>
+    </div>
+    <button type="submit"
+            class="btn btn-primary">Login, Runner</button>
+</form>
+</body>
+</html>

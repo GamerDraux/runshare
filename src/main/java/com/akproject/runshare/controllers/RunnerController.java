@@ -2,6 +2,7 @@ package com.akproject.runshare.controllers;
 
 
 import com.akproject.runshare.models.DTO.NewRunnerRegistrationDTO;
+import com.akproject.runshare.models.DTO.RunnerLoginDTO;
 import com.akproject.runshare.models.Runner;
 import com.akproject.runshare.models.data.RunnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +98,44 @@ public class RunnerController {
 
         return "redirect:";
     }
+
+    @GetMapping("/login")
+    private String displayLoginForm(Model model){
+            model.addAttribute(new RunnerLoginDTO());
+            model.addAttribute("title", "Login");
+            return "/runners/login";
+    }
+
+    @PostMapping("/login")
+    private String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
+        model.addAttribute("title", "Login");
+        if (errors.hasErrors()){
+            return "runners/login";
+        }
+
+        Runner loginRunner = runnerRepository.findByCallsign(runnerLoginDTO.getCallsign());
+
+        if (loginRunner == null){
+            errors.rejectValue("callsign", "callsign.notFound", "That Callsign has not been registered!");
+            return "runners/login";
+        }
+
+        if (!loginRunner.isMatchingPassword(runnerLoginDTO.getPassword())){
+            errors.rejectValue("password", "password.incorrectPassword", "Password is not correct for this Callsign");
+            return "runners/login";
+        }
+
+        setUserInSession(request.getSession(), loginRunner);
+        return "redirect:";
+    }
+
+    @GetMapping("/logout")
+    private String logoutRunner (Model model, HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:";
+    }
+
+
 //TODO-Add a runner index page with stats on the current runner
 
     //TODO-create a logout page
