@@ -40,7 +40,7 @@ public class MainController {
         if (getRunnerFromSession(session)!=null){
             model.addAttribute("currentRunner", getRunnerFromSession(session));
         } else {
-            model.addAttribute("currentRunner", new Runner("No Callsign", "none","none",true,"123456789",16));
+            model.addAttribute("currentRunner", false);
         }
     }
 }
