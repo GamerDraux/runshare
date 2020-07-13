@@ -50,6 +50,7 @@ public class Runner extends AbstractEntity{
         this.lastName=lastName;
         this.callsignOnly=callsignOnly;
         this.pwHash= encoder.encode(password);
+        this.age=age;
     }
 
 //getters

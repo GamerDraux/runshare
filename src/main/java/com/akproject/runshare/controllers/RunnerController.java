@@ -64,7 +64,7 @@ public class RunnerController extends MainController {
             model.addAttribute("title","Add Runner");
             return "runners/addrunner";
         }
-//todo age is coming up as 0 on all runners.  find and correct
+
         Runner newRunner = new Runner(newRunnerRegistrationDTO.getCallsign(),newRunnerRegistrationDTO.getFirstName(),newRunnerRegistrationDTO.getLastName(),newRunnerRegistrationDTO.isCallsignOnly(),newRunnerRegistrationDTO.getPassword(),newRunnerRegistrationDTO.getAge());
         runnerRepository.save(newRunner);
         setUserInSession(request.getSession(), newRunner);
