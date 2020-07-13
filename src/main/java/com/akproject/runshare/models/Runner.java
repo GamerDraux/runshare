@@ -1,14 +1,22 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.controllers.RunnerController;
+import com.akproject.runshare.models.data.RunnerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 
 import javax.persistence.Entity;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Optional;
 
 @Entity
 public class Runner extends AbstractEntity{
+
 
 //Fields
     @NotNull(message="Runner callsign is required")
@@ -99,4 +107,5 @@ public class Runner extends AbstractEntity{
     public boolean isMatchingPassword(String password){
         return encoder.matches(password, pwHash);
     }
+
 }
