@@ -52,5 +52,12 @@ class="runnerbar">
         <span class="runnerbarspan"
             th:text="'Current Runner: '+${currentRunner.callsign}"></span>
         <span class="runnerbarspan"
-            th:text="'Runner name: '+${currentRunner.firstName}+' '+${currentRunner.lastName}"></span>
+            th:if=
+                    "${!currentRunner.callsignOnly}"
+              th:text="'Runner
+    name:
+    '+${currentRunner.firstName}+' '+${currentRunner.lastName}"></span>
+        <span class="runnerbarspan" th:if=
+                "${!currentRunner.callsignOnly}"
+              th:text="'Runner age: '+${currentRunner.age}"></span>
 </p>
