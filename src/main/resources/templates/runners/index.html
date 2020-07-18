@@ -24,8 +24,8 @@
             </td>
         <td>
             <span th:if="${currentRunner}">
-                <span
-                        th:if="${currentRunner.callsign==runner.callsign}" th:text="X"></span>
+                <span class="btn btn-primary"
+                        th:if="${currentRunner.callsign==runner.callsign}" th:text="'Logged in'"></span>
             </span>
             <span th:unless="${currentRunner}">
                 <a class="btn btn-primary"
