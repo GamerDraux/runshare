@@ -2,6 +2,7 @@ package com.akproject.runshare.controllers;
 
 import com.akproject.runshare.models.Runner;
 import com.akproject.runshare.models.data.RunnerRepository;
+import com.akproject.runshare.models.data.TrailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ public class MainController {
 
     @Autowired
     RunnerRepository runnerRepository;
+
+    @Autowired
+    TrailRepository trailRepository;
 
     static final String runnerSessionKey = "user";
 

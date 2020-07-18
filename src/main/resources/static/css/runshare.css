@@ -9,6 +9,16 @@ body {
     font-style:italic;
 }
 
+.headerbar {
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+}
+
+.headerbarspan{
+    position:relative;
+}
+
 .runnerbar{
     background-color:#2A2773;
     border:outset;
@@ -20,4 +30,23 @@ body {
 
 .runnerbarspan{
     position:relative;
+}
+
+.runnertable, .trailtable{
+    table-layout:fixed;
+    width:100%;
+}
+
+.runnertablehead, .trailtablehead{
+    border:outset;
+    border-radius:10px;
+    background-color:#2A2773;
+}
+
+.runnertableline:nth-child(even){
+    background-color:#0E0D26;
+}
+
+.trailtableline:nth-child(even){
+    background-color:#0E0D26;
 }

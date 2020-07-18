@@ -3,8 +3,9 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-<p th:replace="fragments :: navbar"></p>
 <p th:replace="fragments :: runnerbar"></p>
+<p th:replace="fragments :: navbar"></p>
+
 <h1>Log in to the starting line, Runner!</h1>
 <form method="post">
     <div class="form-group">
@@ -16,7 +17,9 @@
     </div>
     <div>
         <label for="password">Password</label>
-        <input th:field="${runnerLoginDTO.password}"
+        <input
+                type="password"
+                th:field="${runnerLoginDTO.password}"
                id="password">
         <p th:errors="${runnerLoginDTO.password}"
            class="errors"></p>

@@ -7,14 +7,12 @@ import com.akproject.runshare.models.Runner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/runners")
@@ -28,6 +26,7 @@ public class RunnerController extends MainController {
     public String displayRunnersIndex(HttpServletRequest request, Model model){
         model.addAttribute("title", "Runners");
         setRunnerInModel(request, model);
+        model.addAttribute("runners", runnerRepository.findAll());
         return "runners/index";
         //TODO-Create runner index page
     }
@@ -110,6 +109,30 @@ public class RunnerController extends MainController {
         setRunnerInModel(request, model);
         request.getSession().invalidate();
         return "redirect:";
+    }
+
+    @GetMapping("/runnerDetails/{id}")
+    private String displayRunnerDetailsView (@PathVariable Integer id, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+
+        Optional<Runner> testRunner = runnerRepository.findById(id);
+
+        if (testRunner.isEmpty()){
+            return "/runners/index";
+        }
+
+        Runner detailedRunner = testRunner.get();
+        model.addAttribute("title", "Details "+detailedRunner.getCallsign());
+        model.addAttribute("detailedRunner",  detailedRunner);
+        return "/runners/runnerDetails";
+    }
+
+    @GetMapping("/runnerDetails")
+    private String displayRunnerDetailsBlank (Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Blank Details");
+        model.addAttribute("detailedRunner", new Runner());
+        return "/runners/runnerDetails";
     }
 
 }

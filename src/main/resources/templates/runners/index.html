@@ -3,9 +3,41 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-<p th:replace="fragments :: navbar"></p>
 <p th:replace="fragments :: runnerbar"></p>
+<p th:replace="fragments :: navbar"></p>
 
+
+<h1 style="text-align:center;">Registered Runners</h1>
+
+<table class="runnertable">
+    <tr class="runnertablehead">
+        <th>Callsign</th>
+        <th>Logged In</th>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    <tr class="runnertableline"
+        th:each="runner : ${runners}">
+            <td>
+                <a th:text="${runner.callsign}" th:href="@{'/runners/runnerDetails/'+${runner.id}}"></a>
+            </td>
+        <td>
+            <span th:if="${currentRunner}">
+                <span
+                        th:if="${currentRunner.callsign==runner.callsign}" th:text="X"></span>
+            </span>
+        </td>
+        <td th:if="${runner.callsignOnly}"
+            colspan="2" th:text="'Runner has chosen
+            Callsign-only privacy mode'"></td>
+        <td th:unless="${runner.callsignOnly}"
+                th:text="${runner.firstName}+' '+${runner.lastName}"></td>
+        <td th:unless="${runner.callsignOnly}"
+            th:text="${runner.age}"></td>
+
+    </tr>
+
+</table>
 
 </body>
 </html>

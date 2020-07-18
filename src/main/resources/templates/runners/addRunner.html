@@ -3,8 +3,9 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-<p th:replace="fragments :: navbar"></p>
 <p th:replace="fragments :: runnerbar"></p>
+<p th:replace="fragments :: navbar"></p>
+
 <h1>Welcome a new Runner to the starting line!</h1>
 <form method="post">
     <div class="form-group">
@@ -67,7 +68,9 @@
     <div class="form-group">
         <label for="password" type="password">Create a
             Password</label>
-        <input th:field="${newRunnerRegistrationDTO.password}" id="password">
+        <input
+                type="password"
+                th:field="${newRunnerRegistrationDTO.password}" id="password">
         <p
                 th:errors="${newRunnerRegistrationDTO.password}"
                 class="errors"></p>
@@ -78,13 +81,14 @@
     <div class="form-group">
         <label for="verifyPassword" type="password">Re-type
             password</label>
-        <input
+        <input type="password"
                 th:field="${newRunnerRegistrationDTO.verifyPassword}"
                 id="verifyPassword">
         <p
                 th:errors="${newRunnerRegistrationDTO.verifyPassword}"
                  class="errors"></p>
     </div>
+
 
     <button type="submit" class="btn btn-primary">Create
         New Runner</button>

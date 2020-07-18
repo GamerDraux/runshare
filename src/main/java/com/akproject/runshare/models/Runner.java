@@ -2,6 +2,7 @@ package com.akproject.runshare.models;
 
 import com.akproject.runshare.controllers.RunnerController;
 import com.akproject.runshare.models.data.RunnerRepository;
+import com.mysql.cj.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.File;
 import java.util.Optional;
 
 @Entity
@@ -40,7 +42,7 @@ public class Runner extends AbstractEntity{
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-//Constructors
+    //Constructors
     public Runner() {
     }
 
@@ -79,7 +81,7 @@ public class Runner extends AbstractEntity{
         return age;
     }
 
-//setters
+    //setters
 
     public void setCallsign(String callsign) {
         this.callsign = callsign;

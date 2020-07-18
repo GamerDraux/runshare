@@ -1,8 +1,11 @@
 package com.akproject.runshare.models.DTO;
 
+import com.mysql.cj.jdbc.Blob;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.File;
 
 public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
     @NotNull
@@ -67,6 +70,5 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
     public void setAge(Integer age) {
         this.age = age;
     }
-
 
 }

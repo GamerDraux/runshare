@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<p th:replace="fragments :: runnerbar"></p>
+<p th:replace="fragments :: navbar"></p>
+<p th:text="${detailedRunner.callsign}"></p>
+</body>
+</html>

@@ -14,42 +14,52 @@
 </head>
 
 
-<nav class="navbar navbar-expand-lg" th:fragment="navbar">
-    <a class="navbar-brand" th:href="@{/}" >
-        <img th:src="@{../images/RunshareLogo.jpg}"
-             width="150" height="150"
-             style="background-color:red"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<div th:fragment="navbar" class="headerbar">
+    <a th:href="@{/}" >
+        <img th:src="@{../../images/RunshareLogo.jpg}"
+             width="150" height="150" style="background-color:red"/>
+    </a>
+    <span>
+        <a class="headerbarspan" th:href="@{/runners
+        }"><button class="btn btn-primary">Runners List
+        </button></a>
+    </span>
+    <span>
+        <a class="headerbarspan"
+           th:href="@{/runners/addRunner}"><button
+                class="btn btn-primary">Register a new
+            Runner</button></a>
+    </span>
+    <span>
+        <a class="headerbarspan"
+           th:unless="${currentRunner}"
+           th:href="@{/runners/login}"><button
+                class="btn btn-primary">Log in a
+            Runner</button></a>
+    </span>
+    <span>
+        <a class="headerbarspan"
+           th:href="@{/trails/index}"><button
+                class="btn btn-primary">Trail
+            Catalog</button></a>
+    </span>
+    <span>
+        <a class="headerbarspan"
+           th:href="@{/trails/addTrail}"><button
+                class="btn btn-primary">Add a
+            Trail</button></a>
+    </span>
+    <span>
+        <a class="headerbarspan" th:if="${currentRunner}"
+           th:href="@{/runners/logout}"><button
+                class="btn btn-primary">Logout</button></a>
+    </span>
 
-
-    <div class="collapse navbar-collapse"
-         id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a th:href="@{/runners}">Runners</a>
-            </li>
-            <li class="nav-item active">
-                <a th:href="@{/runners/addRunner}">Register a new Runner</a>
-            </li>
-            <li class="nav-item active">
-                <a th:href="@{/runners/login}">Log in a
-                    Runner</a>
-            </li>
-            <li class="nav-item active">
-                <a th:href="@{/runners/logout}">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+</div>
 
 <p th:if="${currentRunner}" th:fragment="runnerbar"
 class="runnerbar">
-        <span class="runnerbarspan"
+            <span class="runnerbarspan"
             th:text="'Current Runner: '+${currentRunner.callsign}"></span>
         <span class="runnerbarspan"
             th:if=
@@ -61,3 +71,4 @@ class="runnerbar">
                 "${!currentRunner.callsignOnly}"
               th:text="'Runner age: '+${currentRunner.age}"></span>
 </p>
+

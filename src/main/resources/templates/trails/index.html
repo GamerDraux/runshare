@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<p th:replace="fragments :: runnerbar"></p>
+<p th:replace="fragments :: navbar"></p>
+
+<h1 style="text-align:center;">Trail Catalog</h1>
+
+<table class="trailtable">
+    <tr class="trailtablehead">
+        <th>Name</th>
+        <th>Miles</th>
+        <th>Location</th>
+        <th>Zip Code</th>
+    </tr>
+    <tr class="trailtableline" th:each="trail : ${trails}">
+        <td th:text="${trail.name}"></td>
+        <td th:text="${trail.miles}"></td>
+        <td th:text="${trail.address}"></td>
+        <td th:text="${trail.zipCode}"></td>
+    </tr>
+</table>
+</body>
+</html>
