@@ -50,3 +50,17 @@ body {
 .trailtableline:nth-child(even){
     background-color:#0E0D26;
 }
+
+.centeringDiv{
+    display:flex;
+    justify-content:space-around;
+}
+
+.runnerDetailsHeader {
+    text-align:center;
+     border:outset;
+     border-radius:10px;
+     background-color:#2A2773;
+     display:inline;
+     padding:5px;
+}

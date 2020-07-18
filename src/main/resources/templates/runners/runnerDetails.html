@@ -6,6 +6,21 @@
 
 <p th:replace="fragments :: runnerbar"></p>
 <p th:replace="fragments :: navbar"></p>
-<p th:text="${detailedRunner.callsign}"></p>
+
+<div class="centeringDiv">
+    <h1
+        class="runnerDetailsHeader"
+        th:text="${detailedRunner.Callsign}">
+    </h1>
+</div>
+<div class="centeringDiv">
+<span
+        th:text="'Name: '+${detailedRunner.firstName}+' '+${detailedRunner.lastName}"></span>
+<span th:text="'Age: '+${detailedRunner.age}"></span>
+</div>
+
+<div class="centeringDiv">
+    <a th:href="@{/runners}">Back to Runner list</a>
+</div>
 </body>
 </html>

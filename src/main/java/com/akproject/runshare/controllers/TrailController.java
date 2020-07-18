@@ -57,4 +57,8 @@ public class TrailController extends MainController{
         model.addAttribute("trails", trailRepository.findAll());
         return "trails/index";
     }
+
+//    todo-create a trailDetails display
+//    todo-link trailDetails display to trail catalog
+
 }
