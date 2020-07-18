@@ -12,7 +12,8 @@
 <table class="runnertable">
     <tr class="runnertablehead">
         <th>Callsign</th>
-        <th>Logged In</th>
+        <th th:if="${currentRunner}">Logged In</th>
+        <th th:unless="${currentRunner}">Log in Runner</th>
         <th>Name</th>
         <th>Age</th>
     </tr>
@@ -25,6 +26,10 @@
             <span th:if="${currentRunner}">
                 <span
                         th:if="${currentRunner.callsign==runner.callsign}" th:text="X"></span>
+            </span>
+            <span th:unless="${currentRunner}">
+                <a class="btn btn-primary"
+                        th:href="@{/runners/login}" th:text="Login"></a>
             </span>
         </td>
         <td th:if="${runner.callsignOnly}"

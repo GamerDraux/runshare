@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController extends MainController {
 
-    @RequestMapping("")
+    @RequestMapping
     private String displayIndexPage(Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Home");

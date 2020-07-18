@@ -23,13 +23,11 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping
-//    todo-add a login button to each line if no runner is currently logged in
     public String displayRunnersIndex(HttpServletRequest request, Model model){
         model.addAttribute("title", "Runners");
         setRunnerInModel(request, model);
         model.addAttribute("runners", runnerRepository.findAll());
         return "runners/index";
-        //TODO-Create runner index page
     }
 
     @GetMapping("/addRunner")
@@ -82,6 +80,7 @@ public class RunnerController extends MainController {
     }
 
     @PostMapping("/login")
+//    todo-add a different loginform for if the Runner logs in from the runner list
     private String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
@@ -113,8 +112,6 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/runnerDetails/{id}")
-    //    todo-add a login button that displays if nobody is currently logged in.
-//    todo-add a logout button that displays if this runner is currently logged in.
     private String displayRunnerDetailsView (@PathVariable Integer id, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
 

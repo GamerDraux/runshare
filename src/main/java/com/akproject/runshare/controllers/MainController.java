@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
-//todo-clean up bootstrap navbar
-
 @Controller
 public class MainController {
 
