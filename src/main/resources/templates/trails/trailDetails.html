@@ -11,7 +11,14 @@
     <h1 class="trailDetailsHeader"
         th:text="${detailedTrail.name}"></h1>
 </div>
-
+<div class="centeringDiv">
+    <span
+            th:text="'Trail length: '+${detailedTrail.miles}"></span>
+    <span
+            th:text="'Location: '+${detailedTrail.address}"></span>
+    <span
+            th:text="'Zip Code: '+${detailedTrail.zipCode}"></span>
+</div>
 
 <div class="centeringDiv">
     <a th:href="@{/trails}">Back to Trail catalog</a>

@@ -106,10 +106,10 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/logout")
-    private String logoutRunner (Model model, HttpServletRequest request){
-        setRunnerInModel(request, model);
+    private String logoutRunner (Model model, HttpSession session, HttpServletRequest request){
+        session.removeAttribute(runnerSessionKey);
         request.getSession().invalidate();
-        return "redirect:";
+        return "/index";
     }
 
     @GetMapping("/runnerDetails/{id}")

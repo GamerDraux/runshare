@@ -9,10 +9,11 @@
 
 <h1 style="text-align:center">Welcome to Runshare!</h1>
 <div style="text-align:center">
-<a th:href="@{/runners/addRunner}"
+<a th:unless="${currentRunner}"
+   th:href="@{/runners/addRunner}"
         class="btn btn-primary">Create a
     new Runner account</a>
-<a th:href="@{/runners/login}"
+<a th:unless="${currentRunner}" th:href="@{/runners/login}"
    class="btn btn-primary">Log in an existing Runner
 </a>
 </div>

@@ -80,7 +80,5 @@ public class TrailController extends MainController{
         model.addAttribute("detailedTrail", new Trail("Blank", 0, "Blank", "Blank"));
         return "trails/trailDetails";
     }
-//    todo-create a trailDetails display
-//    todo-link trailDetails display to trail catalog
 
 }

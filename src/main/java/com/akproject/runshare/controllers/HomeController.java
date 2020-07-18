@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController extends MainController {
 
     @RequestMapping("")
-//    todo-remove login button if someone is already logged in
     private String displayIndexPage(Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Home");
