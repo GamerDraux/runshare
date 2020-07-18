@@ -6,17 +6,23 @@ import com.akproject.runshare.models.data.TrailRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/trails")
 public class TrailController extends MainController{
+
+    @GetMapping
+    public String displayTrailIndex (Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Trail List");
+        model.addAttribute("trails", trailRepository.findAll());
+        return "trails/index";
+    }
 
     @GetMapping("/addTrail")
     private String displayAddTrailView (Model model, HttpServletRequest request){
@@ -50,14 +56,30 @@ public class TrailController extends MainController{
         return "trails/index";
     }
 
-    @GetMapping("/index")
-    public String displayTrailIndex (Model model, HttpServletRequest request){
+
+
+    @GetMapping("/trailDetails/{id}")
+    public String displayTrailDetails (@PathVariable Integer id, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
-        model.addAttribute("title", "Trail List");
-        model.addAttribute("trails", trailRepository.findAll());
-        return "trails/index";
+
+        Optional<Trail> testTrail = trailRepository.findById(id);
+        if (testTrail.isEmpty()){
+            return "trails/";
+        }
+
+        Trail detailedTrail = testTrail.get();
+        model.addAttribute("title", "Details");
+        model.addAttribute("detailedTrail",detailedTrail);
+        return "trails/trailDetails";
     }
 
+    @GetMapping("/trailDetails")
+    public String displayTrailDetailsBlank (Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Blank");
+        model.addAttribute("detailedTrail", new Trail("Blank", 0, "Blank", "Blank"));
+        return "trails/trailDetails";
+    }
 //    todo-create a trailDetails display
 //    todo-link trailDetails display to trail catalog
 

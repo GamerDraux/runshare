@@ -23,6 +23,7 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping
+//    todo-add a login button to each line if no runner is currently logged in
     public String displayRunnersIndex(HttpServletRequest request, Model model){
         model.addAttribute("title", "Runners");
         setRunnerInModel(request, model);
@@ -112,6 +113,8 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/runnerDetails/{id}")
+    //    todo-add a login button that displays if nobody is currently logged in.
+//    todo-add a logout button that displays if this runner is currently logged in.
     private String displayRunnerDetailsView (@PathVariable Integer id, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
 

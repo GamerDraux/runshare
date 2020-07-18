@@ -17,7 +17,9 @@
         <th>Zip Code</th>
     </tr>
     <tr class="trailtableline" th:each="trail : ${trails}">
-        <td th:text="${trail.name}"></td>
+        <td>
+                <a th:href="@{'trails/trailDetails/'+${trail.id}}" th:text="${trail.name}"></a>
+        </td>
         <td th:text="${trail.miles}"></td>
         <td th:text="${trail.address}"></td>
         <td th:text="${trail.zipCode}"></td>

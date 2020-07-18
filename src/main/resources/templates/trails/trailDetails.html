@@ -6,5 +6,15 @@
 
 <p th:replace="fragments :: runnerbar"></p>
 <p th:replace="fragments :: navbar"></p>
+
+<div class="centeringDiv">
+    <h1 class="trailDetailsHeader"
+        th:text="${detailedTrail.name}"></h1>
+</div>
+
+
+<div class="centeringDiv">
+    <a th:href="@{/trails}">Back to Trail catalog</a>
+</div>
 </body>
 </html>

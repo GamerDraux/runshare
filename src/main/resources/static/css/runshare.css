@@ -56,7 +56,7 @@ body {
     justify-content:space-around;
 }
 
-.runnerDetailsHeader {
+.runnerDetailsHeader, .trailDetailsHeader{
     text-align:center;
      border:outset;
      border-radius:10px;
