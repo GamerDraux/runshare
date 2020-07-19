@@ -90,7 +90,6 @@ public class RunnerController extends MainController {
     }
 
     @PostMapping("/login")
-//    todo-add a different loginform for if the Runner logs in from the runner list
     private String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
@@ -117,7 +116,7 @@ public class RunnerController extends MainController {
     }
 
     @PostMapping("/login/{id}")
-//    todo-add a different loginform for if the Runner logs in from the runner list
+//    todo-change login view to lock the callsign field when started from login/{id}
     private String processLoginForm (@PathVariable Integer id, @ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
