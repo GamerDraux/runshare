@@ -79,6 +79,16 @@ public class RunnerController extends MainController {
             return "/runners/login";
     }
 
+    @GetMapping("/login/{id}")
+    private String displayLoginFormWithId(@PathVariable Integer id, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        RunnerLoginDTO listedRunner = new RunnerLoginDTO();
+        listedRunner.setCallsign(runnerRepository.findById(id).get().getCallsign());
+        model.addAttribute("runnerLoginDTO", listedRunner);
+        model.addAttribute("title", "Login "+listedRunner.getCallsign());
+        return "/runners/login";
+    }
+
     @PostMapping("/login")
 //    todo-add a different loginform for if the Runner logs in from the runner list
     private String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
@@ -101,7 +111,36 @@ public class RunnerController extends MainController {
         }
 
         setUserInSession(request.getSession(), loginRunner);
-        return "redirect:";
+        setRunnerInModel(request, model);
+        model.addAttribute("runners", runnerRepository.findAll());
+        return "runners/index";
+    }
+
+    @PostMapping("/login/{id}")
+//    todo-add a different loginform for if the Runner logs in from the runner list
+    private String processLoginForm (@PathVariable Integer id, @ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Login");
+        if (errors.hasErrors()){
+            return "runners/login";
+        }
+
+        Runner loginRunner = runnerRepository.findByCallsign(runnerLoginDTO.getCallsign());
+
+        if (loginRunner == null){
+            errors.rejectValue("callsign", "callsign.notFound", "That Callsign has not been registered!");
+            return "runners/login";
+        }
+
+        if (!loginRunner.isMatchingPassword(runnerLoginDTO.getPassword())){
+            errors.rejectValue("password", "password.incorrectPassword", "Password is not correct for this Callsign");
+            return "runners/login";
+        }
+
+        setUserInSession(request.getSession(), loginRunner);
+        model.addAttribute("runners", runnerRepository.findAll());
+        setRunnerInModel(request, model);
+        return "runners/index";
     }
 
     @GetMapping("/logout")

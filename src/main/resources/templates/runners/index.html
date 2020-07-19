@@ -29,7 +29,8 @@
             </span>
             <span th:unless="${currentRunner}">
                 <a class="btn btn-primary"
-                        th:href="@{/runners/login}" th:text="Login"></a>
+                        th:href="@{'/runners/login/'+${runner.id}}"
+                   th:text="Login"></a>
             </span>
         </td>
         <td th:if="${runner.callsignOnly}"
