@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<p th:replace="fragments :: runnerbar"></p>
+<p th:replace="fragments :: navbar"></p>
+
+<div class = "centeringDiv">
+    <h1 class="runSessionDetailsHeader"
+        th:text="${detailedRunSession.name}">
+
+    </h1>
+</div>
+<div class="centeringDiv">
+    <span
+            th:text="'Date: '+${detailedRunSession.date}"></span>
+    <span><a
+            th:href="@{'/runners/runnerDetails/'+${detailedRunSession.runner.id}}"
+            th:text="'Runner: '+${detailedRunSession.runner.callsign}"></a></span>
+    <span><a
+            th:href="@{'/trails/trailDetails/'+${detailedRunSession.trail.id}}"
+            th:text="'Trail: '+${detailedRunSession.trail.name}"></a></span>
+</div>
+<div>
+
+</div>
+<div class="centeringDiv">
+<p th:replace="fragments :: listnavbar"></p>
+</div>
+</body>
+</html>

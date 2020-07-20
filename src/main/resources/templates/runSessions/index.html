@@ -18,7 +18,9 @@
     </tr>
     <tr class="runsessiontableline"
         th:each="runsession : ${runSessions}">
-        <td th:text="${runsession.name}"></td>
+        <td><a
+                th:href="@{'/runSessions/runSessionDetails/'+${runsession.id}}"
+                th:text="${runsession.name}"></a></td>
         <td th:text="${runsession.date}"></td>
         <td><a
                 th:href="@{'/runners/runnerDetails/'+${runsession.runner.id}}"
