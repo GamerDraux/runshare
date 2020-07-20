@@ -20,8 +20,11 @@
         th:each="runsession : ${runSessions}">
         <td th:text="${runsession.name}"></td>
         <td th:text="${runsession.date}"></td>
-        <td th:text="${runsession.runner.callsign}"></td>
-        <td th:text="${runsession.trail.name}"></td>
+        <td><a
+                th:href="@{'/runners/runnerDetails/'+${runsession.runner.id}}"
+                th:text="${runsession.runner.callsign}"></a></td>
+        <td><a
+                th:href="@{'/trails/trailDetails/'+${runsession.trail.id}}" th:text="${runsession.trail.name}"></a></td>
     </tr>
 </table>
 </body>
