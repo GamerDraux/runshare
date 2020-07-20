@@ -6,5 +6,23 @@
 
 <p th:replace="fragments :: runnerbar"></p>
 <p th:replace="fragments :: navbar"></p>
+
+<h1 style="text-align:center;">Run Sessions</h1>
+
+<table class="runsessiontable">
+    <tr class="runsessiontablehead">
+        <th>Name</th>
+        <th>Date</th>
+        <th>Callsign</th>
+        <th>Trail</th>
+    </tr>
+    <tr class="runsessiontableline"
+        th:each="runsession : ${runSessions}">
+        <td th:text="${runsession.name}"></td>
+        <td th:text="${runsession.date}"></td>
+        <td th:text="${runsession.runner.callsign}"></td>
+        <td th:text="${runsession.trail.name}"></td>
+    </tr>
+</table>
 </body>
 </html>

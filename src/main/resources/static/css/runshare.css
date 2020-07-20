@@ -32,12 +32,12 @@ body {
     position:relative;
 }
 
-.runnertable, .trailtable{
+.runnertable, .trailtable, .runsessiontable{
     table-layout:fixed;
     width:100%;
 }
 
-.runnertablehead, .trailtablehead{
+.runnertablehead, .trailtablehead, .runsessiontablehead{
     border:outset;
     border-radius:10px;
     background-color:#2A2773;
@@ -51,12 +51,18 @@ body {
     background-color:#0E0D26;
 }
 
+.runsessiontableline:nth-child(even){
+    background-color:#0E0D26;
+}
+
+
 .centeringDiv{
     display:flex;
     justify-content:space-around;
 }
 
-.runnerDetailsHeader, .trailDetailsHeader{
+.runnerDetailsHeader, .trailDetailsHeader,
+.runSessionHeader{
     text-align:center;
      border:outset;
      border-radius:10px;
