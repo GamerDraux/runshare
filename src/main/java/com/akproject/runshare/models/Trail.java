@@ -1,8 +1,12 @@
 package com.akproject.runshare.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +23,9 @@ public class Trail extends AbstractEntity {
 
     @Size(max=5, min=5, message="Must use 5-digit zip code")
     private String zipCode;
+
+    @OneToMany(mappedBy = "trail")
+    private final List<RunSession> runSessions = new ArrayList<>();
 
     public Trail (String name, double miles, String address, String zipCode ){
         this.name=name;

@@ -44,6 +44,10 @@
     </span>
     <span>
         <a class="headerbarspan"
+           th:href="@{/runSessions/addRunSession}"><button class="btn btn-primary">Add a run session</button></a>
+    </span>
+    <span>
+        <a class="headerbarspan"
            th:unless="${currentRunner}"
            th:href="@{/runners/login}"><button
                 class="btn btn-primary">Log in a

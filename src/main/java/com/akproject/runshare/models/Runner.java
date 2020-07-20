@@ -1,5 +1,6 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.RunshareApplication;
 import com.akproject.runshare.controllers.RunnerController;
 import com.akproject.runshare.models.data.RunnerRepository;
 import com.mysql.cj.jdbc.Blob;
@@ -8,12 +9,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -39,6 +45,9 @@ public class Runner extends AbstractEntity{
 
     private int age;
     //TODO -Add additional fields for weight, gender, running level, zip
+
+    @OneToMany(mappedBy="runner")
+    private final List<RunSession> runSessions= new ArrayList<>();
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 

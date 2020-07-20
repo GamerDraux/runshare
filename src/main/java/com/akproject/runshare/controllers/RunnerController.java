@@ -72,7 +72,7 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/login")
-    private String displayLoginForm(Model model, HttpServletRequest request){
+    public String displayLoginForm(Model model, HttpServletRequest request){
             setRunnerInModel(request, model);
             model.addAttribute(new RunnerLoginDTO());
             model.addAttribute("title", "Login");
@@ -80,7 +80,7 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/login/{id}")
-    private String displayLoginFormWithId(@PathVariable Integer id, Model model, HttpServletRequest request){
+    public String displayLoginFormWithId(@PathVariable Integer id, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         RunnerLoginDTO listedRunner = new RunnerLoginDTO();
         listedRunner.setCallsign(runnerRepository.findById(id).get().getCallsign());
@@ -90,7 +90,7 @@ public class RunnerController extends MainController {
     }
 
     @PostMapping("/login")
-    private String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
+    public String processLoginForm (@ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
         if (errors.hasErrors()){
@@ -117,7 +117,7 @@ public class RunnerController extends MainController {
 
     @PostMapping("/login/{id}")
 //    todo-change login view to lock the callsign field when started from login/{id}
-    private String processLoginForm (@PathVariable Integer id, @ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
+    public String processLoginForm (@PathVariable Integer id, @ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
         if (errors.hasErrors()){
