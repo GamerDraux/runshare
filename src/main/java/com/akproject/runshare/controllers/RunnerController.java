@@ -172,5 +172,5 @@ public class RunnerController extends MainController {
         model.addAttribute("detailedRunner", new Runner());
         return "/runners/runnerDetails";
     }
-
+//todo-create sort function to sort runners alphabetically by name or callsign
 }

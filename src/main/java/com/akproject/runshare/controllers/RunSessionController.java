@@ -83,5 +83,8 @@ public class RunSessionController extends MainController {
         model.addAttribute("detailedRunSession", new RunSession());
         return "/runSessions/runSessionDetails";
     }
-//    todo-create a run session detail view page
+
+    //todo-create time functions to be able to store length of run.
+    //todo- change date field to Date type for sorting
+    //todo- sort runSessions by date
 }
