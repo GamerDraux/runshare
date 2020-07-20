@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 public class NewRunSessionDTO extends AbstractEntity {
 
-    @NotBlank
+    @NotBlank(message="Run Session needs to be named")
     private String name;
 
     private String date;

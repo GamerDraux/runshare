@@ -17,6 +17,14 @@ import javax.validation.Valid;
 @RequestMapping("/runSessions")
 public class RunSessionController extends MainController {
 
+    @GetMapping
+    public String displayRunSessionsList(Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Run Sessions");
+        model.addAttribute("runSessions", runSessionRepository.findAll());
+        return "runSessions/index";
+    }
+
     @GetMapping("/addRunSession")
     public String displayAddRunSessionsForm(Model model, HttpServletRequest request){
         setRunnerInModel(request, model);

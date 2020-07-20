@@ -11,8 +11,8 @@ import java.util.List;
 @Entity
 public class RunSession extends AbstractEntity{
 
-    @NotBlank
-    @NotNull
+    @NotBlank(message = "Run Session needs to be named")
+    @NotNull(message ="Run Session needs to be named")
     private String name;
 
     @NotNull
