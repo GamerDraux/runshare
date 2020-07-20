@@ -61,4 +61,6 @@ public class RunSessionController extends MainController {
 
         return "runSessions/index";
     }
+//    todo-turn the runner and trail listings in the table into links for their respective descriptions.
+//    todo-create a run session detail view page
 }
