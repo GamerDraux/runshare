@@ -63,7 +63,7 @@ public class RunnerController extends MainController {
             return "runners/addrunner";
         }
 
-        Runner newRunner = new Runner(newRunnerRegistrationDTO.getCallsign(),newRunnerRegistrationDTO.getFirstName(),newRunnerRegistrationDTO.getLastName(),newRunnerRegistrationDTO.isCallsignOnly(),newRunnerRegistrationDTO.getPassword(),newRunnerRegistrationDTO.getAge());
+        Runner newRunner = new Runner(newRunnerRegistrationDTO.getCallsign(),newRunnerRegistrationDTO.getFirstName(),newRunnerRegistrationDTO.getLastName(),newRunnerRegistrationDTO.isCallsignOnly(),newRunnerRegistrationDTO.getPassword(),newRunnerRegistrationDTO.getAge(),newRunnerRegistrationDTO.getWeight(),newRunnerRegistrationDTO.getGender(),newRunnerRegistrationDTO.getRunningLevel(), newRunnerRegistrationDTO.getZip());
         runnerRepository.save(newRunner);
         setUserInSession(request.getSession(), newRunner);
 

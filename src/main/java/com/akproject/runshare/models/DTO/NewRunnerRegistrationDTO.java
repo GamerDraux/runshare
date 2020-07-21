@@ -1,6 +1,7 @@
 package com.akproject.runshare.models.DTO;
 
 import com.mysql.cj.jdbc.Blob;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -28,6 +29,14 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
 
     @NotNull(message="Age required for tracking")
     private int age;
+
+    private int weight;
+
+    private String gender;
+
+    private String runningLevel;
+
+    private String zip;
 
     public NewRunnerRegistrationDTO(){}
 
@@ -71,4 +80,40 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
         this.age = age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getRunningLevel() {
+        return runningLevel;
+    }
+
+    public void setRunningLevel(String runningLevel) {
+        this.runningLevel = runningLevel;
+    }
+
+    @Length(min=5, max=5, message="Must use 5-digit zip code")
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 }

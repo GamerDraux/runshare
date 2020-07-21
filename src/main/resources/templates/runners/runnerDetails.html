@@ -15,10 +15,11 @@
     </h1>
 </div>
 <div class="centeringDiv">
-<span
-        th:text="'Name: '+${detailedRunner.firstName}+' '+${detailedRunner.lastName}"></span>
-<span th:text="'Age: '+${detailedRunner.age}"></span>
+    <span th:text="'Name: '+${detailedRunner.firstName}+' '+${detailedRunner.lastName}"></span>
+    <span th:text="'Age: '+${detailedRunner.age}"></span>
+    <span th:text="'Weight: '+${detailedRunner.weight}"></span>
 </div>
+
 
 <div class="centeringDiv">
 <p th:replace="fragments :: listnavbar"></p>
