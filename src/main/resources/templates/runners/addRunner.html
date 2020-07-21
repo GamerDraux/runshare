@@ -56,6 +56,18 @@
             Runners under 16</small>
     </div>
     <div class="form-group">
+        <label for="zipCode">Zip Code</label>
+        <input
+                th:field="${newRunnerRegistrationDTO.zip}">
+        <p th:errors="${newRunnerRegistrationDTO.zip}"
+           class="errors"></p>
+        <small class="form-text text-muted">Zip code
+        is requested for location services. Please
+            type "00000" if you wish no zip code location
+            service
+        </small>
+    </div>
+    <div class="form-group">
         <label for="password" type="password">Create a
             Password</label>
         <input

@@ -18,6 +18,7 @@
         <th th:unless="${currentRunner}">Log in Runner</th>
         <th>Name</th>
         <th>Age</th>
+        <th>Zip Code</th>
     </tr>
     <tr class="runnertableline"
         th:each="runner : ${runners}">
@@ -36,12 +37,15 @@
             </span>
         </td>
         <td th:if="${runner.callsignOnly}"
-            colspan="2" th:text="'Runner has chosen
+            colspan="3" th:text="'Runner has chosen
             Callsign-only privacy mode'"></td>
         <td th:unless="${runner.callsignOnly}"
                 th:text="${runner.firstName}+' '+${runner.lastName}"></td>
         <td th:unless="${runner.callsignOnly}"
             th:text="${runner.age}"></td>
+        <td th:unless="${runner.callsignOnly}">
+            <span th:unless="${runner.zip}==0" th:text="${runner.zip}"></span>
+        </td>
 
     </tr>
 

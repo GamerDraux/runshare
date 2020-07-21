@@ -61,9 +61,6 @@ public class Runner extends AbstractEntity{
 
     @NotNull(message="Zip code cannot be null")
     private String zip;
-    //todo-create input field for new runner zip code in add runner
-    //todo-create display for runner zip code in runner table
-    //todo-create display for runner zip code runner details
 
     @OneToMany(mappedBy="runner")
     private final List<RunSession> runSessions= new ArrayList<>();
