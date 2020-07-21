@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
+//todo-move headerbar links to side display
 @Controller
 @RequestMapping("/runners")
 public class RunnerController extends MainController {
