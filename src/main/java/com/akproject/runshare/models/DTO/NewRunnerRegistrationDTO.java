@@ -1,13 +1,11 @@
 package com.akproject.runshare.models.DTO;
 
 import com.akproject.runshare.models.enums.Gender;
-import com.mysql.cj.jdbc.Blob;
+import com.akproject.runshare.models.enums.RunnerLevel;
 import org.hibernate.validator.constraints.Length;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.File;
 
 public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
     @NotNull
@@ -31,12 +29,16 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
     @NotNull(message="Age required for tracking")
     private int age;
 
+    @NotNull(message="Weight cannot be null")
     private int weight;
 
+    @NotNull(message="Gender cannot be null")
     private Gender gender;
 
-    private String runningLevel;
+    @NotNull(message="Running level cannot be null")
+    private RunnerLevel runnerLevel;
 
+    @NotNull(message="Zip Code cannot be null")
     private String zip;
 
     public NewRunnerRegistrationDTO(){}
@@ -101,12 +103,12 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
         this.gender = gender;
     }
 
-    public String getRunningLevel() {
-        return runningLevel;
+    public RunnerLevel getRunnerLevel() {
+        return runnerLevel;
     }
 
-    public void setRunningLevel(String runningLevel) {
-        this.runningLevel = runningLevel;
+    public void setRunnerLevel(RunnerLevel runningLevel) {
+        this.runnerLevel = runningLevel;
     }
 
     @Length(min=5, max=5, message="Must use 5-digit zip code")

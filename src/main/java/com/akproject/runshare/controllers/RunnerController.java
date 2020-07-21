@@ -5,6 +5,7 @@ import com.akproject.runshare.models.DTO.NewRunnerRegistrationDTO;
 import com.akproject.runshare.models.DTO.RunnerLoginDTO;
 import com.akproject.runshare.models.Runner;
 import com.akproject.runshare.models.enums.Gender;
+import com.akproject.runshare.models.enums.RunnerLevel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -34,6 +35,7 @@ public class RunnerController extends MainController {
     @GetMapping("/addRunner")
     public String displayAddRunnerForm(HttpServletRequest request, Model model){
         setRunnerInModel(request, model);
+        model.addAttribute("runnerLevels", RunnerLevel.values());
         model.addAttribute("genders", Gender.values());
         model.addAttribute(new NewRunnerRegistrationDTO());
         model.addAttribute("title", "Add Runner");
@@ -44,16 +46,20 @@ public class RunnerController extends MainController {
     public String processAddRunnerForm(@ModelAttribute @Valid NewRunnerRegistrationDTO newRunnerRegistrationDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         if (errors.hasErrors()){
+            model.addAttribute("runnerLevels", RunnerLevel.values());
             model.addAttribute("genders", Gender.values());
             model.addAttribute("title", "Add Runner");
             model.addAttribute("newRunnerRegistrationDTO", newRunnerRegistrationDTO);
             return "runners/addrunner";
         }
+//todo-change input on age to make it start at 16
 
         Runner checkedRunner = runnerRepository.findByCallsign(newRunnerRegistrationDTO.getCallsign());
 
         if (checkedRunner != null){
             errors.rejectValue("callsign", "callsign.alreadyExists", "A Runner with this callsign already exists!");
+            model.addAttribute("runnerLevels", RunnerLevel.values());
+            model.addAttribute("genders", Gender.values());
             model.addAttribute("title", "Add Runner");
             return "runners/addrunner";
         }
@@ -62,11 +68,13 @@ public class RunnerController extends MainController {
         String verifyPassword = newRunnerRegistrationDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)){
             errors.rejectValue("password","password.doesNotMatch","The passwords do not match");
+            model.addAttribute("runnerLevels", RunnerLevel.values());
+            model.addAttribute("genders", Gender.values());
             model.addAttribute("title","Add Runner");
             return "runners/addrunner";
         }
-
-        Runner newRunner = new Runner(newRunnerRegistrationDTO.getCallsign(),newRunnerRegistrationDTO.getFirstName(),newRunnerRegistrationDTO.getLastName(),newRunnerRegistrationDTO.isCallsignOnly(),newRunnerRegistrationDTO.getPassword(),newRunnerRegistrationDTO.getAge(),newRunnerRegistrationDTO.getWeight(),newRunnerRegistrationDTO.getGender(),newRunnerRegistrationDTO.getRunningLevel(), newRunnerRegistrationDTO.getZip());
+//todo-refactor model.addAttribute lines into new static class
+        Runner newRunner = new Runner(newRunnerRegistrationDTO.getCallsign(),newRunnerRegistrationDTO.getFirstName(),newRunnerRegistrationDTO.getLastName(),newRunnerRegistrationDTO.isCallsignOnly(),newRunnerRegistrationDTO.getPassword(),newRunnerRegistrationDTO.getAge(),newRunnerRegistrationDTO.getWeight(),newRunnerRegistrationDTO.getGender(),newRunnerRegistrationDTO.getRunnerLevel(), newRunnerRegistrationDTO.getZip());
         runnerRepository.save(newRunner);
         setUserInSession(request.getSession(), newRunner);
 

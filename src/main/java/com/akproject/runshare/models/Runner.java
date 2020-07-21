@@ -4,6 +4,7 @@ import com.akproject.runshare.RunshareApplication;
 import com.akproject.runshare.controllers.RunnerController;
 import com.akproject.runshare.models.data.RunnerRepository;
 import com.akproject.runshare.models.enums.Gender;
+import com.akproject.runshare.models.enums.RunnerLevel;
 import com.mysql.cj.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,18 +47,19 @@ public class Runner extends AbstractEntity{
     @NotNull
     private String pwHash;
 
+    @NotNull(message="Age cannot be null")
     private int age;
 
     @Min(value = 0, message="Weight cannot be set lower than 0")
     private int weight;
 
+    @NotNull(message="Gender cannot be null")
     private Gender gender;
 
-    private String runningLevel;
-    //todo-create enum for running levels?
-    //todo-create input field for new runner runningLevel in addRunner
-    //todo-create display for runner running level in runner details.
+    @NotNull(message="Runner level cannot be null")
+    private RunnerLevel runnerLevel;
 
+    @NotNull(message="Zip code cannot be null")
     private String zip;
     //todo-create input field for new runner zip code in add runner
     //todo-create display for runner zip code in runner table
@@ -72,7 +74,7 @@ public class Runner extends AbstractEntity{
     public Runner() {
     }
 
-    public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, int age, int weight, Gender gender, String runningLevel, String zip){
+    public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, int age, int weight, Gender gender, RunnerLevel runnerLevel, String zip){
         this.callsign=callsign;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -81,7 +83,7 @@ public class Runner extends AbstractEntity{
         this.age=age;
         this.weight = weight;
         this.gender= gender;
-        this.runningLevel= runningLevel;
+        this.runnerLevel= runnerLevel;
         this.zip = zip;
     }
 
@@ -115,7 +117,7 @@ public class Runner extends AbstractEntity{
 
     public Gender getGender() { return gender; }
 
-    public String getRunningLevel() { return runningLevel; }
+    public RunnerLevel getRunnerLevel() { return runnerLevel; }
 
     public String getZip() { return zip; }
 
@@ -154,8 +156,8 @@ public class Runner extends AbstractEntity{
         this.gender = gender;
     }
 
-    public void setRunningLevel(String runningLevel) {
-        this.runningLevel = runningLevel;
+    public void setRunningLevel(RunnerLevel runnerLevel) {
+        this.runnerLevel = runnerLevel;
     }
 
     public void setZip(String zip) {

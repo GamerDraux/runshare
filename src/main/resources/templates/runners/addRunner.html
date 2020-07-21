@@ -93,6 +93,18 @@
             is not listed</small>
     </div>
     <div class="form-group">
+        <label for="runnerLevel">Runner Level</label>
+        <select
+                th:field="${newRunnerRegistrationDTO.runnerLevel}" name="runnerLevel" id="runnerLevel">
+            <option
+                    th:each="runnerLevel : ${runnerLevels}" th:value="${runnerLevel}" th:text="${runnerLevel.getDescription()}"></option>
+        </select>
+        <p
+                th:errors="${newRunnerRegistrationDTO.runnerLevel}" class="errors"></p>
+        <small class="form-text text-muted">Give us
+            an idea of your running level</small>
+    </div>
+    <div class="form-group">
         <label for="weight">Runner Weight</label>
         <input
                 th:field="${newRunnerRegistrationDTO.weight}" type="number" min="0" id="weight">
