@@ -1,5 +1,6 @@
 package com.akproject.runshare.models.DTO;
 
+import com.akproject.runshare.models.enums.Gender;
 import com.mysql.cj.jdbc.Blob;
 import org.hibernate.validator.constraints.Length;
 
@@ -32,7 +33,7 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
 
     private int weight;
 
-    private String gender;
+    private Gender gender;
 
     private String runningLevel;
 
@@ -92,11 +93,11 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
         this.weight = weight;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

@@ -19,6 +19,10 @@
     <span th:text="'Age: '+${detailedRunner.age}"></span>
     <span th:text="'Weight: '+${detailedRunner.weight}"></span>
 </div>
+<div class="centeringDiv">
+    <span
+            th:text="'Gender: '+${detailedRunner.gender.getDisplayName()}"></span>
+</div>
 
 
 <div class="centeringDiv">

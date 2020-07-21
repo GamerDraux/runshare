@@ -4,6 +4,7 @@ package com.akproject.runshare.controllers;
 import com.akproject.runshare.models.DTO.NewRunnerRegistrationDTO;
 import com.akproject.runshare.models.DTO.RunnerLoginDTO;
 import com.akproject.runshare.models.Runner;
+import com.akproject.runshare.models.enums.Gender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -33,6 +34,7 @@ public class RunnerController extends MainController {
     @GetMapping("/addRunner")
     public String displayAddRunnerForm(HttpServletRequest request, Model model){
         setRunnerInModel(request, model);
+        model.addAttribute("genders", Gender.values());
         model.addAttribute(new NewRunnerRegistrationDTO());
         model.addAttribute("title", "Add Runner");
         return "runners/addrunner";
@@ -42,6 +44,7 @@ public class RunnerController extends MainController {
     public String processAddRunnerForm(@ModelAttribute @Valid NewRunnerRegistrationDTO newRunnerRegistrationDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         if (errors.hasErrors()){
+            model.addAttribute("genders", Gender.values());
             model.addAttribute("title", "Add Runner");
             model.addAttribute("newRunnerRegistrationDTO", newRunnerRegistrationDTO);
             return "runners/addrunner";

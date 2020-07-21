@@ -79,6 +79,20 @@
                  class="errors"></p>
     </div>
     <div class="form-group">
+        <label for="gender">Runner Gender</label>
+        <select
+                th:field="${newRunnerRegistrationDTO.gender}" name="gender" id="gender">
+            <option
+                    th:each="gender : ${genders}" th:value="${gender}" th:text="${gender.getDisplayName()}">
+            </option>
+        </select>
+        <p th:errors="${newRunnerRegistrationDTO.gender}"
+           class="errors"></p>
+        <small class="form-text text-muted">Please
+            contact administrator if desired gender
+            is not listed</small>
+    </div>
+    <div class="form-group">
         <label for="weight">Runner Weight</label>
         <input
                 th:field="${newRunnerRegistrationDTO.weight}" type="number" min="0" id="weight">

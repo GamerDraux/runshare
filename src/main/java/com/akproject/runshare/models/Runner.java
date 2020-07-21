@@ -3,6 +3,7 @@ package com.akproject.runshare.models;
 import com.akproject.runshare.RunshareApplication;
 import com.akproject.runshare.controllers.RunnerController;
 import com.akproject.runshare.models.data.RunnerRepository;
+import com.akproject.runshare.models.enums.Gender;
 import com.mysql.cj.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,9 +51,7 @@ public class Runner extends AbstractEntity{
     @Min(value = 0, message="Weight cannot be set lower than 0")
     private int weight;
 
-    private String gender;
-    // todo-create input field for new runner gender in addRunner
-    //todo-create display for runner gender in runnerdetails
+    private Gender gender;
 
     private String runningLevel;
     //todo-create enum for running levels?
@@ -73,7 +72,7 @@ public class Runner extends AbstractEntity{
     public Runner() {
     }
 
-    public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, int age, int weight, String gender, String runningLevel, String zip){
+    public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, int age, int weight, Gender gender, String runningLevel, String zip){
         this.callsign=callsign;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -114,7 +113,7 @@ public class Runner extends AbstractEntity{
 
     public int getWeight() { return weight; }
 
-    public String getGender() { return gender; }
+    public Gender getGender() { return gender; }
 
     public String getRunningLevel() { return runningLevel; }
 
@@ -151,7 +150,7 @@ public class Runner extends AbstractEntity{
         this.weight = weight;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
