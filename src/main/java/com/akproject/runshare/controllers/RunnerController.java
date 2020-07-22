@@ -259,4 +259,6 @@ public class RunnerController extends MainController {
         model.addAttribute("detailedRunner", new Runner());
         return "/runners/runnerDetails";
     }
+
+    //todo-add listing of runsessions for runner in runnerDetails
 }
