@@ -11,8 +11,16 @@
 <h1>Log in to the starting line, Runner!</h1>
 <form method="post">
     <div class="form-group">
-        <label for="callsign">Callsign</label>
-        <input th:field="${runnerLoginDTO.callsign}"
+        <label th:unless="${selectedRunner}" for="callsign">Callsign</label>
+        <input
+                th:if="${selectedRunner}"
+                th:field="${runnerLoginDTO.callsign}"
+                hidden
+                th:value="${selectedRunner.callsign}">
+        <h3 th:if="${selectedRunner}"
+           th:text="'Enter password for '+${selectedRunner.callsign}"></h3>
+        <input th:unless="${selectedRunner}"
+               th:field="${runnerLoginDTO.callsign}"
                id="callsign">
         <p th:errors="${runnerLoginDTO.callsign}"
            class="errors"></p>

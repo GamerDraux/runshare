@@ -168,6 +168,7 @@ public class RunnerController extends MainController {
     @GetMapping("/login/{id}")
     public String displayLoginFormWithId(@PathVariable Integer id, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
+        model.addAttribute("selectedRunner", runnerRepository.findById(id).get());
         RunnerLoginDTO listedRunner = new RunnerLoginDTO();
         listedRunner.setCallsign(runnerRepository.findById(id).get().getCallsign());
         model.addAttribute("runnerLoginDTO", listedRunner);
@@ -202,9 +203,9 @@ public class RunnerController extends MainController {
     }
 
     @PostMapping("/login/{id}")
-//    todo-change login view to lock the callsign field when started from login/{id}
     public String processLoginForm (@PathVariable Integer id, @ModelAttribute @Valid RunnerLoginDTO runnerLoginDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
+        model.addAttribute("selectedRunner", runnerRepository.findById(id).get());
         model.addAttribute("title", "Login");
         if (errors.hasErrors()){
             return "runners/login";
@@ -258,5 +259,4 @@ public class RunnerController extends MainController {
         model.addAttribute("detailedRunner", new Runner());
         return "/runners/runnerDetails";
     }
-//todo-create sort function to sort runners alphabetically by name or callsign
 }
