@@ -31,5 +31,8 @@
                 th:href="@{'/trails/trailDetails/'+${runsession.trail.id}}" th:text="${runsession.trail.name}"></a></td>
     </tr>
 </table>
+<div class="centeringDiv">
+    <p th:replace="fragments :: listnavbar"></p>
+</div>
 </body>
 </html>

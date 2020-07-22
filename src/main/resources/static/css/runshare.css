@@ -2,6 +2,7 @@ body {
     background-color:#0A0A0A;
     color: white;
     padding: 10px;
+    padding-bottom: 50px;
 }
 
 .errors {
@@ -21,6 +22,7 @@ body {
 }
 
 .runnerbar{
+    z-index:999;
     position: fixed;
     top: 0;
     width: 90%;
