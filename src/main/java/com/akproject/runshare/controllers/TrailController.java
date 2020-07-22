@@ -24,6 +24,8 @@ public class TrailController extends MainController{
         return "trails/index";
     }
 
+    //todo-add sorting for trails
+
     @GetMapping("/addTrail")
     private String displayAddTrailView (Model model, HttpServletRequest request){
         setRunnerInModel(request, model);

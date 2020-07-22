@@ -22,6 +22,7 @@ public class RunSessionController extends MainController {
         model.addAttribute("runSessions", runSessionRepository.findAll());
         return "runSessions/index";
     }
+    //todo-add sorting for runSessions
 
     @GetMapping("/addRunSession")
     public String displayAddRunSessionsForm(Model model, HttpServletRequest request){
