@@ -1,6 +1,6 @@
 package com.akproject.runshare.models.DTO;
 
-import com.akproject.runshare.models.DistanceConversion;
+import com.akproject.runshare.models.staticMethods.DistanceConversion;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

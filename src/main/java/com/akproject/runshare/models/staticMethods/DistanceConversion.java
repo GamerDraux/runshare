@@ -1,4 +1,4 @@
-package com.akproject.runshare.models;
+package com.akproject.runshare.models.staticMethods;
 
 public class DistanceConversion {
 

@@ -25,11 +25,85 @@ public class RunnerController extends MainController {
         session.setAttribute(runnerSessionKey, runner.getId());
     }
 
+    public static String callsignSort = "csasc";
+    public static String nameSort = "fnasc";
+    public static String runnerLevelSort = "rlasc";
+    public static String ageSort = "aasc";
+    public void setSortVariablesInModel (Model model){
+        model.addAttribute("callsignSort", callsignSort);
+        model.addAttribute("nameSort", nameSort);
+        model.addAttribute("runnerLevelSort", runnerLevelSort);
+        model.addAttribute("ageSort", ageSort);
+    }
+
     @GetMapping
     public String displayRunnersIndex(HttpServletRequest request, Model model){
         model.addAttribute("title", "Runners");
+        setSortVariablesInModel(model);
         setRunnerInModel(request, model);
         model.addAttribute("runners", runnerRepository.findAll());
+        return "runners/index";
+    }
+
+    @GetMapping("/{sort}")
+    public String displayRunnerIndexSorted(@PathVariable String sort, HttpServletRequest request, Model model){
+        model.addAttribute("title", "Runners");
+        setRunnerInModel(request, model);
+        if (sort.equals("csasc")){
+            callsignSort="csdesc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "ascending Callsign");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByCallsignAsc());
+        } else if (sort.equals("csdesc")) {
+            callsignSort="csasc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "descending Callsign");
+            model.addAttribute("runners",runnerRepository.findAllByOrderByCallsignDesc());
+        } else if (sort.equals("fnasc")){
+            nameSort="fndesc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "ascending first name");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByFirstNameAsc());
+        } else if (sort.equals("fndesc")){
+            nameSort="lnasc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "descending first name");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByFirstNameDesc());
+        } else if (sort.equals("lnasc")){
+            nameSort="lndesc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "ascending last name");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByLastNameAsc());
+        } else if (sort.equals("lndesc")){
+            nameSort="fnasc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "descending last name");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByLastNameDesc());
+        } else if (sort.equals("rlasc")){
+            runnerLevelSort = "rldesc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "ascending running level");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByRunnerLevelAsc());
+        } else if (sort.equals("rldesc")){
+            runnerLevelSort="rlasc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "descending running level");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByRunnerLevelDesc());
+        } else if (sort.equals("aasc")){
+            ageSort="adesc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "ascending age");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByAgeAsc());
+        } else if (sort.equals("adesc")){
+            ageSort="aasc";
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", "descending age");
+            model.addAttribute("runners", runnerRepository.findAllByOrderByAgeDesc());
+        } else {
+            setSortVariablesInModel(model);
+            model.addAttribute("sortType", null);
+            model.addAttribute("runners", runnerRepository.findAll());
+        }
         return "runners/index";
     }
 

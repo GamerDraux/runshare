@@ -1,7 +1,8 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.models.staticMethods.DistanceConversion;
+
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -30,7 +31,7 @@ public class Trail extends AbstractEntity {
     public Trail (String name, double miles, String address, String zipCode ){
         this.name=name;
         this.miles=miles;
-        this.kilometers=DistanceConversion.milesToKilometers(miles);
+        this.kilometers= DistanceConversion.milesToKilometers(miles);
         this.address=address;
         this.zipCode=zipCode;
     }

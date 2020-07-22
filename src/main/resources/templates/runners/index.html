@@ -11,13 +11,23 @@
 
 <h1 style="text-align:center;">Registered Runners</h1>
 
+<h3 style="text-align:center;" th:if="${sortType}"
+    th:text="'Sorted by '+${sortType}"></h3>
+<small th:if="${sortType}" class="form-text text-muted"
+       style="text-align:center;"><a
+        th:href="@{'/runners/'}">Remove Sorting</a></small>
+
 <table class="runnertable">
     <tr class="runnertablehead">
-        <th>Callsign</th>
+        <th><a th:href="@{'/runners/'+${callsignSort}}">
+            Callsign</a></th>
+        <th><a th:href="@{'/runners/'+${runnerLevelSort}}">Runner Level</a></th>
         <th th:if="${currentRunner}">Logged In</th>
         <th th:unless="${currentRunner}">Log in Runner</th>
-        <th>Name</th>
-        <th>Age</th>
+        <th><a
+                th:href="@{'/runners/'+${nameSort}}">
+            Name</a></th>
+        <th><a th:href="@{'/runners/'+${ageSort}}">Age</a></th>
         <th>Zip Code</th>
     </tr>
     <tr class="runnertableline"
@@ -25,6 +35,9 @@
             <td>
                 <a th:text="${runner.callsign}" th:href="@{'/runners/runnerDetails/'+${runner.id}}"></a>
             </td>
+        <td
+                th:text="${runner.runnerLevel.getDisplayName()}">
+        </td>
         <td>
             <span th:if="${currentRunner}">
                 <span class="btn btn-primary"
