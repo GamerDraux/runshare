@@ -14,57 +14,35 @@
 </head>
 
 <!--NAVIGATION HEADER-->
-<div th:fragment="navbar" class="headerbar">
-    <a th:href="@{/}" >
-        <img th:src="@{../../images/RunshareLogo.jpg}"
-             width="150" height="150" style="background-color:red"/>
-    </a>
-    <span>
-        <a class="headerbarspan" th:href="@{/runners
-        }"><button class="btn btn-primary">Runners List
-        </button></a>
-    </span>
-    <span>
-        <a class="headerbarspan"
-           th:href="@{/runners/addRunner}"><button
-                class="btn btn-primary">Register a new
-            Runner</button></a>
-    </span>
-    <span>
-        <a class="headerbarspan"
-           th:href="@{/trails}"><button
-                class="btn btn-primary">Trail
-            Catalog</button></a>
-    </span>
-    <span>
-        <a class="headerbarspan"
-           th:href="@{/trails/addTrail}"><button
-                class="btn btn-primary">Add a
-            Trail</button></a>
-    </span>
-    <span>
-        <a class="headerbarspan"
-           th:href="@{/runSessions}"><button
-                class="btn btn-primary">Run
-            Sessions</button></a>
-    </span>
-    <span>
-        <a class="headerbarspan"
-           th:href="@{/runSessions/addRunSession}"><button class="btn btn-primary">Add a run session</button></a>
-    </span>
-    <span>
-        <a class="headerbarspan"
-           th:unless="${currentRunner}"
-           th:href="@{/runners/login}"><button
-                class="btn btn-primary">Log in a
-            Runner</button></a>
-    </span>
-    <span>
-        <a class="headerbarspan" th:if="${currentRunner}"
-           th:href="@{/runners/logout}"><button
-                class="btn btn-primary">Logout</button></a>
-    </span>
-
+<div th:fragment="navbar" >
+    <div class="sideNav" id="sideNav">
+        <div class="topOfSideNav">
+            <img
+            th:src="@{../../images/RunshareLogo.jpg}"
+             width="150" height="150"
+            style="background-color:red"/>
+        <a class="closebtn"
+           onclick="closeNav()">&times;</a></div>
+        <ul>
+            <li><a th:href="@{/}" >Home</a></li>
+            <li><a th:href="@{/runners}">Runners List</a></li>
+            <li><a th:href="@{/runners/addRunner}">Register a new
+            Runner</a></li>
+            <li><a th:href="@{/trails}">Trail Catalog</a></li>
+            <li><a th:href="@{/trails/addTrail}">Add a
+            Trail</a></li>
+            <li><a th:href="@{/runSessions}">Run
+            Sessions</a></li>
+            <li><a th:href="@{/runSessions/addRunSession}">Add a
+        run session</a></li>
+            <li th:unless="${currentRunner}"><a  th:href="@{/runners/login}">Log in a
+            Runner</a></li>
+            <li th:if="${currentRunner}"><a  th:href="@{/runners/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="sideNavButton" onclick="openNav()"> <img
+            th:src="@{../../images/RunshareLogo.jpg}"
+                                           width="150" height="150" style="background-color:red"/></div>
 </div>
 
 
