@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -268,6 +267,4 @@ public class RunnerController extends MainController {
         model.addAttribute("detailedRunner", new Runner());
         return "/runners/runnerDetails";
     }
-
-    //todo-add listing of runsessions for runner in runnerDetails
 }
