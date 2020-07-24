@@ -11,6 +11,12 @@
 
 <h1 style="text-align:center;">Trail Catalog</h1>
 
+<h3 style="text-align:center;" th:if="${sortType}"
+    th:text="'Sorted by '+${sortType}"></h3>
+<small th:if="${sortType}" class="form-text text-muted"
+       style="text-align:center;"><a
+        th:href="@{'/trails/'}">Remove Sorting</a></small>
+
 <table class="trailtable">
     <tr class="trailtablehead">
         <th><span>Name</span><span><a

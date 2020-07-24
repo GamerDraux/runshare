@@ -20,24 +20,31 @@ public class TrailController extends MainController{
         setRunnerInModel(request, model);
         model.addAttribute("title", "Trail List");
         if (sortType!=null) {
-            if (sortType.equals("nameAsc")) {
-                model.addAttribute("trails", trailRepository.findAllByOrderByNameAsc());
-                return "trails/index";
-            } else if (sortType.equals("nameDesc")){
-                model.addAttribute("trails", trailRepository.findAllByOrderByNameDesc());
-                return "trails/index";
-            } else if (sortType.equals("addressAsc")){
-                model.addAttribute("trails", trailRepository.findAllByOrderByAddressAsc());
-                return "trails/index";
-            } else if (sortType.equals("addressDesc")){
-                model.addAttribute("trails", trailRepository.findAllByOrderByAddressDesc());
-                return "trails/index";
-            } else if (sortType.equals("milesAsc")){
-                model.addAttribute("trails", trailRepository.findAllByOrderByMilesAsc());
-                return "trails/index";
-            } else if (sortType.equals("milesDesc")) {
-                model.addAttribute("trails", trailRepository.findAllByOrderByMilesDesc());
-                return "trails/index";
+            switch (sortType) {
+                case "nameAsc":
+                    model.addAttribute("sortType", "ascending name");
+                    model.addAttribute("trails", trailRepository.findAllByOrderByNameAsc());
+                    return "trails/index";
+                case "nameDesc":
+                    model.addAttribute("sortType", "descending name");
+                    model.addAttribute("trails", trailRepository.findAllByOrderByNameDesc());
+                    return "trails/index";
+                case "addressAsc":
+                    model.addAttribute("sortType", "ascending location");
+                    model.addAttribute("trails", trailRepository.findAllByOrderByAddressAsc());
+                    return "trails/index";
+                case "addressDesc":
+                    model.addAttribute("sortType", "descending location");
+                    model.addAttribute("trails", trailRepository.findAllByOrderByAddressDesc());
+                    return "trails/index";
+                case "milesAsc":
+                    model.addAttribute("sortType", "ascending length");
+                    model.addAttribute("trails", trailRepository.findAllByOrderByMilesAsc());
+                    return "trails/index";
+                case "milesDesc":
+                    model.addAttribute("sortType", "descending length");
+                    model.addAttribute("trails", trailRepository.findAllByOrderByMilesDesc());
+                    return "trails/index";
             }
         }
         model.addAttribute("trails", trailRepository.findAll());
