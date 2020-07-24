@@ -14,15 +14,39 @@
         th:text="${detailedRunner.Callsign}">
     </h1>
 </div>
+
 <div class="centeringDiv">
     <span th:text="'Name: '+${detailedRunner.firstName}+' '+${detailedRunner.lastName}"></span>
     <span th:text="'Age: '+${detailedRunner.age}"></span>
     <span th:text="'Weight: '+${detailedRunner.weight}"></span>
 </div>
+
 <div class="centeringDiv">
     <span th:text="'Gender: '+${detailedRunner.gender.getDisplayName()}"></span>
     <span th:text="'Running Level: '+${detailedRunner.runnerLevel.getDisplayName()}"></span>
     <span th:text="'Zip Code: '+${detailedRunner.zip}"></span>
+</div>
+
+<div th:if="${runSessions}" class="centeringDiv">
+    <h1 class="runnerDetailsHeader"
+        th:text="'Run Sessions'">
+    </h1>
+</div>
+<div th:if="${runSessions}">
+    <table class="runnertable">
+        <tr class="runnertablehead">
+            <th>Name</th>
+            <th>Date</th>
+            <th>Trail</th>
+        </tr>
+        <tr th:each="runSession: ${runSessions}"
+            class="runnertableline">
+            <td th:text="${runSession.name}"></td>
+            <td th:text="${runSession.date}"></td>
+            <td
+                    th:text="${runSession.trail.name}"></td>
+        </tr>
+    </table>
 </div>
 
 

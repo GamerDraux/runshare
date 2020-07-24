@@ -3,6 +3,7 @@ package com.akproject.runshare.controllers;
 
 import com.akproject.runshare.models.DTO.NewRunnerRegistrationDTO;
 import com.akproject.runshare.models.DTO.RunnerLoginDTO;
+import com.akproject.runshare.models.RunSession;
 import com.akproject.runshare.models.Runner;
 import com.akproject.runshare.models.enums.Gender;
 import com.akproject.runshare.models.enums.RunnerLevel;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -249,6 +252,12 @@ public class RunnerController extends MainController {
         Runner detailedRunner = testRunner.get();
         model.addAttribute("title", "Details "+detailedRunner.getCallsign());
         model.addAttribute("detailedRunner",  detailedRunner);
+
+        List<RunSession> runSessions = runSessionRepository.findAllByRunnerId(id);
+        if (!runSessions.isEmpty()) {
+            model.addAttribute("runSessions", runSessions);
+        }
+
         return "/runners/runnerDetails";
     }
 
