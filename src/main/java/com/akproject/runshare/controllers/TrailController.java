@@ -2,7 +2,6 @@ package com.akproject.runshare.controllers;
 
 import com.akproject.runshare.models.DTO.NewTrailDTO;
 import com.akproject.runshare.models.Trail;
-import com.akproject.runshare.models.data.TrailRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,15 +15,34 @@ import java.util.Optional;
 @RequestMapping("/trails")
 public class TrailController extends MainController{
 
-    @GetMapping
-    public String displayTrailIndex (Model model, HttpServletRequest request){
+    @GetMapping(value={"", "/{sortType}"})
+    public String displayTrailIndex (@PathVariable (required=false) String sortType, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Trail List");
+        if (sortType!=null) {
+            if (sortType.equals("nameAsc")) {
+                model.addAttribute("trails", trailRepository.findAllByOrderByNameAsc());
+                return "trails/index";
+            } else if (sortType.equals("nameDesc")){
+                model.addAttribute("trails", trailRepository.findAllByOrderByNameDesc());
+                return "trails/index";
+            } else if (sortType.equals("addressAsc")){
+                model.addAttribute("trails", trailRepository.findAllByOrderByAddressAsc());
+                return "trails/index";
+            } else if (sortType.equals("addressDesc")){
+                model.addAttribute("trails", trailRepository.findAllByOrderByAddressDesc());
+                return "trails/index";
+            } else if (sortType.equals("milesAsc")){
+                model.addAttribute("trails", trailRepository.findAllByOrderByMilesAsc());
+                return "trails/index";
+            } else if (sortType.equals("milesDesc")) {
+                model.addAttribute("trails", trailRepository.findAllByOrderByMilesDesc());
+                return "trails/index";
+            }
+        }
         model.addAttribute("trails", trailRepository.findAll());
         return "trails/index";
     }
-
-    //todo-add sorting for trails
 
     @GetMapping("/addTrail")
     private String displayAddTrailView (Model model, HttpServletRequest request){

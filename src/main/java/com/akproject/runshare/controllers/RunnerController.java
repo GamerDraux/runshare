@@ -45,7 +45,7 @@ public class RunnerController extends MainController {
         model.addAttribute("runners", runnerRepository.findAll());
         return "runners/index";
     }
-
+//todo-refactor sorting method to match what's on the trails view
     @GetMapping("/{sort}")
     public String displayRunnerIndexSorted(@PathVariable String sort, HttpServletRequest request, Model model){
         model.addAttribute("title", "Runners");
