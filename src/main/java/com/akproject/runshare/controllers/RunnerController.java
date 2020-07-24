@@ -111,7 +111,9 @@ public class RunnerController extends MainController {
         setRunnerInModel(request, model);
         model.addAttribute("runnerLevels", RunnerLevel.values());
         model.addAttribute("genders", Gender.values());
-        model.addAttribute(new NewRunnerRegistrationDTO());
+        NewRunnerRegistrationDTO newRunnerRegistrationDTO= new NewRunnerRegistrationDTO();
+        newRunnerRegistrationDTO.setAge(16);
+        model.addAttribute(newRunnerRegistrationDTO);
         model.addAttribute("title", "Add Runner");
         return "runners/addrunner";
     }
@@ -126,7 +128,6 @@ public class RunnerController extends MainController {
             model.addAttribute("newRunnerRegistrationDTO", newRunnerRegistrationDTO);
             return "runners/addrunner";
         }
-//todo-change input on age to make it start at 16
 
         Runner checkedRunner = runnerRepository.findByCallsign(newRunnerRegistrationDTO.getCallsign());
 

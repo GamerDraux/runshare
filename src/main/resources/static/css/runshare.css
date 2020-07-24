@@ -29,17 +29,22 @@ body {
     transition:0.5s;
 }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
+.sideNavLinkList{
+    list-style-type: none;
+}
+
+.sideNav a {
+  padding: 4px 4px 4px 0px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 15px;
   color: #818181;
   display: block;
   transition: 0.3s;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+.sideNav a:hover {
+    background-color:#2A2773;
+     color: #f1f1f1;
 }
 
 .topOfSideNav {
@@ -51,6 +56,17 @@ body {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    top:0;
+    padding: 0;
+}
+
+.closebtn:hover{
+    background-color: #2A2773;
+    cursor: pointer;
+}
+
+#main {
+    transition: margin-left .5s;
 }
 
 .runnerbar{
