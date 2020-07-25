@@ -16,4 +16,7 @@ public interface RunSessionRepository extends CrudRepository<RunSession, Integer
 
     List<RunSession> findAllByOrderByTimeAsc();
     List<RunSession> findAllByOrderByTimeDesc();
+
+    List<RunSession> findAllByOrderByDateAsc();
+    List<RunSession> findAllByOrderByDateDesc();
 }

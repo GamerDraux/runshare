@@ -1,5 +1,6 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.models.staticMethods.DateConversion;
 import com.akproject.runshare.models.staticMethods.TimeConversion;
 
 import javax.persistence.Entity;
@@ -75,4 +76,7 @@ public class RunSession extends AbstractEntity{
     public void setTime(Integer time) {
         this.time = time;
     }
+
+    public String getDisplayDate () {return DateConversion.convertYYYYMMDDToDisplayString(date);}
+
 }

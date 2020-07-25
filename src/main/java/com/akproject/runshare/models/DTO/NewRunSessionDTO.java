@@ -12,6 +12,7 @@ public class NewRunSessionDTO extends AbstractEntity {
     @NotBlank(message="Run Session needs to be named")
     private String name;
 
+
     @NotBlank(message="Must supply a date")
     private String date;
 

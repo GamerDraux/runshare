@@ -23,7 +23,11 @@
             <span><a th:href="@{'/runSessions/nameAsc'}">&#8593;</a></span>
             <span><a th:href="@{'/runSessions/nameDesc'}">&#8595;</a></span>
         </th>
-        <th>Date</th>
+        <th>
+            <span>Date</span>
+            <span><a th:href="@{'/runSessions/dateAsc'}">&#8593;</a></span>
+            <span><a th:href="@{'/runSessions/dateDesc'}">&#8595;</a></span>
+        </th>
         <th>
             <span>Time</span>
             <span><a th:href="@{'/runSessions/timeAsc'}">&#8593;</a></span>
@@ -38,7 +42,7 @@
         <td><a
                 th:href="@{'/runSessions/runSessionDetails/'+${runsession.id}}"
                 th:text="${runsession.name}"></a></td>
-        <td th:text="${runsession.date}"></td>
+        <td th:text="${runsession.getDisplayDate()}"></td>
         <td th:text="${runsession.time}"></td>
         <td><a
                 th:href="@{'/runners/runnerDetails/'+${runsession.runner.id}}"

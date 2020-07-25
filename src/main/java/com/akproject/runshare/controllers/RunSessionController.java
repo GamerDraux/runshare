@@ -37,6 +37,14 @@ public class RunSessionController extends MainController {
                     model.addAttribute("runSessions", runSessionRepository.findAllByOrderByTimeDesc());
                     model.addAttribute("sortType", "descending time");
                     return "runSessions/index";
+                case "dateAsc":
+                    model.addAttribute("runSessions", runSessionRepository.findAllByOrderByDateAsc());
+                    model.addAttribute("sortType", "ascending date");
+                    return "runSessions/index";
+                case "dateDesc":
+                    model.addAttribute("runSessions", runSessionRepository.findAllByOrderByDateDesc());
+                    model.addAttribute("sortType", "descending date");
+                    return "runSessions/index";
             }
         }
         model.addAttribute("runSessions", runSessionRepository.findAll());
@@ -71,6 +79,8 @@ public class RunSessionController extends MainController {
 
         if (checkedRunSession!=null){
             errors.rejectValue("name", "runSession.alreadyExists", "That Run Session name has already been used");
+            model.addAttribute("runners", runnerRepository.findAll());
+            model.addAttribute("trails", trailRepository.findAll());
             model.addAttribute("title", "Add Run Session");
             return "runSessions/addRunSession";
         }
