@@ -14,7 +14,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/runSessions")
 public class RunSessionController extends MainController {
-//todo-add a "addRunSession" button to index view
     //todo-add time display to runsessiondetails view
     //todo-add date display to runsessondetails view
     @GetMapping(value={"", "/{sortType}"})

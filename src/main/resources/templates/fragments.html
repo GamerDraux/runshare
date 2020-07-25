@@ -15,7 +15,7 @@
 
 <!--NAVIGATION HEADER-->
 <div th:fragment="navbar"
-     style="position:sticky; top:0px;">
+     style="position:sticky; top:15px;">
     <div class="sideNav" id="sideNav">
         <div class="topOfSideNav">
             <img
@@ -41,14 +41,15 @@
             <li th:if="${currentRunner}"><a  th:href="@{/runners/logout}">Logout</a></li>
         </ul>
     </div>
-    <div class="sideNavButton" onclick="openNav()" >
+    <div class="sideNavButton" onclick="openNav()"
+         width="100px" >
         <span>
         <small class="form-text text-muted">links
         </small>
         <img th:src="@{../../images/RunshareLogo.jpg}"
-             width="100"
+             width="100px"
              style="border-style:outset; border-color:silver;"
-        height="100"/>
+        height="100px"/>
         </span>
     </div>
 </div>

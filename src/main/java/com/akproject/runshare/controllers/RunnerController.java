@@ -21,7 +21,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/runners")
 public class RunnerController extends MainController {
-    //todo-add a "addRunner" button to index view
 
     public static void setUserInSession(HttpSession session, Runner runner) {
         session.setAttribute(runnerSessionKey, runner.getId());

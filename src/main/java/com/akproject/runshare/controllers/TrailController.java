@@ -14,7 +14,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/trails")
 public class TrailController extends MainController{
-    //todo-add a "addTrail" button to trail index view
 
     @GetMapping(value={"", "/{sortType}"})
     public String displayTrailIndex (@PathVariable (required=false) String sortType, Model model, HttpServletRequest request){

@@ -16,6 +16,7 @@ body {
 
 .sideNavButton {
     top:0px;
+    display:inline;
 }
 
 .sideNav {
