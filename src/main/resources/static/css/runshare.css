@@ -5,14 +5,17 @@ body {
     padding-bottom: 50px;
 }
 
+#main {
+    transition: margin-left .5s;
+}
+
 .errors {
     color: red;
     font-style:italic;
 }
 
 .sideNavButton {
-    position: sticky;
-    top:20px;
+    top:0px;
 }
 
 .sideNav {
@@ -56,17 +59,13 @@ body {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-    top:0;
+    top:15px;
     padding: 0;
 }
 
 .closebtn:hover{
     background-color: #2A2773;
     cursor: pointer;
-}
-
-#main {
-    transition: margin-left .5s;
 }
 
 .runnerbar{

@@ -77,7 +77,6 @@ public class RunnerController extends MainController {
         model.addAttribute("runners", runnerRepository.findAll());
         return "runners/index";
     }
-//todo-refactor sorting method to match what's on the trails view
 
     @GetMapping("/addRunner")
     public String displayAddRunnerForm(HttpServletRequest request, Model model){
