@@ -118,7 +118,4 @@ public class RunSessionController extends MainController {
         model.addAttribute("detailedRunSession", new RunSession());
         return "/runSessions/runSessionDetails";
     }
-
-    //todo- change date field to Date type for sorting
-    //todo- sort runSessions by date
 }
