@@ -12,6 +12,7 @@ public class NewRunSessionDTO extends AbstractEntity {
     @NotBlank(message="Run Session needs to be named")
     private String name;
 
+    @NotBlank(message="Must supply a date")
     private String date;
 
     @NotNull
@@ -20,7 +21,11 @@ public class NewRunSessionDTO extends AbstractEntity {
     @NotNull
     private Trail trail;
 
-    public NewRunSessionDTO (){};
+    private Integer seconds;
+    private Integer minutes;
+    private Integer hours;
+
+    public NewRunSessionDTO (){}
 
     public String getName() {
         return name;
@@ -53,4 +58,16 @@ public class NewRunSessionDTO extends AbstractEntity {
     public void setTrail(Trail trail) {
         this.trail = trail;
     }
+
+    public Integer getSeconds() { return seconds; }
+
+    public void setSeconds(Integer seconds) { this.seconds = seconds; }
+
+    public Integer getMinutes() { return minutes; }
+
+    public void setMinutes(Integer minutes) { this.minutes = minutes; }
+
+    public Integer getHours() { return hours; }
+
+    public void setHours(Integer hours) { this.hours = hours; }
 }

@@ -29,6 +29,14 @@ public class RunSessionController extends MainController {
                     model.addAttribute("runSessions", runSessionRepository.findAllByOrderByNameDesc());
                     model.addAttribute("sortType", "descending name");
                     return "runSessions/index";
+                case "timeAsc":
+                    model.addAttribute("runSessions", runSessionRepository.findAllByOrderByTimeAsc());
+                    model.addAttribute("sortType", "ascending time");
+                    return "runSessions/index";
+                case "timeDesc":
+                    model.addAttribute("runSessions", runSessionRepository.findAllByOrderByTimeDesc());
+                    model.addAttribute("sortType", "descending time");
+                    return "runSessions/index";
             }
         }
         model.addAttribute("runSessions", runSessionRepository.findAll());
@@ -39,7 +47,11 @@ public class RunSessionController extends MainController {
     public String displayAddRunSessionsForm(Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Add Run Session");
-        model.addAttribute(new NewRunSessionDTO());
+        NewRunSessionDTO newRunSessionDTO = new NewRunSessionDTO();
+        newRunSessionDTO.setHours(0);
+        newRunSessionDTO.setMinutes(0);
+        newRunSessionDTO.setSeconds(0);
+        model.addAttribute(newRunSessionDTO);
         model.addAttribute("runners", runnerRepository.findAll());
         model.addAttribute("trails", trailRepository.findAll());
         return "runSessions/addRunSession";
@@ -63,7 +75,7 @@ public class RunSessionController extends MainController {
             return "runSessions/addRunSession";
         }
 
-        RunSession newRunSession = new RunSession(newRunSessionDTO.getName(), newRunSessionDTO.getDate(), newRunSessionDTO.getRunner(), newRunSessionDTO.getTrail());
+        RunSession newRunSession = new RunSession(newRunSessionDTO.getName(), newRunSessionDTO.getDate(), newRunSessionDTO.getRunner(), newRunSessionDTO.getTrail(), (newRunSessionDTO.getSeconds()+(newRunSessionDTO.getMinutes()*60)+(newRunSessionDTO.getHours()*3600)));
         runSessionRepository.save(newRunSession);
         model.addAttribute("title", "Run Sessions");
         model.addAttribute("runSessions", runSessionRepository.findAll());
@@ -96,7 +108,6 @@ public class RunSessionController extends MainController {
         return "/runSessions/runSessionDetails";
     }
 
-    //todo-create time functions to be able to store length of run.
     //todo- change date field to Date type for sorting
     //todo- sort runSessions by date
 }

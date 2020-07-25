@@ -57,6 +57,16 @@
             trail isn't listed, create it in the "Add
             a Trail" button above</small>
     </div>
+    <div class="form-group">
+        <label>Enter Run Session Time:</label>
+        <input type="number" min="0" max="24"
+               th:field="${newRunSessionDTO.hours}">
+        <input type="number" min="0" max="60"
+               th:field="${newRunSessionDTO.minutes}">
+        <input type="number" min="0" max="60"
+               th:field="${newRunSessionDTO.seconds}">
+
+    </div>
     <button type="submit" class="btn btn-primary">Log
         this run
     </button>

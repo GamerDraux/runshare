@@ -24,8 +24,14 @@
             <span><a th:href="@{'/runSessions/nameDesc'}">&#8595;</a></span>
         </th>
         <th>Date</th>
+        <th>
+            <span>Time</span>
+            <span><a th:href="@{'/runSessions/timeAsc'}">&#8593;</a></span>
+            <span><a th:href="@{'/runSessions/timeDesc'}">&#8595;</a></span>
+        </th>
         <th>Callsign</th>
         <th>Trail</th>
+
     </tr>
     <tr class="runsessiontableline"
         th:each="runsession : ${runSessions}">
@@ -33,6 +39,7 @@
                 th:href="@{'/runSessions/runSessionDetails/'+${runsession.id}}"
                 th:text="${runsession.name}"></a></td>
         <td th:text="${runsession.date}"></td>
+        <td th:text="${runsession.time}"></td>
         <td><a
                 th:href="@{'/runners/runnerDetails/'+${runsession.runner.id}}"
                 th:text="${runsession.runner.callsign}"></a></td>

@@ -1,12 +1,11 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.models.staticMethods.TimeConversion;
+
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class RunSession extends AbstractEntity{
@@ -25,11 +24,14 @@ public class RunSession extends AbstractEntity{
     @ManyToOne
     private Trail trail;
 
-    public RunSession (String name, String date, Runner runner, Trail trail){
+    private Integer time;
+
+    public RunSession (String name, String date, Runner runner, Trail trail, Integer time){
         this.name = name;
         this.date = date;
         this.runner= runner;
         this.trail = trail;
+        this.time = time;
     }
 
     public RunSession (){}
@@ -64,5 +66,13 @@ public class RunSession extends AbstractEntity{
 
     public void setTrail(Trail trail) {
         this.trail = trail;
+    }
+
+    public String getTime() {
+        return TimeConversion.displayTimeAsString(time);
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
     }
 }
