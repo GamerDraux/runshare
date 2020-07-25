@@ -19,9 +19,13 @@
                 th:value="${selectedRunner.callsign}">
         <h3 th:if="${selectedRunner}"
            th:text="'Enter password for '+${selectedRunner.callsign}"></h3>
-        <input th:unless="${selectedRunner}"
-               th:field="${runnerLoginDTO.callsign}"
+        <select th:unless="${selectedRunner}"
+               th:field="*{runnerLoginDTO.callsign}"
                id="callsign">
+            <option th:each="runner : ${runners}"
+                    th:text="${runner.callsign}"
+                    th:value="${runner.callsign}"></option>
+        </select>
         <p th:errors="${runnerLoginDTO.callsign}"
            class="errors"></p>
     </div>

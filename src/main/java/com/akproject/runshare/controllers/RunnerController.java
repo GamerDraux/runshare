@@ -132,6 +132,7 @@ public class RunnerController extends MainController {
     @GetMapping("/login")
     public String displayLoginForm(Model model, HttpServletRequest request){
             setRunnerInModel(request, model);
+            model.addAttribute("runners", runnerRepository.findAll());
             model.addAttribute(new RunnerLoginDTO());
             model.addAttribute("title", "Login");
             return "/runners/login";
@@ -153,6 +154,7 @@ public class RunnerController extends MainController {
         setRunnerInModel(request, model);
         model.addAttribute("title", "Login");
         if (errors.hasErrors()){
+            model.addAttribute("runners", runnerRepository.findAll());
             return "runners/login";
         }
 
@@ -165,6 +167,7 @@ public class RunnerController extends MainController {
 
         if (!loginRunner.isMatchingPassword(runnerLoginDTO.getPassword())){
             errors.rejectValue("password", "password.incorrectPassword", "Password is not correct for this Callsign");
+            model.addAttribute("runners", runnerRepository.findAll());
             return "runners/login";
         }
 
