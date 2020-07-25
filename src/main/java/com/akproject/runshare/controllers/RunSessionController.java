@@ -15,14 +15,25 @@ import java.util.Optional;
 @RequestMapping("/runSessions")
 public class RunSessionController extends MainController {
 
-    @GetMapping
-    public String displayRunSessionsList(Model model, HttpServletRequest request){
+    @GetMapping(value={"", "/{sortType}"})
+    public String displayRunSessionsList(@PathVariable(required=false) String sortType, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Run Sessions");
+        if (sortType!=null) {
+            switch (sortType) {
+                case "nameAsc":
+                    model.addAttribute("runSessions", runSessionRepository.findAllByOrderByNameAsc());
+                    model.addAttribute("sortType", "ascending name");
+                    return "runSessions/index";
+                case "nameDesc":
+                    model.addAttribute("runSessions", runSessionRepository.findAllByOrderByNameDesc());
+                    model.addAttribute("sortType", "descending name");
+                    return "runSessions/index";
+            }
+        }
         model.addAttribute("runSessions", runSessionRepository.findAll());
         return "runSessions/index";
     }
-    //todo-add sorting for runSessions
 
     @GetMapping("/addRunSession")
     public String displayAddRunSessionsForm(Model model, HttpServletRequest request){

@@ -19,6 +19,8 @@
 
 <table class="runnertable">
     <tr class="runnertablehead">
+        <th th:if="${currentRunner}">Logged In</th>
+        <th th:unless="${currentRunner}">Log in Runner</th>
         <th><span>Callsign</span><span><a
                 th:href="@{'/runners/callsignAsc'}">&#8593;
         </a></span><span><a
@@ -31,8 +33,7 @@
                 th:href="@{'/runners/runnerLevelDesc'}">
             &#8595;</a></span>
         </th>
-        <th th:if="${currentRunner}">Logged In</th>
-        <th th:unless="${currentRunner}">Log in Runner</th>
+
         <th>
             <span>Name</span>
             <span style="border-style:solid;"><span>
@@ -64,22 +65,23 @@
     </tr>
     <tr class="runnertableline"
         th:each="runner : ${runners}">
-            <td>
-                <a th:text="${runner.callsign}" th:href="@{'/runners/runnerDetails/'+${runner.id}}"></a>
-            </td>
-        <td
-                th:text="${runner.runnerLevel.getDisplayName()}">
-        </td>
         <td>
             <span th:if="${currentRunner}">
                 <span class="btn btn-primary"
-                        th:if="${currentRunner.callsign==runner.callsign}" th:text="'Logged in'"></span>
+                      th:if="${currentRunner.callsign==runner.callsign}" th:text="'Logged in'">
+
+                </span>
             </span>
             <span th:unless="${currentRunner}">
                 <a class="btn btn-primary"
-                        th:href="@{'/runners/login/'+${runner.id}}"
+                   th:href="@{'/runners/login/'+${runner.id}}"
                    th:text="Login"></a>
             </span>
+        </td>
+        <td>
+                <a th:text="${runner.callsign}" th:href="@{'/runners/runnerDetails/'+${runner.id}}"></a>
+        </td>
+        <td th:text="${runner.runnerLevel.getDisplayName()}">
         </td>
         <td th:if="${runner.callsignOnly}"
             style="text-align:center; border-style:outset; background-color:silver; color:black;"

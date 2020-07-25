@@ -10,10 +10,19 @@
 <p th:replace="fragments :: navbar"></p>
 
 <h1 style="text-align:center;">Run Sessions</h1>
+<h3 style="text-align:center;" th:if="${sortType}"
+    th:text="'Sorted by '+${sortType}"></h3>
+<small th:if="${sortType}" class="form-text text-muted"
+       style="text-align:center;"><a
+        th:href="@{'/runSessions/'}">Remove Sorting</a></small>
 
 <table class="runsessiontable">
     <tr class="runsessiontablehead">
-        <th>Name</th>
+        <th>
+            <span>Name</span>
+            <span><a th:href="@{'/runSessions/nameAsc'}">&#8593;</a></span>
+            <span><a th:href="@{'/runSessions/nameDesc'}">&#8595;</a></span>
+        </th>
         <th>Date</th>
         <th>Callsign</th>
         <th>Trail</th>
