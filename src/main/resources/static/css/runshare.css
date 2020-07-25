@@ -86,7 +86,7 @@ body {
 .listnavbar{
     position: fixed;
     bottom: 0;
-    width:80%;
+    width:50%;
     background-color:#2A2773;
     border:outset;
     border-radius:10px;

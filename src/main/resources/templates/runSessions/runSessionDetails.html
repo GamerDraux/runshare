@@ -25,8 +25,11 @@
             th:href="@{'/trails/trailDetails/'+${detailedRunSession.trail.id}}"
             th:text="'Trail: '+${detailedRunSession.trail.name}"></a></span>
 </div>
-<div>
-
+<div class="centeringDiv">
+    <span
+            th:text="'Run Time: '+${detailedRunSession.time}"></span>
+    <span
+            th:text="'Date: '+${detailedRunSession.getDisplayDate()}"></span>
 </div>
 <div class="centeringDiv">
 <p th:replace="fragments :: listnavbar"></p>
