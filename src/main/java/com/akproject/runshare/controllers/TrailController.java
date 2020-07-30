@@ -14,7 +14,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/trails")
 public class TrailController extends MainController{
-
+    //todo-create an edit view for Trails
     @GetMapping(value={"", "/{sortType}"})
     public String displayTrailIndex (@PathVariable (required=false) String sortType, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
