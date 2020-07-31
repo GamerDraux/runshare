@@ -25,6 +25,8 @@ public class Trail extends AbstractEntity {
     @Size(max=5, min=5, message="Must use 5-digit zip code")
     private String zipCode;
 
+    private Integer numberZipCode;
+
     @OneToMany(mappedBy = "trail")
     private final List<RunSession> runSessions = new ArrayList<>();
 
@@ -34,6 +36,7 @@ public class Trail extends AbstractEntity {
         this.kilometers= DistanceConversion.milesToKilometers(miles);
         this.address=address;
         this.zipCode=zipCode;
+        this.numberZipCode=Integer.parseInt(zipCode);
     }
 
     public Trail (){}
@@ -77,6 +80,10 @@ public class Trail extends AbstractEntity {
     public void setKilometers(double kilometers) {
         this.kilometers = kilometers;
     }
+
+    public Integer getNumberZipCode() { return numberZipCode; }
+
+    public void setNumberZipCode(Integer numberZipCode) { this.numberZipCode = numberZipCode; }
 
     @Override
     public boolean equals(Object o) {

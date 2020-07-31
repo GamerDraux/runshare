@@ -60,7 +60,7 @@ body {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-    top:15px;
+    top:30px;
     padding: 0;
 }
 
@@ -79,6 +79,7 @@ body {
     border:outset;
     border-radius:10px;
     text-align:center;
+    align-items:center;
     display:flex;
     justify-content:space-around;
 }

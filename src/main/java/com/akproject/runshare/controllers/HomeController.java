@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController extends MainController {
-
+    //todo-condense items in navbar with dropdowns for runner, runsessions, and trails
     @RequestMapping
     private String displayIndexPage(Model model, HttpServletRequest request){
         setRunnerInModel(request, model);

@@ -15,7 +15,7 @@
 
 <!--NAVIGATION HEADER-->
 <div th:fragment="navbar"
-     style="position:sticky; top:15px;">
+     style="position:sticky; top:30px;">
     <div class="sideNav" id="sideNav">
         <div class="topOfSideNav">
             <img
@@ -49,7 +49,7 @@
         <img th:src="@{../../images/RunshareLogo.jpg}"
              width="100px"
              style="border-style:outset; border-color:silver;"
-        height="100px"/>
+        height="100px" />
         </span>
     </div>
 </div>
@@ -57,7 +57,7 @@
 
 <!--RUNNERBAR-->
 <p th:if="${currentRunner}" th:fragment="runnerbar"
-class="runnerbar">
+class="runnerbar" >
     <span th:text="'Currently Logged in'"></span>
     <span class="runnerbarspan"
           th:text="'Callsign: '+${currentRunner.callsign}">
@@ -69,6 +69,9 @@ class="runnerbar">
     <span class="runnerbarspan" th:if="${!currentRunner.callsignOnly}"
               th:text="'Runner age: '+${currentRunner.age}">
     </span>
+    <span><a th:href="@{'/runners/logout'}"
+             class="btn btn-primary"
+             th:text="'Logout'" style="margin:2px;"></a></span>
 </p>
 
 <p class="listnavbar" th:fragment="listnavbar">
