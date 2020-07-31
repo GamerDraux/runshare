@@ -9,8 +9,7 @@ function getWeather(zip){
     ('weatherSpanButton');
     console.log (weatherSpan);
     zip = getZipFromNumberZip(zip);
-    const response=fetch(`http://api.openweathermap
-    .org/data/2.5/weather?zip=${zip},us&appid=${apiid}`);
+    const response=fetch("http://api.openweathermap.org/data/2.5/weather?zip="+zip+",us&appid=e770ede1e51fbbb66b830c2986e6bb7a");
     response.then(console.log (response));
     response.then(function(response){
         if (response.status === 404){

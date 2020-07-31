@@ -80,7 +80,7 @@ public class TrailController extends MainController{
         trailRepository.save(newTrail);
         model.addAttribute("title", "Trail List");
         model.addAttribute("trails", trailRepository.findAll());
-        return "trails/index";
+        return "redirect:/trails";
     }
 
 
