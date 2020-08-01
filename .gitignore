@@ -4,7 +4,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-!**/src/main/resources/static/js/weatherInfo.js
+!**/src/main/resources/js/
+
 ### STS ###
 .apt_generated
 .classpath
