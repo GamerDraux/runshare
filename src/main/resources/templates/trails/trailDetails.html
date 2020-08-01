@@ -24,7 +24,7 @@
 </div>
 <div class="centeringDiv">
     <button class="btn btn-primary" id="weatherSpanButton"
-            th:onclick="'getWeather('+${detailedTrail.numberZipCode}+')'">Get current
+            th:onclick="'getWeather('+${detailedTrail.numberZipCode}+',callApiKey())'">Get current
         Weather</button>
     <span hidden id="weatherSpanLabel"
             th:text="'Current Weather at trail: '">
@@ -39,4 +39,6 @@
 </body>
 <script type="text/javascript"
         th:src="@{/js/weatherInfo.js}"></script>
+<script type="text/javascript"
+        th:src="@{/js/apiKey.js}"></script>
 </html>
