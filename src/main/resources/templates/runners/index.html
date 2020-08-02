@@ -69,10 +69,9 @@
         th:each="runner : ${runners}">
         <td>
             <span th:if="${currentRunner}">
-                <span class="btn btn-primary"
-                      th:if="${currentRunner.callsign==runner.callsign}" th:text="'Logged in'">
-
-                </span>
+                <a class="btn btn-primary"
+                      th:if="${currentRunner.callsign==runner.callsign}" th:href="@{'/runners/editRunner/'+${runner.id}}" th:text="'Edit Runner'">
+                </a>
             </span>
             <span th:unless="${currentRunner}">
                 <a class="btn btn-primary"

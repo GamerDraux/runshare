@@ -240,4 +240,57 @@ public class RunnerController extends MainController {
         model.addAttribute("detailedRunner", new Runner());
         return "/runners/runnerDetails";
     }
+
+    @GetMapping("/editRunner/{id}")
+    private String displayEditRunnerView (@PathVariable Integer id, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        Optional<Runner> runnerTest = runnerRepository.findById(id);
+        if (runnerTest.isEmpty()){
+            return "/runners/index";
+        }
+
+        Runner runnerToEdit = runnerTest.get();
+        NewRunnerRegistrationDTO newRunnerRegistrationDTO = new NewRunnerRegistrationDTO();
+        newRunnerRegistrationDTO.setCallsign(runnerToEdit.getCallsign());
+        newRunnerRegistrationDTO.setFirstName(runnerToEdit.getFirstName());
+        newRunnerRegistrationDTO.setLastName(runnerToEdit.getLastName());
+        newRunnerRegistrationDTO.setCallsignOnly(runnerToEdit.isCallsignOnly());
+        newRunnerRegistrationDTO.setPassword("111111111");
+        newRunnerRegistrationDTO.setVerifyPassword("111111111");
+        newRunnerRegistrationDTO.setAge(runnerToEdit.getAge());
+        newRunnerRegistrationDTO.setWeight(runnerToEdit.getWeight());
+        newRunnerRegistrationDTO.setGender(runnerToEdit.getGender());
+        newRunnerRegistrationDTO.setRunnerLevel(runnerToEdit.getRunnerLevel());
+        newRunnerRegistrationDTO.setZip(runnerToEdit.getZip());
+        model.addAttribute(newRunnerRegistrationDTO);
+        model.addAttribute("genders", Gender.values());
+        model.addAttribute("runnerLevels", RunnerLevel.values());
+        model.addAttribute("title", "Editing Runner"+newRunnerRegistrationDTO.getCallsign());
+        return "/runners/editRunner";
+
+    }
+
+    @PostMapping("/editRunner/{id}")
+    private String processEditRunnerForm (@ModelAttribute @Valid NewRunnerRegistrationDTO newRunnerRegistrationDTO, Errors errors, Model model, HttpServletRequest request, @PathVariable Integer id){
+        setRunnerInModel(request, model);
+        if (errors.hasErrors()){
+            model.addAttribute("newRunnerRegistrationDTO", newRunnerRegistrationDTO);
+            model.addAttribute("runnerLevels", RunnerLevel.values());
+            model.addAttribute("genders", Gender.values());
+            model.addAttribute("title", "Editing Runner"+newRunnerRegistrationDTO.getCallsign());
+            return "runners/editRunner";
+        }
+        Runner updatedRunner = runnerRepository.findById(id).get();
+        updatedRunner.setCallsign(newRunnerRegistrationDTO.getCallsign());
+        updatedRunner.setFirstName(newRunnerRegistrationDTO.getFirstName());
+        updatedRunner.setLastName(newRunnerRegistrationDTO.getLastName());
+        updatedRunner.setCallsignOnly(newRunnerRegistrationDTO.isCallsignOnly());
+        updatedRunner.setAge(newRunnerRegistrationDTO.getAge());
+        updatedRunner.setWeight(newRunnerRegistrationDTO.getWeight());
+        updatedRunner.setGender(newRunnerRegistrationDTO.getGender());
+        updatedRunner.setRunningLevel(newRunnerRegistrationDTO.getRunnerLevel());
+        updatedRunner.setZip(newRunnerRegistrationDTO.getZip());
+        runnerRepository.save(updatedRunner);
+        return "redirect:";
+    }
 }
