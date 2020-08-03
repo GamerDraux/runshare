@@ -6,13 +6,17 @@
 <div class="centeringDiv">
     <p th:replace="fragments :: runnerbar"></p>
 </div>
+
 <p th:replace="fragments :: navbar"></p>
-<a class="btn btn-primary" style="position:sticky; top:150px;"
+
+
+
+<h1 style="text-align:center; padding-top:70px;">Registered
+    Runners</h1>
+<div class="centeringDiv">
+<a class="btn btn-primary" style="align-items:center;"
    th:href="@{'/runners/addRunner'}">Add a new Runner</a>
-
-
-<h1 style="text-align:center;">Registered Runners</h1>
-
+</div>
 <h3 style="text-align:center;" th:if="${sortType}"
     th:text="'Sorted by '+${sortType}"></h3>
 <small th:if="${sortType}" class="form-text text-muted"

@@ -8,11 +8,14 @@
     <p th:replace="fragments :: runnerbar"></p>
 </div>
 <p th:replace="fragments :: navbar"></p>
-<a class="btn btn-primary" style="position:sticky; top:150px;"
-    th:href="@{'/runSessions/addRunSession'}">Add a Run
-    Session</a>
 
-<h1 style="text-align:center;">Run Sessions</h1>
+
+<h1 style="text-align:center; padding-top:50px;">Run
+    Sessions</h1>
+<div class="centeringDiv">
+<a class="btn btn-primary"
+th:href="@{'/runSessions/addRunSession'}">Add a Run
+Session</a></div>
 <h3 style="text-align:center;" th:if="${sortType}"
     th:text="'Sorted by '+${sortType}"></h3>
 <small th:if="${sortType}" class="form-text text-muted"

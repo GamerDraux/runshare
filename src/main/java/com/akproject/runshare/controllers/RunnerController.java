@@ -25,7 +25,7 @@ public class RunnerController extends MainController {
     public static void setUserInSession(HttpSession session, Runner runner) {
         session.setAttribute(runnerSessionKey, runner.getId());
     }
-    //todo-create a runner edit view
+
     @GetMapping(value={"", "/{sortType}"})
     public String displayRunnersIndex(@PathVariable(required = false) String sortType, HttpServletRequest request, Model model){
         setRunnerInModel(request, model);
