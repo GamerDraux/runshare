@@ -22,10 +22,8 @@ function getWeather(zip, apiKey){
         const jsonPromise = response.json();
         jsonPromise.then(function(json){
             weatherSpanButton.setAttribute("hidden","");
-            weatherSpanLabel.removeAttribute("hidden");
             weatherSpan.removeAttribute("hidden");
-            weatherSpan.innerHTML = createWeatherString
-            (json);
+            weatherSpan.innerHTML = "Currently at trail: "+createWeatherString(json);
         });
       }
     });

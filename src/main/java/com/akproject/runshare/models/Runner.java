@@ -51,6 +51,8 @@ public class Runner extends AbstractEntity{
     @OneToMany(mappedBy="runner")
     private final List<RunSession> runSessions= new ArrayList<>();
 
+    private Integer numberZipCode;
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     //Constructors
@@ -68,6 +70,7 @@ public class Runner extends AbstractEntity{
         this.gender= gender;
         this.runnerLevel= runnerLevel;
         this.zip = zip;
+        this.numberZipCode = Integer.parseInt(zip);
     }
 
 //getters
@@ -103,6 +106,8 @@ public class Runner extends AbstractEntity{
     public RunnerLevel getRunnerLevel() { return runnerLevel; }
 
     public String getZip() { return zip; }
+
+    public Integer getNumberZipCode() { return numberZipCode; }
 
     //setters
 
@@ -146,6 +151,8 @@ public class Runner extends AbstractEntity{
     public void setZip(String zip) {
         this.zip = zip;
     }
+
+    public void setNumberZipCode(Integer numberZipCode) { this.numberZipCode = numberZipCode; }
 
     public boolean isMatchingPassword(String password){
         return encoder.matches(password, pwHash);

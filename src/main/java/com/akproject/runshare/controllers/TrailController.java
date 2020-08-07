@@ -95,7 +95,7 @@ public class TrailController extends MainController{
         }
 
         Trail detailedTrail = testTrail.get();
-        model.addAttribute("title", "Details");
+        model.addAttribute("title", "Trail Details");
         model.addAttribute("detailedTrail",detailedTrail);
         return "trails/trailDetails";
     }
@@ -103,6 +103,7 @@ public class TrailController extends MainController{
     @GetMapping("/trailDetails")
     public String displayTrailDetailsBlank (Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
+
         model.addAttribute("title", "Blank");
         model.addAttribute("detailedTrail", new Trail("Blank", 0, "Blank", "Blank"));
         return "trails/trailDetails";
