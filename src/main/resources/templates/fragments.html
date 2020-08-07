@@ -35,6 +35,10 @@
             <li><a th:href="@{/runners}">Runners List</a></li>
             <li><a th:href="@{/runners/addRunner}">Register a new
             Runner</a></li>
+            <li><a th:href="@{/comments}">Comments</a></li>
+            <li th:if="${currentRunner}"><a
+                    th:href="@{/comments/createComment}">
+                Post a Comment</a></li>
             <li><a th:href="@{/trails}">Trail Catalog</a></li>
             <li><a th:href="@{/trails/addTrail}">Add a
             Trail</a></li>

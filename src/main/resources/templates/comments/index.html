@@ -23,7 +23,7 @@
     contribute to
     comments</span>
 <a th:if="${currentRunner}" th:href="@{/comments/createComment}"
-   class="btn btn-primary">Make a Comment</a>
+   class="btn btn-primary">Post a Comment</a>
 <div th:each="comment : ${comments}"
      style="border-style:solid">
     <p th:text="'By: '+${comment.messageCreator.callsign}"></p>
