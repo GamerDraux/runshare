@@ -1,4 +1,5 @@
 function displayMilesFromHome (homeZip, trailZip){
+//Using mapquestapi for distance between zipcodes
     console.log ('displayMilesFromHome fired');
     let distanceFromHomeSpan = document.getElementById
     ("distanceFromHomeSpan");
@@ -6,6 +7,7 @@ function displayMilesFromHome (homeZip, trailZip){
     ("distanceButton");
     homeZip=getZipFromNumberZip(homeZip);
     trailZip=getZipFromNumberZip(trailZip);
+
 //    console.log("https://www.mapquestapi.com/directions/v2/route?key=4SyQnpPVIGhLOWWcbkwdt0iEh9HkBxtb&from="+homeZip+"&to="+trailZip+"&outFormat=json'");
     const response = fetch("https://www.mapquestapi.com/directions/v2/route?key="+callDistanceApiKey()+"&from="+homeZip+"&to="+trailZip+"&outFormat=json'");
     response.then(function(response){

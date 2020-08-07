@@ -5,6 +5,7 @@ import com.akproject.runshare.models.enums.RunnerLevel;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -54,6 +55,9 @@ public class Runner extends AbstractEntity{
     private Integer numberZipCode;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//
+//    @ManyToMany(mappedBy = "commentRunnerTags")
+//    private final List<Comment> comments = new ArrayList<>();
 
     //Constructors
     public Runner() {

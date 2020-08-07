@@ -1,6 +1,7 @@
 package com.akproject.runshare.controllers;
 
 import com.akproject.runshare.models.Runner;
+import com.akproject.runshare.models.data.CommentRepository;
 import com.akproject.runshare.models.data.RunSessionRepository;
 import com.akproject.runshare.models.data.RunnerRepository;
 import com.akproject.runshare.models.data.TrailRepository;
@@ -24,7 +25,10 @@ public class MainController {
     @Autowired
     RunSessionRepository runSessionRepository;
 
-    static final String runnerSessionKey = "user";
+    @Autowired
+    CommentRepository commentRepository;
+
+    public static final String runnerSessionKey = "user";
 
     Runner getRunnerFromSession(HttpSession session) {
         Integer runnerId = (Integer) session.getAttribute(runnerSessionKey);

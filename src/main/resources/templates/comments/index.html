@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body id="main">
+
+<div class="centeringDiv">
+    <p th:replace="fragments :: runnerbar"></p>
+</div>
+
+<p th:replace="fragments :: navbar"></p>
+
+
+<h1 style="text-align:center; padding-top:90px;">Community Conversations
+</h1>
+<p th:unless="${currentRunner}">Log in to contribute to
+    comments</p>
+<a th:if="${currentRunner}" th:href="@{/comments/createComment}"
+   class="btn btn-primary">Make a Comment</a>
+<div th:each="comment : ${comments}"
+     style="border-style:solid">
+    <p th:text="'By: '+${comment.messageCreator.callsign}"></p>
+    <p th:text="'Title: '+${comment.messageTitle}"></p>
+    <p th:text="${comment.message}"></p>
+</div>
+<div class="centeringDiv">
+    <p th:replace="fragments :: listnavbar"></p>
+</div>
+</body>
+</html>

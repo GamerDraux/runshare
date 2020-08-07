@@ -1,0 +1,35 @@
+package com.akproject.runshare.models.DTO;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class NewCommentDTO {
+
+    @NotNull
+    @Size(max=50, message="Sorry, message titles must be kept under 50 characters")
+    private String messageTitle;
+
+    @NotBlank(message="Message required")
+    @Size(max=10000, message="Sorry, messages must be kept under 10000 characters")
+    private String message;
+
+    public NewCommentDTO(){}
+
+    public NewCommentDTO(String messageTitle, String message){
+        this.messageTitle=messageTitle;
+        this.message=message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getMessageTitle() { return messageTitle; }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setMessageTitle(String messageTitle) { this.messageTitle = messageTitle; }
+}
