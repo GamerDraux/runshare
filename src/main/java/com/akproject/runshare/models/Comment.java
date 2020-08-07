@@ -1,5 +1,8 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.models.staticMethods.DateConversion;
+import com.akproject.runshare.models.staticMethods.TimeConversion;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -7,7 +10,9 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +31,15 @@ public class Comment extends AbstractEntity {
     @NotNull(message="Comment must be associated with a Runner")
     @Valid
     private Runner messageCreator;
-//
+
+    @NotNull
+    private LocalDate dateCreated;
+
+    @NotNull
+    private LocalTime timeCreated;
+
 //    @NotNull
-//    private LocalDateTime messageDate;
+//    private String displayTimeCreated;
 //
 //    @ManyToMany
 //    private final List<Runner> commentRunnerTags = new ArrayList<>();
@@ -37,10 +48,12 @@ public class Comment extends AbstractEntity {
 //    constructors
     public Comment (){}
 
-    public Comment (String messageTitle, String message, Runner messageCreator){
+    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated){
         this.messageTitle=messageTitle;
         this.message=  message;
         this.messageCreator= messageCreator;
+        this.dateCreated=dateCreated;
+        this.timeCreated=timeCreated;
     }
 
 //    getters
@@ -54,7 +67,9 @@ public class Comment extends AbstractEntity {
 
     public Runner getMessageCreator() { return messageCreator; }
 
+    public LocalDate getDateCreated() { return dateCreated; }
 
+    public LocalTime getTimeCreated() { return timeCreated; }
 
     //    Setters
 
@@ -66,4 +81,16 @@ public class Comment extends AbstractEntity {
     }
 
     public void setMessageCreator(Runner messageCreator) { this.messageCreator = messageCreator; }
+
+    public void setDateCreated(LocalDate dateCreated) { this.dateCreated = dateCreated; }
+
+    public void setTimeCreated(LocalTime timeCreated) { this.timeCreated = timeCreated; }
+
+    public String displayStringDate(){
+        return DateConversion.convertYYYYMMDDToDisplayString(dateCreated.toString());
+    }
+
+    public String displayStringTime(){
+        return TimeConversion.displayLocalTimeAsString(timeCreated);
+    }
 }

@@ -11,10 +11,17 @@
 <p th:replace="fragments :: navbar"></p>
 
 
-<h1 style="text-align:center; padding-top:90px;">Community Conversations
+<h1 style="text-align:center; padding-top:100px;">Community
+    Conversations
 </h1>
-<p th:unless="${currentRunner}">Log in to contribute to
-    comments</p>
+<span th:unless="${currentRunner}"><a
+        th:href="@{/runners/login}"
+        class="btn btn-primary">Login</a></span>
+<span th:unless="${currentRunner}"
+      style="padding-right:20px;">Log in
+    to
+    contribute to
+    comments</span>
 <a th:if="${currentRunner}" th:href="@{/comments/createComment}"
    class="btn btn-primary">Make a Comment</a>
 <div th:each="comment : ${comments}"
@@ -22,6 +29,8 @@
     <p th:text="'By: '+${comment.messageCreator.callsign}"></p>
     <p th:text="'Title: '+${comment.messageTitle}"></p>
     <p th:text="${comment.message}"></p>
+    <span style="padding-right:10px;"
+            th:text="'Created on: '+${comment.displayStringDate()}"></span><span th:text="'At: '+${comment.displayStringTime()}"></span>
 </div>
 <div class="centeringDiv">
     <p th:replace="fragments :: listnavbar"></p>

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Controller
 @RequestMapping("/comments")
@@ -48,7 +51,7 @@ public class CommentController extends MainController{
 
         HttpSession commentSession = request.getSession();
         Runner commentCreator = getRunnerFromSession(commentSession);
-        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator );
+        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now());
         commentRepository.save(savedComment);
         return "redirect:";
 

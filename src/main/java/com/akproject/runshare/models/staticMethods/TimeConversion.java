@@ -1,5 +1,9 @@
 package com.akproject.runshare.models.staticMethods;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TimeConversion{
 
     public static String displayTimeAsString (Integer time){
@@ -15,5 +19,19 @@ public class TimeConversion{
             secondsZero="0";
         }
         return hours+":"+minutesZero+minutes+":"+secondsZero+seconds;
+    }
+
+    public static String displayLocalTimeAsString(LocalTime localTime){
+        String stringTime = localTime.toString();
+        String[] splitTime = stringTime.split(":");
+        Integer hours= Integer.parseInt(splitTime[0]);
+        String minutes= splitTime[1];
+        String ampm = "AM";
+        if (hours>=13){
+            hours = hours-12;
+            ampm = "PM";
+        }
+
+        return hours+":"+minutes+" "+ampm;
     }
 }
