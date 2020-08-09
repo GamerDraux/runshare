@@ -126,7 +126,7 @@ public class RunnerController extends MainController {
         setUserInSession(request.getSession(), newRunner);
 
 
-        return "redirect:";
+        return "redirect:/runners";
     }
 
     @GetMapping("/login")

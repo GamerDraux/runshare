@@ -39,9 +39,21 @@
         <small class="form-text text-muted">Max
             comment size 10,000 characters</small>
     </div>
-    <button type="submit" class="btn btn-primary">Create
-        Comment
-    </button>
+    <div class="form-group">
+        <label for="trailSelector">Attach this
+            comment to a trail?</label>
+        <select
+                id="trailSelector"
+                th:field="${newCommentDTO.trail}">
+            <option th:value="${nullTrail}">None</option>
+            <option th:each="trail : ${trails}"
+                    th:value="${trail.id}"
+                    th:text="${trail.name}"></option>
+        </select>
+        <p th:errors = "${newCommentDTO.trail}"
+           class="errors"></p>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Comment</button>
 </form>
 </body>
 </html>

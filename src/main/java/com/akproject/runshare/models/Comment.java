@@ -3,10 +3,7 @@ package com.akproject.runshare.models;
 import com.akproject.runshare.models.staticMethods.DateConversion;
 import com.akproject.runshare.models.staticMethods.TimeConversion;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -38,8 +35,8 @@ public class Comment extends AbstractEntity {
     @NotNull
     private LocalTime timeCreated;
 
-//    @NotNull
-//    private String displayTimeCreated;
+    @ManyToOne
+    private Trail trail;
 //
 //    @ManyToMany
 //    private final List<Runner> commentRunnerTags = new ArrayList<>();
@@ -48,12 +45,13 @@ public class Comment extends AbstractEntity {
 //    constructors
     public Comment (){}
 
-    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated){
+    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail){
         this.messageTitle=messageTitle;
         this.message=  message;
         this.messageCreator= messageCreator;
         this.dateCreated=dateCreated;
         this.timeCreated=timeCreated;
+        this.trail=trail;
     }
 
 //    getters
@@ -71,6 +69,8 @@ public class Comment extends AbstractEntity {
 
     public LocalTime getTimeCreated() { return timeCreated; }
 
+    public Trail getTrail() { return trail; }
+
     //    Setters
 
 
@@ -85,6 +85,8 @@ public class Comment extends AbstractEntity {
     public void setDateCreated(LocalDate dateCreated) { this.dateCreated = dateCreated; }
 
     public void setTimeCreated(LocalTime timeCreated) { this.timeCreated = timeCreated; }
+
+    public void setTrail(Trail trail) { this.trail = trail; }
 
     public String displayStringDate(){
         return DateConversion.convertYYYYMMDDToDisplayString(dateCreated.toString());

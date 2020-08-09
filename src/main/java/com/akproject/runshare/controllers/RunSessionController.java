@@ -91,7 +91,7 @@ public class RunSessionController extends MainController {
         model.addAttribute("runSessions", runSessionRepository.findAll());
 
 
-        return "runSessions/index";
+        return "redirect:/runSessions";
     }
 
     @GetMapping("/runSessionDetails/{id}")

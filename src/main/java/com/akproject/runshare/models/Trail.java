@@ -3,6 +3,7 @@ package com.akproject.runshare.models;
 import com.akproject.runshare.models.staticMethods.DistanceConversion;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -27,8 +28,11 @@ public class Trail extends AbstractEntity {
 
     private Integer numberZipCode;
 
-    @OneToMany(mappedBy = "trail")
-    private final List<RunSession> runSessions = new ArrayList<>();
+    @OneToMany(mappedBy="trail")
+    private final List<Comment> comments= new ArrayList<>();
+
+//    @OneToMany(mappedBy = "commentRunSessionTags")
+//    private final List<RunSession> runSessions = new ArrayList<>();
 
     public Trail (String name, double miles, String address, String zipCode ){
         this.name=name;

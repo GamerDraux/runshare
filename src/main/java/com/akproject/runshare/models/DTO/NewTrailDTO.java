@@ -1,5 +1,6 @@
 package com.akproject.runshare.models.DTO;
 
+import com.akproject.runshare.models.Trail;
 import com.akproject.runshare.models.staticMethods.DistanceConversion;
 
 import javax.validation.constraints.NotBlank;
@@ -19,12 +20,15 @@ public class NewTrailDTO {
     @Size(max=5, min=5, message="Must use 5-digit zip code")
     private String zipCode;
 
-    public NewTrailDTO (String name, double miles, String address, String zipCode){
+    private Trail trail;
+
+    public NewTrailDTO (String name, double miles, String address, String zipCode, Trail trail){
         this.name=name;
         this.miles=miles;
         this.kilometers=DistanceConversion.milesToKilometers(this.miles);
         this.address=address;
         this.zipCode=zipCode;
+        this.trail=trail;
     }
 
     public NewTrailDTO(){}
@@ -69,6 +73,7 @@ public class NewTrailDTO {
         this.zipCode = zipCode;
     }
 
+    public Trail getTrail() { return trail; }
 
-
+    public void setTrail(Trail trail) { this.trail = trail; }
 }

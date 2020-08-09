@@ -1,5 +1,7 @@
 package com.akproject.runshare.models.DTO;
 
+import com.akproject.runshare.models.Trail;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,11 +16,14 @@ public class NewCommentDTO {
     @Size(max=10000, message="Sorry, messages must be kept under 10000 characters")
     private String message;
 
+    private Trail trail;
+
     public NewCommentDTO(){}
 
-    public NewCommentDTO(String messageTitle, String message){
+    public NewCommentDTO(String messageTitle, String message, Trail trail){
         this.messageTitle=messageTitle;
         this.message=message;
+        this.trail=trail;
     }
 
     public String getMessage() {
@@ -27,9 +32,13 @@ public class NewCommentDTO {
 
     public String getMessageTitle() { return messageTitle; }
 
+    public Trail getTrail() { return trail; }
+
     public void setMessage(String message) {
         this.message = message;
     }
 
     public void setMessageTitle(String messageTitle) { this.messageTitle = messageTitle; }
+
+    public void setTrail(Trail trail) { this.trail = trail; }
 }
