@@ -5,8 +5,11 @@ import com.akproject.runshare.models.staticMethods.TimeConversion;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class RunSession extends AbstractEntity{
@@ -24,6 +27,9 @@ public class RunSession extends AbstractEntity{
 
     @ManyToOne
     private Trail trail;
+
+    @OneToMany(mappedBy = "runSession")
+    private final List<Comment> comments = new ArrayList<>();
 
     private Integer time;
 

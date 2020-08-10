@@ -53,6 +53,21 @@
         <p th:errors = "${newCommentDTO.trail}"
            class="errors"></p>
     </div>
+    <div class="form-group">
+        <label for="runSessionSelector">Attach this
+            comment to a Run Session?</label>
+        <select
+                id="runSessionSelector"
+                th:field="${newCommentDTO.runSession}">
+            <option th:value="${nullRunSession}">None
+            </option>
+            <option th:each="runSession : ${runSessions}"
+                    th:value="${runSession.id}"
+                    th:text="${runSession.name}"></option>
+        </select>
+        <p th:errors = "${newCommentDTO.runSession}"
+           class="errors"></p>
+    </div>
     <button type="submit" class="btn btn-primary">Create Comment</button>
 </form>
 </body>

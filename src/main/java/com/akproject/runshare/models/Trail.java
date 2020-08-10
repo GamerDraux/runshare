@@ -31,8 +31,6 @@ public class Trail extends AbstractEntity {
     @OneToMany(mappedBy="trail")
     private final List<Comment> comments= new ArrayList<>();
 
-//    @OneToMany(mappedBy = "commentRunSessionTags")
-//    private final List<RunSession> runSessions = new ArrayList<>();
 
     public Trail (String name, double miles, String address, String zipCode ){
         this.name=name;

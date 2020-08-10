@@ -37,6 +37,9 @@ public class Comment extends AbstractEntity {
 
     @ManyToOne
     private Trail trail;
+
+    @ManyToOne
+    private RunSession runSession;
 //
 //    @ManyToMany
 //    private final List<Runner> commentRunnerTags = new ArrayList<>();
@@ -45,13 +48,14 @@ public class Comment extends AbstractEntity {
 //    constructors
     public Comment (){}
 
-    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail){
+    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail, RunSession runsession){
         this.messageTitle=messageTitle;
         this.message=  message;
         this.messageCreator= messageCreator;
         this.dateCreated=dateCreated;
         this.timeCreated=timeCreated;
         this.trail=trail;
+        this.runSession=runsession;
     }
 
 //    getters
@@ -71,6 +75,8 @@ public class Comment extends AbstractEntity {
 
     public Trail getTrail() { return trail; }
 
+    public RunSession getRunSession() { return runSession; }
+
     //    Setters
 
 
@@ -87,6 +93,8 @@ public class Comment extends AbstractEntity {
     public void setTimeCreated(LocalTime timeCreated) { this.timeCreated = timeCreated; }
 
     public void setTrail(Trail trail) { this.trail = trail; }
+
+    public void setRunSession(RunSession runSession) { this.runSession = runSession; }
 
     public String displayStringDate(){
         return DateConversion.convertYYYYMMDDToDisplayString(dateCreated.toString());

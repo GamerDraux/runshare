@@ -1,5 +1,6 @@
 package com.akproject.runshare.models.DTO;
 
+import com.akproject.runshare.models.RunSession;
 import com.akproject.runshare.models.Trail;
 
 import javax.validation.constraints.NotBlank;
@@ -18,12 +19,15 @@ public class NewCommentDTO {
 
     private Trail trail;
 
+    private RunSession runSession;
+
     public NewCommentDTO(){}
 
-    public NewCommentDTO(String messageTitle, String message, Trail trail){
+    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession){
         this.messageTitle=messageTitle;
         this.message=message;
         this.trail=trail;
+        this.runSession=runSession;
     }
 
     public String getMessage() {
@@ -34,6 +38,8 @@ public class NewCommentDTO {
 
     public Trail getTrail() { return trail; }
 
+    public RunSession getRunSession() { return runSession; }
+
     public void setMessage(String message) {
         this.message = message;
     }
@@ -41,4 +47,6 @@ public class NewCommentDTO {
     public void setMessageTitle(String messageTitle) { this.messageTitle = messageTitle; }
 
     public void setTrail(Trail trail) { this.trail = trail; }
+
+    public void setRunSession(RunSession runSession) { this.runSession = runSession; }
 }

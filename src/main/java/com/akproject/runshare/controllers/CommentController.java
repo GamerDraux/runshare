@@ -33,6 +33,7 @@ public class CommentController extends MainController{
         setRunnerInModel(request, model);
         model.addAttribute("title", "Create Comment");
         model.addAttribute("nullTrail", null);
+        model.addAttribute("nullRunSession", null);
         model.addAttribute("runners", runnerRepository.findAll());
         model.addAttribute("trails", trailRepository.findAll());
         model.addAttribute("runSessions", runSessionRepository.findAll());
@@ -51,7 +52,7 @@ public class CommentController extends MainController{
 
         HttpSession commentSession = request.getSession();
         Runner commentCreator = getRunnerFromSession(commentSession);
-        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail() );
+        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession() );
         commentRepository.save(savedComment);
         return "redirect:/comments";
 
