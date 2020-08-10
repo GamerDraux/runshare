@@ -18,11 +18,9 @@
         th:href="@{/runners/login}"
         class="btn btn-primary">Login</a></span>
 <span th:unless="${currentRunner}"
-      style="padding-right:20px;">Log in
-    to
-    contribute to
-    comments</span>
-<a th:if="${currentRunner}" th:href="@{/comments/createComment}"
+      style="padding-right:20px;">Log in to contribute to comments</span>
+<a th:if="${currentRunner}"
+   th:href="@{/comments/createComment}"
    class="btn btn-primary">Post a Comment</a>
 <div th:each="comment : ${comments}"
      style="border-style:solid">

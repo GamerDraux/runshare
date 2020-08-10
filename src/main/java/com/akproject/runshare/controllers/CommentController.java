@@ -6,10 +6,7 @@ import com.akproject.runshare.models.Runner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,8 +27,9 @@ public class CommentController extends MainController{
         return "/comments/index";
     }
 
-    @GetMapping("/createComment")
-    public String displayCreateComment(HttpServletRequest request, Model model){
+    @GetMapping(value={"/createComment", "/createComment/{id}"})
+    public String displayCreateComment(@PathVariable(required=false) Integer entityId, HttpServletRequest request, Model model){
+// todo-       need to set up conditionals to see what type of entity the id is for, and set up different displays based on that.
         setRunnerInModel(request, model);
         model.addAttribute("title", "Create Comment");
         model.addAttribute("nullTrail", null);
