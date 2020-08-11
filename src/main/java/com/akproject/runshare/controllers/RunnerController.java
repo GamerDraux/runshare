@@ -292,6 +292,6 @@ public class RunnerController extends MainController {
         updatedRunner.setZip(newRunnerRegistrationDTO.getZip());
         updatedRunner.setNumberZipCode(Integer.parseInt(newRunnerRegistrationDTO.getZip()));
         runnerRepository.save(updatedRunner);
-        return "redirect:";
+        return "redirect:/runners";
     }
 }

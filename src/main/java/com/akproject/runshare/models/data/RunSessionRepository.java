@@ -9,6 +9,8 @@ public interface RunSessionRepository extends CrudRepository<RunSession, Integer
 
     RunSession findByName(String name);
 
+    RunSession findById(int id);
+
     List<RunSession> findAllByRunnerId(Integer runnerId);
 
     List<RunSession> findAllByOrderByNameAsc();

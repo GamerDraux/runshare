@@ -10,6 +10,8 @@ public interface TrailRepository extends CrudRepository<Trail, Integer> {
 
     Trail findByName(String name);
 
+    Trail findById(int id);
+
     List<Trail> findAllByOrderByNameAsc ();
     List<Trail> findAllByOrderByNameDesc ();
 

@@ -55,9 +55,9 @@ public class Runner extends AbstractEntity{
     private Integer numberZipCode;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//
-//    @ManyToMany(mappedBy = "commentRunnerTags")
-//    private final List<Comment> comments = new ArrayList<>();
+
+    @ManyToMany(mappedBy="runners")
+    private final List<Comment> comments = new ArrayList<>();
 
     //Constructors
     public Runner() {

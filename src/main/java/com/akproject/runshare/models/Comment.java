@@ -40,9 +40,9 @@ public class Comment extends AbstractEntity {
 
     @ManyToOne
     private RunSession runSession;
-//
-//    @ManyToMany
-//    private final List<Runner> commentRunnerTags = new ArrayList<>();
+
+    @ManyToMany
+    private final List<Runner> runners = new ArrayList<>();
 
 
 //    constructors

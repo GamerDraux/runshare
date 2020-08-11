@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
 
+    Comment findById(int id);
+
     List<Comment> findByTrail_Id(Integer trail);
 
     List<Comment> findByRunSession_Id(Integer runSession);

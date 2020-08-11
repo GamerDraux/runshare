@@ -14,6 +14,8 @@ public interface RunnerRepository extends CrudRepository<Runner, Integer> {
 
     Runner findByCallsign(String callsign);
 
+    Runner findById(int id);
+
 
     List<Runner> findAllByOrderByCallsignAsc();
     List<Runner> findAllByOrderByCallsignDesc();
