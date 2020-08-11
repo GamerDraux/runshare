@@ -1,15 +1,19 @@
 package com.akproject.runshare.models.DTO;
 
 import com.akproject.runshare.models.RunSession;
+import com.akproject.runshare.models.Runner;
 import com.akproject.runshare.models.Trail;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewCommentDTO {
 
     @NotNull
+    @NotBlank(message="Message title required")
     @Size(max=50, message="Sorry, message titles must be kept under 50 characters")
     private String messageTitle;
 
@@ -21,13 +25,16 @@ public class NewCommentDTO {
 
     private RunSession runSession;
 
+    private Runner runner;
+
     public NewCommentDTO(){}
 
-    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession){
+    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession, Runner runner ){
         this.messageTitle=messageTitle;
         this.message=message;
         this.trail=trail;
         this.runSession=runSession;
+        this.runner=runner;
     }
 
     public String getMessage() {
@@ -40,6 +47,8 @@ public class NewCommentDTO {
 
     public RunSession getRunSession() { return runSession; }
 
+    public Runner getRunner() { return runner; }
+
     public void setMessage(String message) {
         this.message = message;
     }
@@ -49,4 +58,6 @@ public class NewCommentDTO {
     public void setTrail(Trail trail) { this.trail = trail; }
 
     public void setRunSession(RunSession runSession) { this.runSession = runSession; }
+
+    public void setRunner(Runner runner) { this.runner = runner; }
 }

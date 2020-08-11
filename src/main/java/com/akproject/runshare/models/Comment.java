@@ -42,7 +42,7 @@ public class Comment extends AbstractEntity {
     private RunSession runSession;
 
     @ManyToMany
-    private final List<Runner> runners = new ArrayList<>();
+    private final List<Runner> runners= new ArrayList<>();
 
 
 //    constructors
@@ -56,6 +56,7 @@ public class Comment extends AbstractEntity {
         this.timeCreated=timeCreated;
         this.trail=trail;
         this.runSession=runsession;
+
     }
 
 //    getters
@@ -63,9 +64,7 @@ public class Comment extends AbstractEntity {
 
     public String getMessageTitle() { return messageTitle; }
 
-    public String getMessage() {
-        return message;
-    }
+    public String getMessage() { return message; }
 
     public Runner getMessageCreator() { return messageCreator; }
 
@@ -76,6 +75,8 @@ public class Comment extends AbstractEntity {
     public Trail getTrail() { return trail; }
 
     public RunSession getRunSession() { return runSession; }
+
+    public List<Runner> getRunners() { return runners; }
 
     //    Setters
 
@@ -103,4 +104,8 @@ public class Comment extends AbstractEntity {
     public String displayStringTime(){
         return TimeConversion.displayLocalTimeAsString(timeCreated);
     }
+
+    public void addRunner(Runner runner) {this.runners.add(runner); }
+
+
 }

@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/comments")
@@ -45,14 +48,19 @@ public class CommentController extends MainController{
     public String processCreateComment(@ModelAttribute @Valid NewCommentDTO newCommentDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         if (errors.hasErrors()){
-            model.addAttribute("trails", trailRepository.findAll());
             model.addAttribute("title", "Create Comment");
+            model.addAttribute("nullTrail", null);
+            model.addAttribute("nullRunSession", null);
+            model.addAttribute("runners", runnerRepository.findAll());
+            model.addAttribute("trails", trailRepository.findAll());
+            model.addAttribute("runSessions", runSessionRepository.findAll());
             return "/comments/createComment";
         }
 
         HttpSession commentSession = request.getSession();
         Runner commentCreator = getRunnerFromSession(commentSession);
-        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession() );
+        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession());
+        savedComment.addRunner(newCommentDTO.getRunner());
         commentRepository.save(savedComment);
         return "redirect:/comments";
 

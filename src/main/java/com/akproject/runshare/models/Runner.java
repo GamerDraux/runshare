@@ -56,7 +56,7 @@ public class Runner extends AbstractEntity{
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @ManyToMany(mappedBy="runners")
+    @ManyToMany(mappedBy = "runners")
     private final List<Comment> comments = new ArrayList<>();
 
     //Constructors
@@ -161,6 +161,8 @@ public class Runner extends AbstractEntity{
     public boolean isMatchingPassword(String password){
         return encoder.matches(password, pwHash);
     }
+
+    public void addComment (Comment comment){this.comments.add(comment);}
 
 
 }

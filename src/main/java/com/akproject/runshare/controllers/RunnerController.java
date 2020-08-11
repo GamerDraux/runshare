@@ -1,6 +1,7 @@
 package com.akproject.runshare.controllers;
 
 
+import com.akproject.runshare.models.Comment;
 import com.akproject.runshare.models.DTO.NewRunnerRegistrationDTO;
 import com.akproject.runshare.models.DTO.RunnerLoginDTO;
 import com.akproject.runshare.models.RunSession;
@@ -224,6 +225,11 @@ public class RunnerController extends MainController {
         Runner detailedRunner = testRunner.get();
         model.addAttribute("title", "Details "+detailedRunner.getCallsign());
         model.addAttribute("detailedRunner",  detailedRunner);
+
+        List<Comment> comments = commentRepository.findByRunners_Id(id);
+        if (!comments.isEmpty()){
+            model.addAttribute("comments", comments);
+        }
 
         List<RunSession> runSessions = runSessionRepository.findAllByRunnerId(id);
         if (!runSessions.isEmpty()) {
