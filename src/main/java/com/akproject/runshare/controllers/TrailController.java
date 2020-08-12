@@ -95,7 +95,7 @@ public class TrailController extends MainController{
         }
 
         Trail detailedTrail = testTrail.get();
-        model.addAttribute("comments", commentRepository.findByTrail_Id(id));
+        model.addAttribute("comments", commentRepository.findByTrail_IdOrderByDateCreatedDescTimeCreatedDesc(id));
         model.addAttribute("title", "Trail Details");
         model.addAttribute("detailedTrail",detailedTrail);
         return "trails/trailDetails";

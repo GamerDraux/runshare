@@ -42,13 +42,13 @@ public class Comment extends AbstractEntity {
     private RunSession runSession;
 
     @ManyToMany
-    private final List<Runner> runners= new ArrayList<>();
+    private List<Runner> runners =new ArrayList<>();
 
 
 //    constructors
     public Comment (){}
 
-    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail, RunSession runsession){
+    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail, RunSession runsession, List<Runner> runners){
         this.messageTitle=messageTitle;
         this.message=  message;
         this.messageCreator= messageCreator;
@@ -56,6 +56,7 @@ public class Comment extends AbstractEntity {
         this.timeCreated=timeCreated;
         this.trail=trail;
         this.runSession=runsession;
+        this.runners = runners;
 
     }
 
@@ -105,7 +106,8 @@ public class Comment extends AbstractEntity {
         return TimeConversion.displayLocalTimeAsString(timeCreated);
     }
 
-    public void addRunner(Runner runner) {this.runners.add(runner); }
+    public void addRunner(Runner runner) { this.runners.add(runner);}
+
 
 
 }

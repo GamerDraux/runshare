@@ -26,7 +26,7 @@ public class CommentController extends MainController{
     public String displayCommentIndex(HttpServletRequest request, Model model){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Comments");
-        model.addAttribute("comments", commentRepository.findAll());
+        model.addAttribute("comments", commentRepository.findFirst10ByOrderByDateCreatedDescTimeCreatedDesc());
         return "/comments/index";
     }
 
@@ -45,7 +45,7 @@ public class CommentController extends MainController{
     }
 
     @PostMapping("/createComment")
-    public String processCreateComment(@ModelAttribute @Valid NewCommentDTO newCommentDTO, Errors errors, Model model, HttpServletRequest request){
+    public String processCreateComment(@ModelAttribute @Valid NewCommentDTO newCommentDTO, @RequestParam(value = "runnersList", required=false) int[] runnersList, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         if (errors.hasErrors()){
             model.addAttribute("title", "Create Comment");
@@ -57,10 +57,15 @@ public class CommentController extends MainController{
             return "/comments/createComment";
         }
 
+        if (runnersList != null) {
+            for (int value : runnersList) {
+                newCommentDTO.runners.add(runnerRepository.findById(value));
+            }
+        }
+
         HttpSession commentSession = request.getSession();
         Runner commentCreator = getRunnerFromSession(commentSession);
-        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession());
-        savedComment.addRunner(newCommentDTO.getRunner());
+        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession(), newCommentDTO.getRunners());
         commentRepository.save(savedComment);
         return "redirect:/comments";
 

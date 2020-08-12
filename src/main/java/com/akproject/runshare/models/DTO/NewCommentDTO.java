@@ -4,6 +4,7 @@ import com.akproject.runshare.models.RunSession;
 import com.akproject.runshare.models.Runner;
 import com.akproject.runshare.models.Trail;
 
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,16 +26,15 @@ public class NewCommentDTO {
 
     private RunSession runSession;
 
-    private Runner runner;
+    public List<Runner> runners = new ArrayList<>();
 
     public NewCommentDTO(){}
 
-    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession, Runner runner ){
+    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession){
         this.messageTitle=messageTitle;
         this.message=message;
         this.trail=trail;
         this.runSession=runSession;
-        this.runner=runner;
     }
 
     public String getMessage() {
@@ -47,7 +47,7 @@ public class NewCommentDTO {
 
     public RunSession getRunSession() { return runSession; }
 
-    public Runner getRunner() { return runner; }
+    public List<Runner> getRunners() { return runners; }
 
     public void setMessage(String message) {
         this.message = message;
@@ -58,6 +58,4 @@ public class NewCommentDTO {
     public void setTrail(Trail trail) { this.trail = trail; }
 
     public void setRunSession(RunSession runSession) { this.runSession = runSession; }
-
-    public void setRunner(Runner runner) { this.runner = runner; }
 }

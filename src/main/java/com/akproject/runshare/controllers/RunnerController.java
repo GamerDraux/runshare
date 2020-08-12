@@ -226,7 +226,7 @@ public class RunnerController extends MainController {
         model.addAttribute("title", "Details "+detailedRunner.getCallsign());
         model.addAttribute("detailedRunner",  detailedRunner);
 
-        List<Comment> comments = commentRepository.findByRunners_Id(id);
+        List<Comment> comments = commentRepository.findByRunners_IdOrderByDateCreatedDescTimeCreatedDesc(id);
         if (!comments.isEmpty()){
             model.addAttribute("comments", comments);
         }

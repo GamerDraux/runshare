@@ -105,7 +105,7 @@ public class RunSessionController extends MainController {
         }
 
         RunSession detailedRunSession = testRunSession.get();
-        model.addAttribute("comments", commentRepository.findByRunSession_Id(id));
+        model.addAttribute("comments", commentRepository.findByRunSession_IdOrderByDateCreatedDescTimeCreatedDesc(id));
         model.addAttribute("title", "Details " + detailedRunSession.getName());
         model.addAttribute("detailedRunSession", detailedRunSession);
         return "/runSessions/runSessionDetails";

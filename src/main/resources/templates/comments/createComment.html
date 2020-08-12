@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
+<script>
+</script>
 <body id="main">
 
 <div class="centeringDiv">
@@ -71,13 +73,13 @@
     <div class="form-group">
         <label for="runnerSelector">Send this
             message to Runner?</label>
-        <select id="runnerSelector"
-                th:field="${newCommentDTO.runner}">
+        <select multiple="multiple" name="runnersList"
+                id="runnerSelector">
             <option th:each="runner : ${runners}"
                     th:value="${runner.id}"
                     th:text="${runner.callsign}"></option>
         </select>
-        <p th:errors = "${newCommentDTO.runner}"
+        <p th:errors = "${newCommentDTO.runners}"
            class="errors"></p>
     </div>
     <button type="submit" class="btn btn-primary">Create Comment</button>
