@@ -29,6 +29,6 @@
 ### Cloning
 * Cloned versions of this app should reference the original repository, and attribute creation to Andrew Koch, with a link to this repo
 * The API calls for mapping and weather will need to have a JS file created in the /resources/static/js folder named weatherAPI. This has been left out of the repo for security reasons.  You will need to get API keys from both https://openweathermap.org/  and https://developer.mapquest.com/documentation/directions-api/ In this file, you will need to create 2 functions and enter the api keys you recieve:
-'function callApiKey (){ return "{api key from OpenWeatherAPI}";}
+`function callApiKey (){ return "{api key from OpenWeatherAPI}";}
 
 function callDistanceApiKey () { return "{api key from Mapquest}";}`
