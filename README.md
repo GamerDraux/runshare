@@ -16,4 +16,7 @@
   * Runshare will automatically tag you on a Run Session when logged in
   * Add other runners who shared the Session with you
   * View your Sessions on your personal details page
-*
+* Communicate with other Runners and leave comments
+ * Tag your comments with other Runner Callsigns, Run Sessions, or Trails and they will appear in those Detail pages
+ * View all recent comments on the general comment page
+ 
