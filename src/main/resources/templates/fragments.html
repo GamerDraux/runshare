@@ -21,7 +21,7 @@
 
 <!--NAVIGATION HEADER-->
 <div th:fragment="navbar"
-     style="position:sticky; top:30px;">
+     style="position:sticky; top:50px;">
     <div class="sideNav" id="sideNav">
         <div class="topOfSideNav">
             <img
@@ -32,9 +32,19 @@
            onclick="closeNav()">&times;</a></div>
         <ul class="sideNavLinkList">
             <li><a th:href="@{/}" >Home</a></li>
-            <li><a th:href="@{/runners}">Runners List</a></li>
-            <li><a th:href="@{/runners/addRunner}">Register a new
-            Runner</a></li>
+            <li class="runnerDroplink" >Runners
+                <ul>
+                    <li class="runnderDropLinkContent"><a
+                            th:href="@{/runners}">Runners List</a></li>
+                    <li class="runnderDropLinkContent"><a
+                            th:href="@{/runners/addRunner}">Register a new
+                        Runner</a></li>
+                    <li
+                            class="runnderDropLinkContent"
+                            th:if="${currentRunner}"><a
+                            th:href="@{'/runners/runnerDetails/'+${currentRunner.id}}" th:text="${currentRunner.callsign}+' details'"></a></li></ul>
+            </li>
+
             <li><a th:href="@{/comments}">Comments</a></li>
             <li th:if="${currentRunner}"><a
                     th:href="@{/comments/createComment}">

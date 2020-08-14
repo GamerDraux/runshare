@@ -139,3 +139,7 @@ body {
      background-color:#2A2773;
      display:inline;
 }
+
+.runnerDropLink:hover {
+    background-color:#2A2773;
+}
