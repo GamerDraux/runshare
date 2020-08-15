@@ -2,6 +2,7 @@ package com.akproject.runshare.models;
 
 import com.akproject.runshare.models.staticMethods.DateConversion;
 import com.akproject.runshare.models.staticMethods.TimeConversion;
+import org.hibernate.dialect.Ingres9Dialect;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -28,17 +29,28 @@ public class RunSession extends AbstractEntity{
     @ManyToOne
     private Trail trail;
 
-    @OneToMany(mappedBy = "runSession")
-    private final List<Comment> comments = new ArrayList<>();
+    private double laps;
+
+    private double distance;
 
     private Integer time;
 
-    public RunSession (String name, String date, Runner runner, Trail trail, Integer time){
+    private Integer pace;
+
+    @OneToMany(mappedBy = "runSession")
+    private final List<Comment> comments = new ArrayList<>();
+
+
+
+    public RunSession (String name, String date, Runner runner, Trail trail, double laps, Integer time){
         this.name = name;
         this.date = date;
         this.runner= runner;
         this.trail = trail;
+        this.laps = laps;
         this.time = time;
+        this.distance = (Math.floor((laps*trail.getMiles())*100)/100);
+        this.pace = Math.round(Math.round(this.time/this.distance));
     }
 
     public RunSession (){}
@@ -75,6 +87,18 @@ public class RunSession extends AbstractEntity{
         this.trail = trail;
     }
 
+    public double getLaps() { return laps; }
+
+    public void setLaps(double laps) { this.laps = laps; }
+
+    public double getDistance() { return distance; }
+
+    public void setDistance(double distance) { this.distance = distance; }
+
+    public String getPace() { return TimeConversion.displayTimeAsString(pace); }
+
+    public void setPace(Integer pace) { this.pace = pace; }
+
     public String getTime() {
         return TimeConversion.displayTimeAsString(time);
     }
@@ -84,5 +108,7 @@ public class RunSession extends AbstractEntity{
     }
 
     public String getDisplayDate () {return DateConversion.convertYYYYMMDDToDisplayString(date);}
+
+//    public String getDisplayMiles () {return (Math.floor((this.laps*this.trail.getMiles())*100)/100)+" miles";}
 
 }

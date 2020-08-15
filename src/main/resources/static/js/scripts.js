@@ -21,6 +21,7 @@ function closeNav() {
 
 function openMenu(menuId){
     let runnerMenu = document.getElementById(menuId);
+    runnerMenu.style.transition = "all 1s";
     runnerMenu.style.display = "block";
 }
 

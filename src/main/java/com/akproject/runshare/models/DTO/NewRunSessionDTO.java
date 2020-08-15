@@ -22,6 +22,9 @@ public class NewRunSessionDTO extends AbstractEntity {
     @NotNull
     private Trail trail;
 
+    @NotNull
+    private double laps;
+
     private Integer seconds;
     private Integer minutes;
     private Integer hours;
@@ -58,6 +61,12 @@ public class NewRunSessionDTO extends AbstractEntity {
 
     public void setTrail(Trail trail) {
         this.trail = trail;
+    }
+
+    public double getLaps() { return laps; }
+
+    public void setLaps(double laps) {
+        this.laps = laps;
     }
 
     public Integer getSeconds() { return seconds; }

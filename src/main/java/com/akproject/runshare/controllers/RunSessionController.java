@@ -85,7 +85,7 @@ public class RunSessionController extends MainController {
             return "runSessions/addRunSession";
         }
 
-        RunSession newRunSession = new RunSession(newRunSessionDTO.getName(), newRunSessionDTO.getDate(), newRunSessionDTO.getRunner(), newRunSessionDTO.getTrail(), (newRunSessionDTO.getSeconds()+(newRunSessionDTO.getMinutes()*60)+(newRunSessionDTO.getHours()*3600)));
+        RunSession newRunSession = new RunSession(newRunSessionDTO.getName(), newRunSessionDTO.getDate(), newRunSessionDTO.getRunner(), newRunSessionDTO.getTrail(), newRunSessionDTO.getLaps(), (newRunSessionDTO.getSeconds()+(newRunSessionDTO.getMinutes()*60)+(newRunSessionDTO.getHours()*3600)));
         runSessionRepository.save(newRunSession);
         model.addAttribute("title", "Run Sessions");
         model.addAttribute("runSessions", runSessionRepository.findAll());

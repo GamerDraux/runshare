@@ -41,6 +41,9 @@ Session</a></div>
         </th>
         <th>Callsign</th>
         <th>Trail</th>
+        <th>Laps</th>
+        <th>Distance</th>
+        <th>Pace</th>
 
     </tr>
     <tr class="runsessiontableline"
@@ -55,6 +58,9 @@ Session</a></div>
                 th:text="${runsession.runner.callsign}"></a></td>
         <td><a
                 th:href="@{'/trails/trailDetails/'+${runsession.trail.id}}" th:text="${runsession.trail.name}"></a></td>
+        <td th:text="${runsession.laps}"></td>
+        <td th:text="${runsession.distance}"></td>
+        <td th:text="${runsession.getPace()}+' per mile'"></td>
     </tr>
 </table>
 <div class="centeringDiv">
