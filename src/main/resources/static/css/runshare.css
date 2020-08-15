@@ -37,6 +37,7 @@ body {
 
 .sideNavLinkList{
     list-style-type: none;
+    padding: 10px;
 }
 
 .sideNav a {
@@ -140,6 +141,35 @@ body {
      display:inline;
 }
 
-.runnerDropLink:hover {
-    background-color:#2A2773;
+.runnerMenuDropdown .commentsMenuDropdown{
+    display:block;
 }
+
+.runnerMenuDropdown:hover + .runnerMenu{
+    display:block;
+}
+
+
+
+.runnerMenu {
+    padding-left:20px;
+    background-color:#0A0A0A;
+    transition: all 0.3s;
+}
+
+.commentsMenu {
+    padding-left:20px;
+    background-color:#0A0A0A;
+    transition: all 0.3s;
+}
+
+.trailMenu {
+    padding-left:20px;
+    background-color:#0A0A0A;
+    transition: all 0.3s;
+}
+
+
+
+
+

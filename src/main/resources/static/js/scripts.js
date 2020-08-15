@@ -18,3 +18,14 @@ function closeNav() {
     .marginLeft="0";
     navClosed= true;
 }
+
+function openMenu(menuId){
+    let runnerMenu = document.getElementById(menuId);
+    runnerMenu.style.display = "block";
+}
+
+function closeMenu(menuId){
+    let runnerMenu = document.getElementById(menuId);
+    console.log("closeRunners fired");
+    runnerMenu.style.display = "none";
+}
