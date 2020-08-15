@@ -37,7 +37,8 @@
 
             <div onmouseleave="closeMenu('runnerMenu')">
                 <div class="runnerMenuDropdown"
-                 onmouseover="openMenu('runnerMenu')">Runners
+                 onmouseover="openMenu('runnerMenu')"><a>
+                    Runners</a>
                 </div>
                 <div class="runnerMenu" id="runnerMenu"
                  style="display:none">
@@ -52,7 +53,7 @@
 
             <div onmouseleave="closeMenu('commentsMenu')">
                 <div class="commentsMenuDropdown"
-                     onmouseover="openMenu('commentsMenu')">Comments</div>
+                     onmouseover="openMenu('commentsMenu')"><a>Comments</a></div>
                 <div class="commentsMenu"
                      id="commentsMenu" style="display:none">
                      <div><a th:href="@{/comments}">Community
@@ -60,13 +61,15 @@
                      <div th:if="${currentRunner}"><a
                     th:href="@{/comments/createComment}">
                 Post a Comment</a></div>
+                    <div th:unless="${currentRunner}"><a>
+                        Login to add a comment</a></div>
                 </div>
             </div>
 
             <div onmouseleave="closeMenu('trailMenu')">
                 <div class="trailMenuDropdown"
                      onmouseover="openMenu('trailMenu')">
-                    Trails</div>
+                    <a>Trails</a></div>
                 <div class="trailMenu" id="trailMenu"
                      style="display:none">
                      <div><a th:href="@{/trails}">Trail
@@ -78,7 +81,7 @@
 
             <div onmouseleave="closeMenu('runSessionMenu')">
                 <div class="runSessionMenuDropdown"
-                     onmouseover="openMenu('runSessionMenu')">Run Sessions</div>
+                     onmouseover="openMenu('runSessionMenu')"><a>Run Sessions</a></div>
                 <div class="runSessionMenu"
                      id="runSessionMenu"
                      style="display:none">
