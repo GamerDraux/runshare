@@ -28,7 +28,7 @@
         <small class="form-text text-muted">Length
             of trail in miles</small>
     </div>
-    <div>
+    <div class="form-group">
         <label for="address">Location of trail</label>
         <input th:field="${newTrailDTO.address}"
                id="address">
@@ -37,7 +37,7 @@
         <small class="form-text text-muted">Location
         of trail (Trailhead address}</small>
     </div>
-    <div>
+    <div class="form-group">
         <label for="zipCode">Zipcode of Trail</label>
         <input th:field="${newTrailDTO.zipCode}"
                id="zipCode">
@@ -45,6 +45,17 @@
            class="errors"></p>
         <small class="form-text text-muted">Zipcode
             of trailhead for location purposes</small>
+    </div>
+    <div class="form-group">
+        <label for="trailDifficulty">What difficulty
+        would you rate this trail?</label>
+        <select
+                th:field="${newTrailDifficultyDTO.trailDifficulty}" id="trailDifficulty">
+           <option value="">Do not wish to set
+               a rating</option>
+            <option
+                    th:each="difficulty : ${difficulties}" th:value="${difficulty}" th:text="${difficulty.getDescription()}"></option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Create
         new Trail

@@ -3,6 +3,8 @@ package com.akproject.runshare.models;
 import com.akproject.runshare.models.staticMethods.DateConversion;
 import com.akproject.runshare.models.staticMethods.TimeConversion;
 import org.hibernate.dialect.Ingres9Dialect;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -43,8 +45,8 @@ public class RunSession extends AbstractEntity{
 
 
     public RunSession (String name, String date, Runner runner, Trail trail, double laps, Integer time){
-        this.name = name;
-        this.date = date;
+        this.name = Jsoup.clean(name, Whitelist.none());
+        this.date = Jsoup.clean(date, Whitelist.none());
         this.runner= runner;
         this.trail = trail;
         this.laps = laps;

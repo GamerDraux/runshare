@@ -1,13 +1,18 @@
 package com.akproject.runshare.controllers;
 
 import com.akproject.runshare.models.DTO.NewTrailDTO;
+import com.akproject.runshare.models.DTO.NewTrailDifficultyDTO;
 import com.akproject.runshare.models.Trail;
+import com.akproject.runshare.models.TrailDifficultyRating;
+import com.akproject.runshare.models.data.TrailDifficultyRatingRepository;
+import com.akproject.runshare.models.enums.TrailDifficulty;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -55,14 +60,17 @@ public class TrailController extends MainController{
     private String displayAddTrailView (Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Add Trail");
+        model.addAttribute("difficulties", TrailDifficulty.values());
         model.addAttribute(new NewTrailDTO());
+        model.addAttribute(new NewTrailDifficultyDTO());
         return "trails/addTrail";
     }
 
     @PostMapping("/addTrail")
-    private String processAddTrailForm (@ModelAttribute @Valid NewTrailDTO newTrailDTO, Errors errors, Model model, HttpServletRequest request){
+    private String processAddTrailForm (@ModelAttribute @Valid NewTrailDTO newTrailDTO, @ModelAttribute @Valid NewTrailDifficultyDTO newTrailDifficultyDTO, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Add Trail");
+        model.addAttribute("difficulties", TrailDifficulty.values());
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Trail");
             return "trails/addTrail";
@@ -78,6 +86,12 @@ public class TrailController extends MainController{
 
         Trail newTrail = new Trail(newTrailDTO.getName(), newTrailDTO.getMiles(), newTrailDTO.getAddress(), newTrailDTO.getZipCode());
         trailRepository.save(newTrail);
+
+        HttpSession session = request.getSession();
+        if (newTrailDifficultyDTO.getTrailDifficulty()!=null){
+            TrailDifficultyRating newTrailDifficultyRating = new TrailDifficultyRating(newTrailDifficultyDTO.getTrailDifficulty(), getRunnerFromSession(session), newTrail);
+            trailDifficultyRatingRepository.save(newTrailDifficultyRating);
+        }
         model.addAttribute("title", "Trail List");
         model.addAttribute("trails", trailRepository.findAll());
         return "redirect:/trails";

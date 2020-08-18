@@ -1,10 +1,7 @@
 package com.akproject.runshare.controllers;
 
 import com.akproject.runshare.models.Runner;
-import com.akproject.runshare.models.data.CommentRepository;
-import com.akproject.runshare.models.data.RunSessionRepository;
-import com.akproject.runshare.models.data.RunnerRepository;
-import com.akproject.runshare.models.data.TrailRepository;
+import com.akproject.runshare.models.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +24,9 @@ public class MainController {
 
     @Autowired
     CommentRepository commentRepository;
+
+    @Autowired
+    TrailDifficultyRatingRepository trailDifficultyRatingRepository;
 
     public static final String runnerSessionKey = "user";
 

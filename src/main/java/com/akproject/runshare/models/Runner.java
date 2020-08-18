@@ -2,6 +2,7 @@ package com.akproject.runshare.models;
 
 import com.akproject.runshare.models.enums.Gender;
 import com.akproject.runshare.models.enums.RunnerLevel;
+import org.jsoup.safety.Whitelist;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import org.jsoup.Jsoup;
+
 
 @Entity
 public class Runner extends AbstractEntity{
@@ -59,21 +62,24 @@ public class Runner extends AbstractEntity{
     @ManyToMany(mappedBy = "runners")
     private final List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "runner")
+    private final List<TrailDifficultyRating> trailDifficultyRatings = new ArrayList<>();
+
     //Constructors
     public Runner() {
     }
 
     public Runner (String callsign, String firstName, String lastName, Boolean callsignOnly, String password, int age, int weight, Gender gender, RunnerLevel runnerLevel, String zip){
-        this.callsign=callsign;
-        this.firstName=firstName;
-        this.lastName=lastName;
+        this.callsign=Jsoup.clean(callsign, Whitelist.none());
+        this.firstName=Jsoup.clean(firstName, Whitelist.none());
+        this.lastName=Jsoup.clean(lastName, Whitelist.none());
         this.callsignOnly=callsignOnly;
-        this.pwHash= encoder.encode(password);
+        this.pwHash= Jsoup.clean(encoder.encode(password), Whitelist.none());
         this.age=age;
         this.weight = weight;
         this.gender= gender;
         this.runnerLevel= runnerLevel;
-        this.zip = zip;
+        this.zip = Jsoup.clean(zip, Whitelist.basic());
         this.numberZipCode = Integer.parseInt(zip);
     }
 

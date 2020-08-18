@@ -13,8 +13,14 @@
 <h1 style="text-align:center; padding-top:50px;">Trail
     Catalog</h1>
 <div class="centeringDiv">
-<a class="btn btn-primary"
-   th:href="@{'/trails/addTrail'}">Add a new Trail</a></div>
+    <div th:if="${currentRunner}"><a
+        class="btn btn-primary"
+        th:href="@{'/trails/addTrail'}">Add a new Trail</a></div>
+    <div th:unless="${currentRunner}"><a
+            class="btn btn-primary"
+            th:href="@{'/runners/login'}">Login to
+        Add a Trail</a></div>
+</div>
 
 <h3 style="text-align:center;" th:if="${sortType}"
     th:text="'Sorted by '+${sortType}"></h3>
@@ -47,6 +53,7 @@
         <td th:text="${trail.miles}"></td>
         <td th:text="${trail.address}"></td>
     </tr>
+
 </table>
 <div class="centeringDiv">
     <p th:replace="fragments :: listnavbar"></p>

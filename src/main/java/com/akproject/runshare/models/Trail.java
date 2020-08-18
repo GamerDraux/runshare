@@ -1,6 +1,10 @@
 package com.akproject.runshare.models;
 
+import com.akproject.runshare.models.data.TrailDifficultyRatingRepository;
 import com.akproject.runshare.models.staticMethods.DistanceConversion;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -13,6 +17,7 @@ import java.util.Objects;
 
 @Entity
 public class Trail extends AbstractEntity {
+
 
     @NotBlank(message="Trail name required")
     private String name;
@@ -31,13 +36,15 @@ public class Trail extends AbstractEntity {
     @OneToMany(mappedBy="trail")
     private final List<Comment> comments= new ArrayList<>();
 
+    @OneToMany(mappedBy="trail")
+    private final List<TrailDifficultyRating> trailDifficultyRatings = new ArrayList<>();
 
     public Trail (String name, double miles, String address, String zipCode ){
-        this.name=name;
+        this.name= Jsoup.clean(name, Whitelist.none());
         this.miles=miles;
         this.kilometers= DistanceConversion.milesToKilometers(miles);
-        this.address=address;
-        this.zipCode=zipCode;
+        this.address= Jsoup.clean(address, Whitelist.none());
+        this.zipCode= Jsoup.clean(zipCode, Whitelist.none());
         this.numberZipCode= Integer.parseInt(zipCode);
     }
 

@@ -2,6 +2,8 @@ package com.akproject.runshare.models;
 
 import com.akproject.runshare.models.staticMethods.DateConversion;
 import com.akproject.runshare.models.staticMethods.TimeConversion;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -49,8 +51,8 @@ public class Comment extends AbstractEntity {
     public Comment (){}
 
     public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail, RunSession runsession, List<Runner> runners){
-        this.messageTitle=messageTitle;
-        this.message=  message;
+        this.messageTitle= Jsoup.clean(messageTitle, Whitelist.none());
+        this.message= Jsoup.clean(message, Whitelist.none());
         this.messageCreator= messageCreator;
         this.dateCreated=dateCreated;
         this.timeCreated=timeCreated;
