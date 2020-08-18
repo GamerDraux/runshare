@@ -11,7 +11,7 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
     @NotNull
     @NotBlank(message="First name is required.  If you do not wish your name to be displayed, please check the 'Callsign only' box below")
     @Size(min=2, max=30, message="First name must be 2-30 characters")
-    private String firstName;@NotBlank(message="Last name is required.  If you do not wish your name to be displayed, please check the 'Callsign only' box below")
+    private String firstName;
 
     @NotNull
     @NotBlank(message="Last name is required.  If you do not wish your name to be displayed, please check the 'Callsign only' box below")
@@ -39,6 +39,7 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
     private RunnerLevel runnerLevel;
 
     @NotNull(message="Zip Code cannot be null")
+    @Length(min=5, max=5, message="Must use 5-digit zip code")
     private String zip;
 
     public NewRunnerRegistrationDTO(){}
@@ -111,7 +112,7 @@ public class NewRunnerRegistrationDTO extends RunnerLoginDTO {
         this.runnerLevel = runningLevel;
     }
 
-    @Length(min=5, max=5, message="Must use 5-digit zip code")
+
     public String getZip() {
         return zip;
     }

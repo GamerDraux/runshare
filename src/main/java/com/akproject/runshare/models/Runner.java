@@ -22,7 +22,6 @@ public class Runner extends AbstractEntity{
 
 //Fields
     @NotNull(message="Runner callsign is required")
-    @Size(min=2, max=30, message="Runner callsign must be between 2 and 30 characters")
     private String callsign;
 
     @Size(min=2, max=30, message="First name must be between 2 and 30 characters")
