@@ -10,10 +10,11 @@
 </div>
 <p th:replace="fragments :: navbar"></p>
 
-<div class="centeringDiv" style="padding-top:50px;">
+<div class="centeringDiv" style="padding-top:80px;">
     <h1 class="trailDetailsHeader"
         th:text="${detailedTrail.name}"></h1>
 </div>
+
 <div class="centeringDiv">
     <span
             th:text="'Trail length: '+${detailedTrail.miles}"></span>
@@ -21,24 +22,36 @@
             th:text="'Location: '+${detailedTrail.address}"></span>
     <span
             th:text="'Zip Code: '+${detailedTrail.zipCode}"></span>
-    <span th:if="${currentRunner}"><a th:href="@{/comments/createComment}"
-             class="btn btn-primary"
-                                      th:text="'Comment on '+${detailedTrail.name}"></a></span>
 </div>
+
 <div class="centeringDiv">
+    <div th:if="${runnerTrailRating}"
+         th:text="'Your trail difficulty rating: '+${runnerTrailRating}"></div>
+</div>
+
+<div class="centeringDiv" >
+    <span th:if="${currentRunner}"><a
+            th:href="@{/comments/createComment}"
+            class="btn btn-primary"
+            th:text="'Comment on '+${detailedTrail.name}"></a>
+    </span>
+    <span>
     <button class="btn btn-primary" id="weatherSpanButton"
             th:onclick="'getWeather('+${detailedTrail.numberZipCode}+',callApiKey())'">Get current
         Weather</button>
-    <span hidden
-            id="weatherSpan" ></span>
-</div>
-<div class="centeringDiv">
+    <span hidden id="weatherSpan" ></span>
+    </span>
+    <span>
     <button th:if="${currentRunner}"
             class="btn btn-primary"
             th:onclick="'displayMilesFromHome('+${currentRunner.numberZipCode}+','+${detailedTrail.numberZipCode}+')'"
             id="distanceButton">Distance from home</button>
     <span hidden id="distanceFromHomeSpan"></span>
+    </span>
 </div>
+
+
+
 <div th:each="comment : ${comments}"
      style="border-style:solid">
     <p>

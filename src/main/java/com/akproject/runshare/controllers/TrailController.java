@@ -100,15 +100,27 @@ public class TrailController extends MainController{
 
 
     @GetMapping("/trailDetails/{id}")
-    public String displayTrailDetails (@PathVariable Integer id, Model model, HttpServletRequest request){
+    public String displayTrailDetails (@PathVariable Integer id, Model model, HttpServletRequest request, HttpSession session){
         setRunnerInModel(request, model);
 
+        //testing to make sure the id is a real trail and reuturning the trail index if not
         Optional<Trail> testTrail = trailRepository.findById(id);
         if (testTrail.isEmpty()){
             return "trails/";
         }
-
         Trail detailedTrail = testTrail.get();
+
+        //testing to see if the current runner has a rating on this trail
+        Integer runnerId = (Integer) session.getAttribute(runnerSessionKey);
+        if (runnerId != null){
+            Optional<TrailDifficultyRating> testDifficulty = Optional.ofNullable(trailDifficultyRatingRepository.findByRunner_IdAndTrail_Id(runnerId, id));
+            if (testDifficulty.isPresent()) {
+                TrailDifficultyRating detailedTrailDifficultyRating = testDifficulty.get();
+                model.addAttribute("runnerTrailRating", detailedTrailDifficultyRating.getDifficulty().getNumberLevel());
+            }
+        }
+
+
         model.addAttribute("comments", commentRepository.findByTrail_IdOrderByDateCreatedDescTimeCreatedDesc(id));
         model.addAttribute("title", "Trail Details");
         model.addAttribute("detailedTrail",detailedTrail);

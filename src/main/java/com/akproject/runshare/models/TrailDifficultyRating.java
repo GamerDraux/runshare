@@ -22,6 +22,8 @@ public class TrailDifficultyRating extends AbstractEntity {
         this.trail=trail;
     }
 
+    public TrailDifficultyRating(){}
+
     public TrailDifficulty getDifficulty() { return difficulty; }
 
     public void setDifficulty(TrailDifficulty difficulty) { this.difficulty = difficulty; }

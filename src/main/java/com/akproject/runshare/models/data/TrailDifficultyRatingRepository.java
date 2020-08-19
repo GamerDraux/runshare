@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TrailDifficultyRatingRepository extends CrudRepository<TrailDifficultyRating, Integer> {
 
-    TrailDifficultyRating findByRunnerAndTrail(Runner runner, Trail trail);
+    TrailDifficultyRating findByRunner_IdAndTrail_Id(int runner, int trail);
 
     List<TrailDifficultyRating> findAllByTrailId(Integer trailId);
 
