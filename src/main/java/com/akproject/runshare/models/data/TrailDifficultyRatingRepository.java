@@ -12,8 +12,8 @@ public interface TrailDifficultyRatingRepository extends CrudRepository<TrailDif
 
     TrailDifficultyRating findByRunner_IdAndTrail_Id(int runner, int trail);
 
-    List<TrailDifficultyRating> findAllByTrailId(Integer trailId);
+    List<TrailDifficultyRating> findAllByTrail_Id(Integer trailId);
 
-    List<TrailDifficultyRating> findAllByRunner(Runner runner);
+    List<TrailDifficultyRating> findAllByRunner_Id(Integer runnerId);
 
 }

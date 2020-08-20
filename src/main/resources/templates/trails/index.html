@@ -45,6 +45,7 @@
         </a></span><span><a
                 th:href="@{'/trails/addressDesc'}">&#8595;
         </a></span></th>
+        <th>Difficulty Rating</th>
     </tr>
     <tr class="trailtableline" th:each="trail : ${trails}">
         <td>
@@ -52,6 +53,12 @@
         </td>
         <td th:text="${trail.miles}"></td>
         <td th:text="${trail.address}"></td>
+        <td th:if="${trail.returnTrailDifficultyList(trailDifficulties) == 6}">&#9734 &#9734 &#9734 &#9734 &#9734</td>
+        <td th:if="${trail.returnTrailDifficultyList(trailDifficulties) == 1}">&#9733 &#9734 &#9734 &#9734 &#9734</td>
+        <td th:if="${trail.returnTrailDifficultyList(trailDifficulties) == 2}">&#9733 &#9733 &#9734 &#9734 &#9734</td>
+        <td th:if="${trail.returnTrailDifficultyList(trailDifficulties) == 3}">&#9733 &#9733 &#9733 &#9734 &#9734</td>
+        <td th:if="${trail.returnTrailDifficultyList(trailDifficulties) == 4}">&#9733 &#9733 &#9733 &#9733 &#9734</td>
+        <td th:if="${trail.returnTrailDifficultyList(trailDifficulties) == 5}">&#9733 &#9733 &#9733 &#9733 &#9733</td>
     </tr>
 
 </table>

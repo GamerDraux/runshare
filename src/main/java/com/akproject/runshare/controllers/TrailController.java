@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/trails")
 public class TrailController extends MainController{
+
     //todo-create an edit view for Trails
     @GetMapping(value={"", "/{sortType}"})
     public String displayTrailIndex (@PathVariable (required=false) String sortType, Model model, HttpServletRequest request){
@@ -52,6 +55,12 @@ public class TrailController extends MainController{
                     return "trails/index";
             }
         }
+
+        Iterable<TrailDifficultyRating> grabDifficultiesList = trailDifficultyRatingRepository.findAll();
+        List<TrailDifficultyRating> trailDifficulties = new ArrayList<>();
+        grabDifficultiesList.forEach(trailDifficulties::add);
+
+        model.addAttribute("trailDifficulties", trailDifficulties);
         model.addAttribute("trails", trailRepository.findAll());
         return "trails/index";
     }
@@ -119,6 +128,7 @@ public class TrailController extends MainController{
                 model.addAttribute("runnerTrailRating", detailedTrailDifficultyRating.getDifficulty().getNumberLevel());
             }
         }
+        //TODO-create a star rating for displaying trail difficulty
 
 
         model.addAttribute("comments", commentRepository.findByTrail_IdOrderByDateCreatedDescTimeCreatedDesc(id));
@@ -133,6 +143,24 @@ public class TrailController extends MainController{
         model.addAttribute("title", "Blank");
         model.addAttribute("detailedTrail", new Trail("Blank", 0, "Blank", "Blank"));
         return "trails/trailDetails";
+    }
+
+
+    private int getTrailDifficultyAverage(int id){
+        List<TrailDifficultyRating> listOfTrailDifficulties = trailDifficultyRatingRepository.findAllByTrail_Id(id);
+        int difficultySum=0;
+        int avgDifficulty;
+        int count=0;
+        if (listOfTrailDifficulties.isEmpty()){
+            return 6;
+        } else {
+            for (int i = 0; i<listOfTrailDifficulties.size(); i++){
+                difficultySum+= listOfTrailDifficulties.get(i).getDifficulty().getNumberLevel();
+                count ++;
+            }
+            avgDifficulty=Math.round(difficultySum/count);
+        }
+        return avgDifficulty;
     }
 
 }

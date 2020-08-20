@@ -1,13 +1,11 @@
 package com.akproject.runshare.models;
 
-import com.akproject.runshare.models.data.TrailDifficultyRatingRepository;
+import com.akproject.runshare.models.enums.TrailDifficulty;
 import com.akproject.runshare.models.staticMethods.DistanceConversion;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,7 +15,6 @@ import java.util.Objects;
 
 @Entity
 public class Trail extends AbstractEntity {
-
 
     @NotBlank(message="Trail name required")
     private String name;
@@ -93,6 +90,21 @@ public class Trail extends AbstractEntity {
     public Integer getNumberZipCode() { return numberZipCode; }
 
     public void setNumberZipCode(Integer numberZipCode) { this.numberZipCode = numberZipCode; }
+
+    public int returnTrailDifficultyList (List<TrailDifficultyRating> trailDifficultyList){
+        double sum = 0;
+        double count = 0;
+        for (int i = 0; i<trailDifficultyList.size(); i++){
+            if (trailDifficultyList.get(i).getTrail().getId().equals(this.getId())) {
+                sum += trailDifficultyList.get(i).getDifficulty().getNumberLevel();
+                count ++;
+            }
+        }
+        if (count==0){
+            return 6;
+        }
+        return (int) Math.round(sum/count);
+    }
 
     @Override
     public boolean equals(Object o) {
