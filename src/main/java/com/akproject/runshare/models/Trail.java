@@ -91,7 +91,7 @@ public class Trail extends AbstractEntity {
 
     public void setNumberZipCode(Integer numberZipCode) { this.numberZipCode = numberZipCode; }
 
-    public int returnTrailDifficultyList (List<TrailDifficultyRating> trailDifficultyList){
+    public int returnTrailDifficultyAvg (List<TrailDifficultyRating> trailDifficultyList){
         double sum = 0;
         double count = 0;
         for (int i = 0; i<trailDifficultyList.size(); i++){
