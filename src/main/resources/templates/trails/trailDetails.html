@@ -24,27 +24,34 @@
             th:text="'Zip Code: '+${detailedTrail.zipCode}"></span>
 </div>
 <div class="centeringDiv">
-    <span
-            th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 6}">Community difficulty average: &#9734 &#9734 &#9734 &#9734 &#9734</span>
-    <span
-            th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 1}">Community difficulty average: &#9733 &#9734 &#9734 &#9734 &#9734</span>
-    <span
-            th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 2}">Community difficulty average: &#9733 &#9733 &#9734 &#9734 &#9734</span>
-    <span
-            th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 3}">Community difficulty average: &#9733 &#9733 &#9733 &#9734 &#9734</span>
-    <span
-            th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 4}">Community difficulty average: &#9733 &#9733 &#9733 &#9733 &#9734</span>
-    <span
-            th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 5}">Community difficulty average: &#9733 &#9733 &#9733 &#9733 &#9733</span>
+   <span>
+        <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 6}">Community difficulty average: &#9734 &#9734 &#9734 &#9734 &#9734</span>
+        <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 1}">Community difficulty average: &#9733 &#9734 &#9734 &#9734 &#9734</span>
+        <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 2}">Community difficulty average: &#9733 &#9733 &#9734 &#9734 &#9734</span>
+        <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 3}">Community difficulty average: &#9733 &#9733 &#9733 &#9734 &#9734</span>
+        <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 4}">Community difficulty average: &#9733 &#9733 &#9733 &#9733 &#9734</span>
+        <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 5}">Community difficulty average: &#9733 &#9733 &#9733 &#9733 &#9733</span>
+   </span>
     <span th:if="${currentRunner}">
-        <span
-                th:text="'Your difficulty rating: '+ ${runnerTrailRating}"></span>
+        <span th:if="${runnerTrailRating == 6}">You havenot assigned a difficulty</span>
+        <span th:if="${runnerTrailRating == 1}">Your
+            difficulty rating: &#9733 &#9734 &#9734 &#9734 &#9734</span>
+         <span th:if="${runnerTrailRating == 2}">Your
+            difficulty rating: &#9733 &#9733 &#9734
+             &#9734 &#9734</span>
+         <span th:if="${runnerTrailRating == 3}">Your
+            difficulty rating: &#9733 &#9733 &#9733
+             &#9734 &#9734</span>
+         <span th:if="${runnerTrailRating == 4}">Your
+            difficulty rating: &#9733 &#9733 &#9733
+             &#9733 &#9734</span>
+         <span th:if="${runnerTrailRating == 5}">Your
+            difficulty rating: &#9733 &#9733 &#9733
+             &#9733 &#9733</span>
+        <span th:unless="${runnerTrailRating}"><a class="btn
+              btn-primary" th:href="@{'/trails/addDifficulty/'+ ${currentRunner.id}+'/'+${detailedTrail.id}}">Set your difficulty rating</a>
+        </span>
     </span>
-</div>
-
-<div class="centeringDiv">
-    <div th:if="${runnerTrailRating}"
-         th:text="'Your trail difficulty rating: '+${runnerTrailRating}"></div>
 </div>
 
 <div class="centeringDiv" >

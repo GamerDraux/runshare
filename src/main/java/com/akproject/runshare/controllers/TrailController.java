@@ -134,9 +134,7 @@ public class TrailController extends MainController{
         grabDifficultiesList.forEach(trailDifficulties::add);
 
 
-
         model.addAttribute("trailDifficulties", trailDifficulties);
-
         model.addAttribute("comments", commentRepository.findByTrail_IdOrderByDateCreatedDescTimeCreatedDesc(id));
         model.addAttribute("title", "Trail Details");
         model.addAttribute("detailedTrail",detailedTrail);
@@ -167,6 +165,29 @@ public class TrailController extends MainController{
             avgDifficulty=Math.round(difficultySum/count);
         }
         return avgDifficulty;
+    }
+
+    @GetMapping ("/addDifficulty/{runnerId}/{trailId}")
+    public String displayAddDifficultyView (@PathVariable int runnerId, @PathVariable int trailId, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Add Difficulty");
+        model.addAttribute("trailDifficulties", TrailDifficulty.values());
+        model.addAttribute(new NewTrailDifficultyDTO());
+        model.addAttribute("trail", trailRepository.findById(trailId));
+        return "trails/addDifficulty";
+    }
+
+    @PostMapping ("/addDifficulty/{runnerId}/{trailId}")
+    public String processAddDifficutlyForm (@ModelAttribute @Valid NewTrailDifficultyDTO newTrailDifficultyDTO, @PathVariable int runnerId, @PathVariable int trailId, Errors errors, Model model, HttpServletRequest request ){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Add Difficutly");
+        if (errors.hasErrors()){
+            model.addAttribute("trailDifficulties", TrailDifficulty.values());
+            return "trails/addDifficulty";
+        }
+        TrailDifficultyRating newTrail = new TrailDifficultyRating(newTrailDifficultyDTO.getTrailDifficulty(), runnerRepository.findById(runnerId), trailRepository.findById(trailId));
+        trailDifficultyRatingRepository.save(newTrail);
+        return "redirect:/trails";
     }
 
 }
