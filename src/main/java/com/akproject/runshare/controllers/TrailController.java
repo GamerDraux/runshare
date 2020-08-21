@@ -188,6 +188,8 @@ public class TrailController extends MainController{
         TrailDifficultyRating newTrail = new TrailDifficultyRating(newTrailDifficultyDTO.getTrailDifficulty(), runnerRepository.findById(runnerId), trailRepository.findById(trailId));
         trailDifficultyRatingRepository.save(newTrail);
         return "redirect:/trails";
+
+        //TODO-add an edit trailDifficulty function
     }
 
 }
