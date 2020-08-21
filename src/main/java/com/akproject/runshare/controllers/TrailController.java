@@ -128,7 +128,6 @@ public class TrailController extends MainController{
                 model.addAttribute("runnerTrailRating", detailedTrailDifficultyRating.getDifficulty().getNumberLevel());
             }
         }
-        //TODO-create a star rating for displaying trail difficulty
         Iterable<TrailDifficultyRating> grabDifficultiesList = trailDifficultyRatingRepository.findAll();
         List<TrailDifficultyRating> trailDifficulties = new ArrayList<>();
         grabDifficultiesList.forEach(trailDifficulties::add);
@@ -177,19 +176,42 @@ public class TrailController extends MainController{
         return "trails/addDifficulty";
     }
 
+    @GetMapping ("/editDifficulty/{runnerId}/{trailId}")
+    public String displayEditDifficultyView (@PathVariable int trailId, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute(new NewTrailDifficultyDTO());
+        model.addAttribute("title", "Edit Difficulty");
+        model.addAttribute("trailDifficulties", TrailDifficulty.values());
+        model.addAttribute("trail", trailRepository.findById(trailId));
+        return "trails/addDifficulty";
+    }
+
     @PostMapping ("/addDifficulty/{runnerId}/{trailId}")
     public String processAddDifficutlyForm (@ModelAttribute @Valid NewTrailDifficultyDTO newTrailDifficultyDTO, @PathVariable int runnerId, @PathVariable int trailId, Errors errors, Model model, HttpServletRequest request ){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Add Difficutly");
         if (errors.hasErrors()){
             model.addAttribute("trailDifficulties", TrailDifficulty.values());
-            return "trails/addDifficulty";
+            return "trails/addDifficulty/"+runnerId+"/"+trailId;
         }
         TrailDifficultyRating newTrail = new TrailDifficultyRating(newTrailDifficultyDTO.getTrailDifficulty(), runnerRepository.findById(runnerId), trailRepository.findById(trailId));
         trailDifficultyRatingRepository.save(newTrail);
         return "redirect:/trails";
+    }
 
-        //TODO-add an edit trailDifficulty function
+    //TODO-add an edit trailDifficulty function
+    @PostMapping ("/editDifficulty/{runnerId}/{trailId}")
+    public String processEditDifficultyForm (@ModelAttribute @Valid NewTrailDifficultyDTO newTrailDifficultyDTO, @PathVariable int runnerId, @PathVariable int trailId, Errors errors, Model model, HttpServletRequest request){
+        setRunnerInModel(request, model);
+        model.addAttribute("title", "Edit Difficulty");
+        if (errors.hasErrors()){
+            model.addAttribute("trailDifficulties", TrailDifficulty.values());
+            return "trails/editDifficulty/"+runnerId+"/"+trailId;
+        }
+        TrailDifficultyRating editedTrail = trailDifficultyRatingRepository.findByRunner_IdAndTrail_Id(runnerId, trailId);
+        editedTrail.setDifficulty(newTrailDifficultyDTO.getTrailDifficulty());
+        trailDifficultyRatingRepository.save(editedTrail);
+        return "redirect:/trails";
     }
 
 }
