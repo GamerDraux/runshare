@@ -48,8 +48,10 @@
          <span th:if="${runnerTrailRating == 5}">Your
             difficulty rating: &#9733 &#9733 &#9733
              &#9733 &#9733</span>
-        <span th:unless="${runnerTrailRating}"><a class="btn
-              btn-primary" th:href="@{'/trails/addDifficulty/'+ ${currentRunner.id}+'/'+${detailedTrail.id}}">Set your difficulty rating</a>
+        <span style="padding:2px;"
+              th:unless="${runnerTrailRating} ">
+            <a class="btn btn-primary"
+               th:href="@{'/trails/addDifficulty/'+ ${currentRunner.id}+'/'+${detailedTrail.id}}">Set your difficulty rating</a>
         </span>
     </span>
 </div>
