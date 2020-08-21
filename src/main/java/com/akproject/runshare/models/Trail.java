@@ -106,6 +106,16 @@ public class Trail extends AbstractEntity {
         return (int) Math.round(sum/count);
     }
 
+    public int returnNumberOfTrailDifficultyRatings (List<TrailDifficultyRating> trailDifficultyRatingList){
+        int count =0;
+        for (int i=0; i<trailDifficultyRatingList.size(); i++){
+            if (trailDifficultyRatingList.get(i).getTrail().getId().equals(this.getId())) {
+                count ++;
+            }
+        }
+        return count;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
