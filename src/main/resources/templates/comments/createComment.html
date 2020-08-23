@@ -23,6 +23,17 @@
 </div>
 <form th:if=${currentRunner} method="post">
     <div class = "form-group">
+        <label for="privateMessage">Private Message?</label>
+        <input type="checkbox"
+               th:field="${newCommentDTO.privateMessage}"
+               id = "privateMessage">
+        <p th:errors="${newCommentDTO.privateMessage}"
+           class="errors"></p>
+        <small class="form-text text-muted">If this
+            is not checked, message will show up on
+            community comment board</small>
+    </div>
+    <div class = "form-group">
         <label for="messageTitle">Title</label><br>
         <input width="80%"
                th:field="${newCommentDTO.messageTitle}"
@@ -76,6 +87,7 @@
         <select multiple="multiple" name="runnersList"
                 id="runnerSelector">
             <option th:each="runner : ${runners}"
+                    th:unless="${runner==currentRunner}"
                     th:value="${runner.id}"
                     th:text="${runner.callsign}"></option>
         </select>

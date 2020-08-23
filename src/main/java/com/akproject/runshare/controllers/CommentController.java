@@ -45,7 +45,7 @@ public class CommentController extends MainController{
     }
 
     @PostMapping("/createComment")
-    public String processCreateComment(@ModelAttribute @Valid NewCommentDTO newCommentDTO, @RequestParam(value = "runnersList", required=false) int[] runnersList, Errors errors, Model model, HttpServletRequest request){
+    public String processCreateComment(@ModelAttribute @Valid NewCommentDTO newCommentDTO, @RequestParam(value = "runnersList", required=false) int[] runnersList, Errors errors, Model model, HttpServletRequest request, HttpSession session){
         setRunnerInModel(request, model);
         if (errors.hasErrors()){
             model.addAttribute("title", "Create Comment");
@@ -62,10 +62,10 @@ public class CommentController extends MainController{
                 newCommentDTO.runners.add(runnerRepository.findById(value));
             }
         }
-
+        newCommentDTO.runners.add(runnerRepository.findById(getRunnerFromSession(session).getId()).get());
         HttpSession commentSession = request.getSession();
         Runner commentCreator = getRunnerFromSession(commentSession);
-        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession(), newCommentDTO.getRunners());
+        Comment savedComment = new Comment(newCommentDTO.getMessageTitle(), newCommentDTO.getMessage(), commentCreator, LocalDate.now(), LocalTime.now(), newCommentDTO.getTrail(), newCommentDTO.getRunSession(), newCommentDTO.getRunners(), newCommentDTO.getPrivateMessage());
         commentRepository.save(savedComment);
         return "redirect:/comments";
 

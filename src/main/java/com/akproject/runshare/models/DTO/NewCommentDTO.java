@@ -28,13 +28,16 @@ public class NewCommentDTO {
 
     public List<Runner> runners = new ArrayList<>();
 
+    private Boolean privateMessage;
+
     public NewCommentDTO(){}
 
-    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession){
+    public NewCommentDTO(String messageTitle, String message, Trail trail, RunSession runSession, Boolean privateMessage){
         this.messageTitle=messageTitle;
         this.message=message;
         this.trail=trail;
         this.runSession=runSession;
+        this.privateMessage=privateMessage;
     }
 
     public String getMessage() {
@@ -49,6 +52,8 @@ public class NewCommentDTO {
 
     public List<Runner> getRunners() { return runners; }
 
+    public Boolean getPrivateMessage() { return privateMessage; }
+
     public void setMessage(String message) {
         this.message = message;
     }
@@ -58,4 +63,6 @@ public class NewCommentDTO {
     public void setTrail(Trail trail) { this.trail = trail; }
 
     public void setRunSession(RunSession runSession) { this.runSession = runSession; }
+
+    public void setPrivateMessage(Boolean privateMessage) { this.privateMessage = privateMessage; }
 }

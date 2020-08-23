@@ -46,11 +46,13 @@ public class Comment extends AbstractEntity {
     @ManyToMany
     private List<Runner> runners =new ArrayList<>();
 
+    private Boolean privateMessage;
+
 
 //    constructors
     public Comment (){}
 
-    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail, RunSession runsession, List<Runner> runners){
+    public Comment (String messageTitle, String message, Runner messageCreator, LocalDate dateCreated, LocalTime timeCreated, Trail trail, RunSession runsession, List<Runner> runners, Boolean privateMessage){
         this.messageTitle= Jsoup.clean(messageTitle, Whitelist.none());
         this.message= Jsoup.clean(message, Whitelist.none());
         this.messageCreator= messageCreator;
@@ -59,6 +61,7 @@ public class Comment extends AbstractEntity {
         this.trail=trail;
         this.runSession=runsession;
         this.runners = runners;
+        this.privateMessage = privateMessage;
 
     }
 
@@ -81,6 +84,8 @@ public class Comment extends AbstractEntity {
 
     public List<Runner> getRunners() { return runners; }
 
+    public Boolean getPrivateMessage() { return privateMessage; }
+
     //    Setters
 
 
@@ -100,6 +105,8 @@ public class Comment extends AbstractEntity {
 
     public void setRunSession(RunSession runSession) { this.runSession = runSession; }
 
+    public void setPrivateMessage(Boolean privateMessage) { this.privateMessage = privateMessage; }
+
     public String displayStringDate(){
         return DateConversion.convertYYYYMMDDToDisplayString(dateCreated.toString());
     }
@@ -109,6 +116,8 @@ public class Comment extends AbstractEntity {
     }
 
     public void addRunner(Runner runner) { this.runners.add(runner);}
+
+
 
 
 
