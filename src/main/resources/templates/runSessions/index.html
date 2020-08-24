@@ -13,9 +13,15 @@
 <h1 style="text-align:center; padding-top:70px;">Run
     Sessions</h1>
 <div class="centeringDiv">
-<a class="btn btn-primary"
-th:href="@{'/runSessions/addRunSession'}">Add a Run
-Session</a></div>
+<a th:if="${currentRunner}" class="btn btn-primary"
+th:href="@{'/runSessions/addRunSession'}" style="margin:5px; padding:5px;">Add a Run
+Session</a>
+<a th:unless="${currentRunner}" class="btn btn-primary"
+   th:href="@{'/runners/login'}"
+   style="margin:5px; padding:5px;">Login to add a
+    Run Session</a>
+</div>
+
 <h3 style="text-align:center;" th:if="${sortType}"
     th:text="'Sorted by '+${sortType}"></h3>
 <small th:if="${sortType}" class="form-text text-muted"
@@ -39,7 +45,7 @@ Session</a></div>
             <span><a th:href="@{'/runSessions/timeAsc'}">&#8593;</a></span>
             <span><a th:href="@{'/runSessions/timeDesc'}">&#8595;</a></span>
         </th>
-        <th>Callsign</th>
+        <th>Creator</th>
         <th>Trail</th>
         <th>Laps</th>
         <th>Distance</th>
@@ -54,8 +60,8 @@ Session</a></div>
         <td th:text="${runsession.getDisplayDate()}"></td>
         <td th:text="${runsession.time}"></td>
         <td><a
-                th:href="@{'/runners/runnerDetails/'+${runsession.runner.id}}"
-                th:text="${runsession.runner.callsign}"></a></td>
+                th:href="@{'/runners/runnerDetails/'+${runsession.creator.id}}"
+                th:text="${runsession.creator.callsign}"></a></td>
         <td><a
                 th:href="@{'/trails/trailDetails/'+${runsession.trail.id}}" th:text="${runsession.trail.name}"></a></td>
         <td th:text="${runsession.laps}"></td>

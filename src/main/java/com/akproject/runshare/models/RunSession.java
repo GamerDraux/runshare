@@ -17,6 +17,7 @@ import java.util.List;
 @Entity
 public class RunSession extends AbstractEntity{
 
+    //todo-create a runnerlist for runners on Runsessions
     @NotBlank(message = "Run Session needs to be named")
     @NotNull(message ="Run Session needs to be named")
     private String name;
@@ -26,7 +27,7 @@ public class RunSession extends AbstractEntity{
     private String date;
 
     @ManyToOne
-    private Runner runner;
+    private Runner creator;
 
     @ManyToOne
     private Trail trail;
@@ -44,10 +45,10 @@ public class RunSession extends AbstractEntity{
 
 
 
-    public RunSession (String name, String date, Runner runner, Trail trail, double laps, Integer time){
+    public RunSession (String name, String date, Runner creator, Trail trail, double laps, Integer time){
         this.name = Jsoup.clean(name, Whitelist.none());
         this.date = Jsoup.clean(date, Whitelist.none());
-        this.runner= runner;
+        this.creator= creator;
         this.trail = trail;
         this.laps = laps;
         this.time = time;
@@ -73,13 +74,9 @@ public class RunSession extends AbstractEntity{
         this.date = date;
     }
 
-    public Runner getRunner() {
-        return runner;
-    }
+    public Runner getCreator() { return creator; }
 
-    public void setRunner(Runner runner) {
-        this.runner = runner;
-    }
+    public void setCreator(Runner creator) { this.creator = creator; }
 
     public Trail getTrail() {
         return trail;

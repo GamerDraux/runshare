@@ -10,19 +10,24 @@
 
 <p th:replace="fragments :: navbar"></p>
 
-<h1 style="text-align:center; padding-top:100px;">Community
+<h1 style="text-align:center; padding-top:70px;">Community
     Conversations
 </h1>
-<span th:unless="${currentRunner}"><a
-        th:href="@{/runners/login}"
-        class="btn btn-primary">Login</a></span>
-<span th:unless="${currentRunner}"
-      style="padding-right:20px;">Log in to contribute to comments</span>
-<a th:if="${currentRunner}"
-   th:href="@{/comments/createComment}"
-   class="btn btn-primary">Post a Comment</a>
-<div th:each="comment : ${comments}"
-     >
+<div th:unless="${currentRunner}" class="centeringDiv">
+    <div>
+        <span><a
+                th:href="@{/runners/login}"
+                class="btn btn-primary" style="margin:5px; padding:5px;">Login</a></span>
+        <span style="padding-right:20px;">Log in to contribute
+            to comments</span>
+    </div>
+</div>
+<div th:if="${currentRunner}">
+    <a
+       th:href="@{/comments/createComment}"
+       class="btn btn-primary" style="margin:5px; padding:5px;">Post a Comment</a>
+</div>
+<div th:each="comment : ${comments}">
     <div th:unless="${comment.privateMessage == true}"
          style="border-style:solid">
         <p>

@@ -19,8 +19,8 @@
     <span
             th:text="'Date: '+${detailedRunSession.date}"></span>
     <span><a
-            th:href="@{'/runners/runnerDetails/'+${detailedRunSession.runner.id}}"
-            th:text="'Runner: '+${detailedRunSession.runner.callsign}"></a></span>
+            th:href="@{'/runners/runnerDetails/'+${detailedRunSession.creator.id}}"
+            th:text="'Creator: '+${detailedRunSession.creator.callsign}"></a></span>
     <span><a
             th:href="@{'/trails/trailDetails/'+${detailedRunSession.trail.id}}"
             th:text="'Trail: '+${detailedRunSession.trail.name}"></a></span>

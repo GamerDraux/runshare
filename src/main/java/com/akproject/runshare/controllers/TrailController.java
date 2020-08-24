@@ -199,7 +199,6 @@ public class TrailController extends MainController{
         return "redirect:/trails";
     }
 
-    //TODO-add an edit trailDifficulty function
     @PostMapping ("/editDifficulty/{runnerId}/{trailId}")
     public String processEditDifficultyForm (@ModelAttribute @Valid NewTrailDifficultyDTO newTrailDifficultyDTO, @PathVariable int runnerId, @PathVariable int trailId, Errors errors, Model model, HttpServletRequest request){
         setRunnerInModel(request, model);

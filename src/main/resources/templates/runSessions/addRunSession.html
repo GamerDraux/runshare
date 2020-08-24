@@ -9,7 +9,8 @@
 </div>
 <p th:replace="fragments :: navbar"></p>
 
-<h1 style="padding-top:150px;">Let's log a Run!</h1>
+<h1 style="padding-top:150px;"
+    th:text="${'Log a run, '+currentRunner.callsign+'!'}"></h1>
 
 <form method="post">
     <div class="form-group">
@@ -28,20 +29,6 @@
         <p th:errors="${newRunSessionDTO.date}"
            class="errors"></p>
         <small class="form-text text-muted"></small>
-    </div>
-    <div class="form-group">
-        <label for="runner">Pick your Runner</label>
-        <select id="runner"
-                th:field="*{newRunSessionDTO.runner}">
-            <option th:each="runner : ${runners}"
-                    th:text="${runner.callsign}"
-                    th:value="${runner.id}"></option>
-        </select>
-        <p th:errors="${newRunSessionDTO.runner}"
-           class="errors"></p>
-        <small class="form-text text-muted">If your
-            callsign isn't listed, click the
-            "Register a new Runner" button above</small>
     </div>
     <div class="form-group">
         <label for="trail">Pick your Trail</label>

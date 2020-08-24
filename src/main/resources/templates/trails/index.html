@@ -10,15 +10,16 @@
 <p th:replace="fragments :: navbar"></p>
 
 
-<h1 style="text-align:center; padding-top:50px;">Trail
+<h1 style="text-align:center; padding-top:70px;">Trail
     Catalog</h1>
 <div class="centeringDiv">
     <div th:if="${currentRunner}"><a
         class="btn btn-primary"
-        th:href="@{'/trails/addTrail'}">Add a new Trail</a></div>
+        th:href="@{'/trails/addTrail'}" style="margin:5px; padding:5px;">Add a new
+        Trail</a></div>
     <div th:unless="${currentRunner}"><a
             class="btn btn-primary"
-            th:href="@{'/runners/login'}">Login to
+            th:href="@{'/runners/login'}" style="margin:5px; padding:5px;">Login to
         Add a Trail</a></div>
 </div>
 

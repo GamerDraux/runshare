@@ -32,7 +32,6 @@ public class CommentController extends MainController{
 
     @GetMapping(value={"/createComment", "/createComment/{id}"})
     public String displayCreateComment(@PathVariable(required=false) Integer entityId, HttpServletRequest request, Model model){
-// todo-       need to set up conditionals to see what type of entity the id is for, and set up different displays based on that.
         setRunnerInModel(request, model);
         model.addAttribute("title", "Create Comment");
         model.addAttribute("nullTrail", null);

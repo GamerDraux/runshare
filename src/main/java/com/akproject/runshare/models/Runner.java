@@ -51,7 +51,7 @@ public class Runner extends AbstractEntity{
     @NotNull(message="Zip code cannot be null")
     private String zip;
 
-    @OneToMany(mappedBy="runner")
+    @OneToMany(mappedBy="creator")
     private final List<RunSession> runSessions= new ArrayList<>();
 
     private Integer numberZipCode;

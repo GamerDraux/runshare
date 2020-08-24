@@ -17,9 +17,6 @@ public class NewRunSessionDTO extends AbstractEntity {
     private String date;
 
     @NotNull
-    private Runner runner;
-
-    @NotNull
     private Trail trail;
 
     @NotNull
@@ -47,21 +44,10 @@ public class NewRunSessionDTO extends AbstractEntity {
         this.date = date;
     }
 
-    public Runner getRunner() {
-        return runner;
-    }
 
-    public void setRunner(Runner runner) {
-        this.runner = runner;
-    }
+    public Trail getTrail() { return trail; }
 
-    public Trail getTrail() {
-        return trail;
-    }
-
-    public void setTrail(Trail trail) {
-        this.trail = trail;
-    }
+    public void setTrail(Trail trail) { this.trail = trail; }
 
     public double getLaps() { return laps; }
 

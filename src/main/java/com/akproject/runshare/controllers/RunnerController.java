@@ -121,7 +121,6 @@ public class RunnerController extends MainController {
             model.addAttribute("title","Add Runner");
             return "runners/addrunner";
         }
-//todo-refactor model.addAttribute lines into new static class
         Runner newRunner = new Runner(newRunnerRegistrationDTO.getCallsign(),newRunnerRegistrationDTO.getFirstName(),newRunnerRegistrationDTO.getLastName(),newRunnerRegistrationDTO.isCallsignOnly(),newRunnerRegistrationDTO.getPassword(),newRunnerRegistrationDTO.getAge(),newRunnerRegistrationDTO.getWeight(),newRunnerRegistrationDTO.getGender(),newRunnerRegistrationDTO.getRunnerLevel(), newRunnerRegistrationDTO.getZip());
         runnerRepository.save(newRunner);
         setUserInSession(request.getSession(), newRunner);
@@ -231,7 +230,7 @@ public class RunnerController extends MainController {
             model.addAttribute("comments", comments);
         }
 
-        List<RunSession> runSessions = runSessionRepository.findAllByRunnerId(id);
+        List<RunSession> runSessions = runSessionRepository.findAllByCreator_Id(id);
         if (!runSessions.isEmpty()) {
             model.addAttribute("runSessions", runSessions);
         }

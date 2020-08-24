@@ -8,6 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -52,7 +53,7 @@ public class RunSessionController extends MainController {
     }
 
     @GetMapping("/addRunSession")
-    public String displayAddRunSessionsForm(Model model, HttpServletRequest request){
+    public String displayAddRunSessionsForm(Model model, HttpServletRequest request, HttpSession session){
         setRunnerInModel(request, model);
         model.addAttribute("title", "Add Run Session");
         NewRunSessionDTO newRunSessionDTO = new NewRunSessionDTO();
@@ -66,7 +67,7 @@ public class RunSessionController extends MainController {
     }
 
     @PostMapping("/addRunSession")
-    public String processAddRunSessionForm (@ModelAttribute @Valid NewRunSessionDTO newRunSessionDTO, Errors errors, Model model, HttpServletRequest request){
+    public String processAddRunSessionForm (@ModelAttribute @Valid NewRunSessionDTO newRunSessionDTO, Errors errors, Model model, HttpServletRequest request, HttpSession session){
         setRunnerInModel(request, model);
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Run Session");
@@ -85,7 +86,7 @@ public class RunSessionController extends MainController {
             return "runSessions/addRunSession";
         }
 
-        RunSession newRunSession = new RunSession(newRunSessionDTO.getName(), newRunSessionDTO.getDate(), newRunSessionDTO.getRunner(), newRunSessionDTO.getTrail(), newRunSessionDTO.getLaps(), (newRunSessionDTO.getSeconds()+(newRunSessionDTO.getMinutes()*60)+(newRunSessionDTO.getHours()*3600)));
+        RunSession newRunSession = new RunSession(newRunSessionDTO.getName(), newRunSessionDTO.getDate(),  getRunnerFromSession(session), newRunSessionDTO.getTrail(),  newRunSessionDTO.getLaps(), (newRunSessionDTO.getSeconds()+(newRunSessionDTO.getMinutes()*60)+(newRunSessionDTO.getHours()*3600)));
         runSessionRepository.save(newRunSession);
         model.addAttribute("title", "Run Sessions");
         model.addAttribute("runSessions", runSessionRepository.findAll());

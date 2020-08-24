@@ -15,7 +15,7 @@
         th:text="${detailedTrail.name}"></h1>
 </div>
 
-<div class="centeringDiv">
+<div class="centeringDiv" style="margin:5px; padding:5px;">
     <span
             th:text="'Trail length: '+${detailedTrail.miles}"></span>
     <span
@@ -23,7 +23,7 @@
     <span
             th:text="'Zip Code: '+${detailedTrail.zipCode}"></span>
 </div>
-<div class="centeringDiv">
+<div class="centeringDiv" style="margin:5px; padding:5px;">
    <span>
         <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 6}">Community difficulty average: &#9734 &#9734 &#9734 &#9734 &#9734</span>
         <span th:if="${detailedTrail.returnTrailDifficultyAvg(trailDifficulties) == 1}">Community difficulty average: &#9733 &#9734 &#9734 &#9734 &#9734</span>
@@ -60,7 +60,7 @@
     </span>
 </div>
 
-<div class="centeringDiv" >
+<div class="centeringDiv" style="margin:5px; padding:5px;" >
     <span th:if="${currentRunner}"><a
             th:href="@{/comments/createComment}"
             class="btn btn-primary"
@@ -72,12 +72,13 @@
         Weather</button>
     <span hidden id="weatherSpan" ></span>
     </span>
-    <span>
-    <button th:if="${currentRunner}"
-            class="btn btn-primary"
-            th:onclick="'displayMilesFromHome('+${currentRunner.numberZipCode}+','+${detailedTrail.numberZipCode}+')'"
-            id="distanceButton">Distance from home</button>
-    <span hidden id="distanceFromHomeSpan"></span>
+    <span th:if="${currentRunner}">
+        <button
+                class="btn btn-primary"
+                th:onclick="'displayMilesFromHome('+${currentRunner.numberZipCode}+','+${detailedTrail.numberZipCode}+')'"
+                id="distanceButton">Distance from home</button>
+        <span hidden
+              id="distanceFromHomeSpan"></span>
     </span>
 </div>
 
