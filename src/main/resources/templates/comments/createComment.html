@@ -10,7 +10,8 @@
     <p th:replace="fragments :: runnerbar"></p>
 </div>
 <p th:replace="fragments :: navbar"></p>
-<h1 style="text-align:center; padding-top:90px;">Contribute to the conversation!
+<h1
+        style="text-align:center; padding-top:100px;">Contribute to the conversation!
 </h1>
 <div class="centeringDiv">
     <div th:unless="${currentRunner}">
@@ -93,6 +94,8 @@
         </select>
         <p th:errors = "${newCommentDTO.runners}"
            class="errors"></p>
+        <small class="form-text text-muted">Hold
+            Ctrl+click to select multiple runners</small>
     </div>
     <button type="submit" class="btn btn-primary">Create Comment</button>
 </form>
