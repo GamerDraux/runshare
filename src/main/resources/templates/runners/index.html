@@ -13,9 +13,13 @@
 
 <h1 style="text-align:center; padding-top:70px;">Registered
     Runners</h1>
-<div class="centeringDiv" style="margin:5px; padding:5px;">
-<a class="btn btn-primary" style="align-items:center;"
-   th:href="@{'/runners/addRunner'}">Add a new Runner</a>
+<div class="centeringDiv">
+    <span>
+         <span><a class="btn btn-primary"
+                    style="align-items:center; margin:5px; padding:5px;"
+                  th:href="@{'/runners/addRunner'}">Create</a></span>
+         <span>a new Runner</span>
+    </span>
 </div>
 <h3 style="text-align:center;" th:if="${sortType}"
     th:text="'Sorted by '+${sortType}"></h3>

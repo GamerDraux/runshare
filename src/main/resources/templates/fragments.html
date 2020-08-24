@@ -74,7 +74,10 @@
                      style="display:none">
                      <div><a th:href="@{/trails}">Trail
                      Catalog</a></div>
-                      <div><a th:href="@{/trails/addTrail}">Add a
+                    <div
+                            th:unless="${curentRunner}"><a th:href="@{/runners/login}">Login to create a Trail</a></div>
+                      <div th:if="${currentRunner}"><a
+                              th:href="@{/trails/addTrail}">Add a
                     Trail</a></div>
                 </div>
             </div>
@@ -87,7 +90,11 @@
                      style="display:none">
                      <div><a th:href="@{/runSessions}">Run
                   Sessions</a></div>
-                    <div><a
+                    <div th:unless="${currentRunner}"><a
+                            th:href="@{/runners/login}">Login to create a Run Session
+                    </a>
+                    </div>
+                    <div th:if="${currentRunner}"><a
                     th:href="@{/runSessions/addRunSession}">Add a
                     run session</a></div>
                 </div>

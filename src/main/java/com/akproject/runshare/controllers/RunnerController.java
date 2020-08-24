@@ -212,9 +212,16 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/runnerDetails/{id}")
-    private String displayRunnerDetailsView (@PathVariable Integer id, Model model, HttpServletRequest request){
+    private String displayRunnerDetailsView (@PathVariable Integer id, Model model, HttpServletRequest request, HttpSession session){
         setRunnerInModel(request, model);
-
+        if (getRunnerFromSession(session)==null){
+            model.addAttribute("detailedRunner", runnerRepository.findById(id).get());
+            return"/runners/runnerDetailsNoAccess";
+        }
+        if (getRunnerFromSession(session).getId()!=id){
+            model.addAttribute("detailedRunner", runnerRepository.findById(id).get());
+            return "/runners/runnerDetailsNoAccess";
+        }
         Optional<Runner> testRunner = runnerRepository.findById(id);
 
         if (testRunner.isEmpty()){
@@ -247,7 +254,7 @@ public class RunnerController extends MainController {
     }
 
     @GetMapping("/editRunner/{id}")
-    private String displayEditRunnerView (@PathVariable Integer id, Model model, HttpServletRequest request){
+    private String displayEditRunnerView (@PathVariable Integer id, Model model, HttpServletRequest request, HttpSession session){
         setRunnerInModel(request, model);
         Optional<Runner> runnerTest = runnerRepository.findById(id);
         if (runnerTest.isEmpty()){

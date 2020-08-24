@@ -12,15 +12,21 @@
 
 <h1 style="text-align:center; padding-top:70px;">Run
     Sessions</h1>
+
+<div th:unless="${currentRunner}" class="centeringDiv">
+    <div>
+        <span><a
+                th:href="@{/runners/login}"
+                class="btn btn-primary" style="margin:5px; padding:5px;">Login</a></span>
+        <span>to log a Run Session</span>
+    </div>
+</div>
 <div class="centeringDiv">
 <a th:if="${currentRunner}" class="btn btn-primary"
 th:href="@{'/runSessions/addRunSession'}" style="margin:5px; padding:5px;">Add a Run
-Session</a>
-<a th:unless="${currentRunner}" class="btn btn-primary"
-   th:href="@{'/runners/login'}"
-   style="margin:5px; padding:5px;">Login to add a
-    Run Session</a>
+    Session</a>
 </div>
+
 
 <h3 style="text-align:center;" th:if="${sortType}"
     th:text="'Sorted by '+${sortType}"></h3>
